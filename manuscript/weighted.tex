@@ -1,0 +1,28 @@
+\subsection{Calibrating the container-size proxy}
+\label{sec:find-proxy}
+
+We locked eight workloads before collecting results. Three authored C++17 programs called \texttt{std::find}, \texttt{std::count}, or \texttt{std::reverse} across $N$-element vectors, tested over six doubling sizes from 16 to 512. Search conditions placed the match first, at index $\lfloor\sqrt{N}\rfloor-1$, at the midpoint, last, or absent. We counted equality comparisons in separate search and count builds and swaps in a separate reverse build. Independent closed-form oracles checked both the operation counts and the program checksums. We compared original, instrumented, and counting builds under GCC 15.2.0 at \texttt{-O2}, with \texttt{-O0} and \texttt{-O3} as sensitivity conditions. We also checked an undefined-behavior sanitizer build at \texttt{-O2}. All 480 output checks passed. Two complete runs produced byte-identical reports.
+
+At the target library call, least-squares fits of log counts against log size gave hit and proxy-work exponents of 1.000 and 2.000 in every condition. Table~\ref{tab:library-calibration} shows the fitted exponents of the observed operations. At the registered margin of 0.70 above the hit exponent, the proxy qualified all eight conditions and the operation counts qualified six. First and square-root-position searches were the two disagreements. The EAPG work selector chose the target call in all eight conditions. The same selector with hit fits emitted no symptom. These findings held at all three optimization levels.
+
+\begin{table}[t]
+\centering
+\caption{Library calibration at \texttt{-O2}. The ratio divides proxy units by observed comparisons or swaps at $N=512$.}
+\label{tab:library-calibration}
+\begin{tabular}{llrr}
+\toprule
+Library call & Condition & Count exponent & Ratio \\
+\midrule
+\texttt{find} & First & 1.000 & 512.00 \\
+ & Square root & 1.508 & 23.27 \\
+ & Midpoint & 1.969 & 1.99 \\
+ & Last & 2.000 & 1.00 \\
+ & Absent & 2.000 & 1.00 \\
+\texttt{count} & Present & 2.000 & 1.00 \\
+ & Absent & 2.000 & 1.00 \\
+\texttt{reverse} & Full range & 2.000 & 2.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Match position determined the number of comparisons, while the proxy charged the full vector. Reverse illustrates a separate distinction between estimating the exponent and estimating the count. It used one swap per two elements, so the proxy had the correct exponent and assigned twice the number of swaps. These fixed conditions assess the proxy at the level of library operations in the counting builds.

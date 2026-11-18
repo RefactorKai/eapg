@@ -1,0 +1,451 @@
+{
+  "schema": "eapg-weighted-panel-lock-v1",
+  "optimizations": [
+    "-O2",
+    "-O0",
+    "-O3"
+  ],
+  "site_gap_threshold": 0.7,
+  "cells": [
+    {
+      "operation": "find",
+      "workload": "first",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 0,
+          "stdin": "16 0\n",
+          "checksum": 0,
+          "expected_operations": 16
+        },
+        {
+          "n": 32,
+          "p": 0,
+          "stdin": "32 0\n",
+          "checksum": 0,
+          "expected_operations": 32
+        },
+        {
+          "n": 64,
+          "p": 0,
+          "stdin": "64 0\n",
+          "checksum": 0,
+          "expected_operations": 64
+        },
+        {
+          "n": 128,
+          "p": 0,
+          "stdin": "128 0\n",
+          "checksum": 0,
+          "expected_operations": 128
+        },
+        {
+          "n": 256,
+          "p": 0,
+          "stdin": "256 0\n",
+          "checksum": 0,
+          "expected_operations": 256
+        },
+        {
+          "n": 512,
+          "p": 0,
+          "stdin": "512 0\n",
+          "checksum": 0,
+          "expected_operations": 512
+        }
+      ]
+    },
+    {
+      "operation": "find",
+      "workload": "sqrt",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 3,
+          "stdin": "16 3\n",
+          "checksum": 48,
+          "expected_operations": 64
+        },
+        {
+          "n": 32,
+          "p": 4,
+          "stdin": "32 4\n",
+          "checksum": 128,
+          "expected_operations": 160
+        },
+        {
+          "n": 64,
+          "p": 7,
+          "stdin": "64 7\n",
+          "checksum": 448,
+          "expected_operations": 512
+        },
+        {
+          "n": 128,
+          "p": 10,
+          "stdin": "128 10\n",
+          "checksum": 1280,
+          "expected_operations": 1408
+        },
+        {
+          "n": 256,
+          "p": 15,
+          "stdin": "256 15\n",
+          "checksum": 3840,
+          "expected_operations": 4096
+        },
+        {
+          "n": 512,
+          "p": 21,
+          "stdin": "512 21\n",
+          "checksum": 10752,
+          "expected_operations": 11264
+        }
+      ]
+    },
+    {
+      "operation": "find",
+      "workload": "midpoint",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 8,
+          "stdin": "16 8\n",
+          "checksum": 128,
+          "expected_operations": 144
+        },
+        {
+          "n": 32,
+          "p": 16,
+          "stdin": "32 16\n",
+          "checksum": 512,
+          "expected_operations": 544
+        },
+        {
+          "n": 64,
+          "p": 32,
+          "stdin": "64 32\n",
+          "checksum": 2048,
+          "expected_operations": 2112
+        },
+        {
+          "n": 128,
+          "p": 64,
+          "stdin": "128 64\n",
+          "checksum": 8192,
+          "expected_operations": 8320
+        },
+        {
+          "n": 256,
+          "p": 128,
+          "stdin": "256 128\n",
+          "checksum": 32768,
+          "expected_operations": 33024
+        },
+        {
+          "n": 512,
+          "p": 256,
+          "stdin": "512 256\n",
+          "checksum": 131072,
+          "expected_operations": 131584
+        }
+      ]
+    },
+    {
+      "operation": "find",
+      "workload": "last",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 15,
+          "stdin": "16 15\n",
+          "checksum": 240,
+          "expected_operations": 256
+        },
+        {
+          "n": 32,
+          "p": 31,
+          "stdin": "32 31\n",
+          "checksum": 992,
+          "expected_operations": 1024
+        },
+        {
+          "n": 64,
+          "p": 63,
+          "stdin": "64 63\n",
+          "checksum": 4032,
+          "expected_operations": 4096
+        },
+        {
+          "n": 128,
+          "p": 127,
+          "stdin": "128 127\n",
+          "checksum": 16256,
+          "expected_operations": 16384
+        },
+        {
+          "n": 256,
+          "p": 255,
+          "stdin": "256 255\n",
+          "checksum": 65280,
+          "expected_operations": 65536
+        },
+        {
+          "n": 512,
+          "p": 511,
+          "stdin": "512 511\n",
+          "checksum": 261632,
+          "expected_operations": 262144
+        }
+      ]
+    },
+    {
+      "operation": "find",
+      "workload": "absent",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 16,
+          "stdin": "16 16\n",
+          "checksum": 256,
+          "expected_operations": 256
+        },
+        {
+          "n": 32,
+          "p": 32,
+          "stdin": "32 32\n",
+          "checksum": 1024,
+          "expected_operations": 1024
+        },
+        {
+          "n": 64,
+          "p": 64,
+          "stdin": "64 64\n",
+          "checksum": 4096,
+          "expected_operations": 4096
+        },
+        {
+          "n": 128,
+          "p": 128,
+          "stdin": "128 128\n",
+          "checksum": 16384,
+          "expected_operations": 16384
+        },
+        {
+          "n": 256,
+          "p": 256,
+          "stdin": "256 256\n",
+          "checksum": 65536,
+          "expected_operations": 65536
+        },
+        {
+          "n": 512,
+          "p": 512,
+          "stdin": "512 512\n",
+          "checksum": 262144,
+          "expected_operations": 262144
+        }
+      ]
+    },
+    {
+      "operation": "count",
+      "workload": "present",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 8,
+          "stdin": "16 8\n",
+          "checksum": 16,
+          "expected_operations": 256
+        },
+        {
+          "n": 32,
+          "p": 16,
+          "stdin": "32 16\n",
+          "checksum": 32,
+          "expected_operations": 1024
+        },
+        {
+          "n": 64,
+          "p": 32,
+          "stdin": "64 32\n",
+          "checksum": 64,
+          "expected_operations": 4096
+        },
+        {
+          "n": 128,
+          "p": 64,
+          "stdin": "128 64\n",
+          "checksum": 128,
+          "expected_operations": 16384
+        },
+        {
+          "n": 256,
+          "p": 128,
+          "stdin": "256 128\n",
+          "checksum": 256,
+          "expected_operations": 65536
+        },
+        {
+          "n": 512,
+          "p": 256,
+          "stdin": "512 256\n",
+          "checksum": 512,
+          "expected_operations": 262144
+        }
+      ]
+    },
+    {
+      "operation": "count",
+      "workload": "absent",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 16,
+          "stdin": "16 16\n",
+          "checksum": 0,
+          "expected_operations": 256
+        },
+        {
+          "n": 32,
+          "p": 32,
+          "stdin": "32 32\n",
+          "checksum": 0,
+          "expected_operations": 1024
+        },
+        {
+          "n": 64,
+          "p": 64,
+          "stdin": "64 64\n",
+          "checksum": 0,
+          "expected_operations": 4096
+        },
+        {
+          "n": 128,
+          "p": 128,
+          "stdin": "128 128\n",
+          "checksum": 0,
+          "expected_operations": 16384
+        },
+        {
+          "n": 256,
+          "p": 256,
+          "stdin": "256 256\n",
+          "checksum": 0,
+          "expected_operations": 65536
+        },
+        {
+          "n": 512,
+          "p": 512,
+          "stdin": "512 512\n",
+          "checksum": 0,
+          "expected_operations": 262144
+        }
+      ]
+    },
+    {
+      "operation": "reverse",
+      "workload": "full",
+      "inputs": [
+        {
+          "n": 16,
+          "p": 0,
+          "stdin": "16 0\n",
+          "checksum": 120,
+          "expected_operations": 128
+        },
+        {
+          "n": 32,
+          "p": 0,
+          "stdin": "32 0\n",
+          "checksum": 496,
+          "expected_operations": 512
+        },
+        {
+          "n": 64,
+          "p": 0,
+          "stdin": "64 0\n",
+          "checksum": 2016,
+          "expected_operations": 2048
+        },
+        {
+          "n": 128,
+          "p": 0,
+          "stdin": "128 0\n",
+          "checksum": 8128,
+          "expected_operations": 8192
+        },
+        {
+          "n": 256,
+          "p": 0,
+          "stdin": "256 0\n",
+          "checksum": 32640,
+          "expected_operations": 32768
+        },
+        {
+          "n": 512,
+          "p": 0,
+          "stdin": "512 0\n",
+          "checksum": 130816,
+          "expected_operations": 131072
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "pipeline_sha256": "2c95df0e5676e8b19464457adfb34cdf85a8a10cc0dca8b70557a1d587ced383",
+    "historical_transport_sha256": "6ebba4b60bfcff69e5dbbe66e9b8d74563a7bb0f69c2197213f24f7627aa56dd",
+    "development_code_sha256": {
+      "run_phase2_development.py": "4ff8b6a172e96e502cd5400fc54e958b1ede7c45a2961d463ea061dce0c43a49",
+      "gate1_sandbox.py": "7f9bf00a3489bb97cb256b342b0cad4f5a7c5fa11d44181973b93b3e82c4d963",
+      "probe_gate1.py": "b7ac4a5f4403455246e693bfe02b0a6bb4d7030955576959d394f715c14fa9ee"
+    },
+    "compiler": "15.2.0",
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "python": "3.14.4",
+    "parser": {
+      "tree-sitter": "0.26.0",
+      "tree-sitter-cpp": "0.23.4"
+    },
+    "flags": [
+      "-std=c++17",
+      "-O2"
+    ],
+    "sanitizer_flags": [
+      "-fsanitize=undefined",
+      "-fno-sanitize-recover=undefined"
+    ],
+    "limits": {
+      "scratch_bytes": 67108864,
+      "file_bytes": 8388608,
+      "counter_record_bytes": 65536,
+      "scope_memory_bytes": 805306368,
+      "scope_swap_bytes": 0,
+      "scope_tasks": 24,
+      "scope_cpu_quota_percent": 100,
+      "address_space_bytes": 536870912,
+      "process_cpu_seconds": 8,
+      "run_wall_seconds": 12,
+      "compile_wall_seconds": 25
+    }
+  },
+  "study_files_sha256": {
+    "WEIGHTED_PANEL_PROTOCOL.md": "3e1cf3f62c026e21b59d059167877dbba435a70cdaabe24e9dfd4c46a4271b0b",
+    "run_weighted_panel.py": "940899c2258c90bfc37cfe950dbe3a44d5a925614ff76a423eef28b36cee83b3",
+    "weighted_panel_sources.py": "b43e7d4ba43bc6741ba9c73834a2dcca7edcfd722eebad0a3914925fd9da702c"
+  },
+  "source_sha256": {
+    "find": {
+      "plain": "b97982fd07a45fc9980868ec396ac28bc3c74f6f8b434f199fee8eae9014ad4e",
+      "counted": "01a00fb42c68798f170f659c4176d7bf99ede7cdc5bac41dffd61b34540e1f27"
+    },
+    "count": {
+      "plain": "38cab8264ddc9aa2d73d0ab7cbe8e076b462c7f8f880bf624cc80c56dc443c57",
+      "counted": "cdc67230a24625d63d5024c358ab70f3963b3a162f0c4473b92dadb1dc35bdc8"
+    },
+    "reverse": {
+      "plain": "960eace77955b507d8996dcf526087e1e78545ebd5b4f0fd0dd1c39a4bc75a6f",
+      "counted": "b9d40a00ca3405c61de040304e91a7a06c684d83abfbb9928f80508e1debcf7e"
+    }
+  }
+}

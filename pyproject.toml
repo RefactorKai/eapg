@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eapg"
+version = "0.2.0"
+description = "Execution-Annotated Program Graphs (EAPG) for localizing growth-changing C++17 edits."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+ast = [
+    "tree-sitter==0.26.0",
+    "tree-sitter-cpp==0.23.4",
+]
+gpu = [
+    "torch>=2.6",
+    "transformers>=4.49",
+    "peft>=0.14",
+    "bitsandbytes>=0.45",
+    "accelerate>=1.4",
+    "huggingface_hub>=0.28",
+    "tokenizers>=0.21",
+]
+dev = [
+    "pytest>=8.0",
+]
+
+# Source-checkout CLI: install editable (`pip install -e .`) inside the repository root.
+[project.scripts]
+eapg = "eapg:main"
+
+[tool.setuptools]
+py-modules = ["eapg"]
+
+[tool.pytest.ini_options]
+addopts = "-p no:cacheprovider"
+testpaths = ["development", "artifacts/phase2_data"]

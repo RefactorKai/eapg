@@ -1,0 +1,319 @@
+--- a/pipeline.py
++++ b/pipeline.py
+@@ -195,9 +195,19 @@
+     tree = parser.parse(raw_b)
+     nodes = []
+ 
+-    var_types: Dict[str, str] = {}
+     algorithms = {"find", "count", "reverse"}
+-    declared_algorithms = set()
++    container_methods = {"find", "count", "insert", "erase", "substr"}
++    declarations = {}
++    caller_roots = []
++    scope_types = {
++        "translation_unit", "declaration_list", "field_declaration_list", "compound_statement",
++        "function_definition", "lambda_expression", "catch_clause", "for_statement", "for_range_loop",
++        "if_statement", "while_statement", "switch_statement",
++    }
++    parameter_types = {"parameter_declaration", "optional_parameter_declaration"}
++    declaration_types = parameter_types | {
++        "declaration", "function_definition", "field_declaration", "for_range_loop", "using_declaration",
++    }
+ 
+     def text(node):
+         return raw_b[node.start_byte:node.end_byte].decode("utf-8")
+@@ -223,21 +233,55 @@
+             return "seq_container"
+         return "primitive"
+ 
+-    # Pre-pass: scan declarations to record var_types
+-    def scan_types(n):
+-        if n.type in ("declaration", "function_definition", "parameter_declaration", "field_declaration"):
+-            declared_type = n.child_by_field_name("type") if n.type in ("declaration", "parameter_declaration") else None
+-            for decl in n.children_by_field_name("declarator"):
+-                name = declarator_name(decl)
+-                if name:
+-                    if text(name) in algorithms:
+-                        declared_algorithms.add(text(name))
+-                    if declared_type:
+-                        var_types[text(name)] = classify_type_str(text(declared_type))
+-        for c in n.children:
+-            scan_types(c)
+-
+-    scan_types(tree.root_node)
++    def scopes(n):
++        while n:
++            if n.type in scope_types:
++                yield n
++            n = n.parent
++
++    def scan_declarations(n):
++        if n.type in declaration_types:
++            scope = n if n.type == "for_range_loop" else next(scopes(n.parent), None)
++            if n.type in parameter_types:
++                # A prototype's parameters do not introduce bindings in its surrounding block.
++                owner = n.parent.parent
++                while owner and "declarator" in owner.type:
++                    owner = owner.parent
++                if owner != scope:
++                    scope = None
++            if scope is not None:
++                names = [declarator_name(decl) for decl in n.children_by_field_name("declarator")]
++                if n.type == "using_declaration" and n.named_child_count:
++                    imported = n.named_children[0]
++                    while imported and imported.type == "qualified_identifier":
++                        imported = imported.child_by_field_name("name")
++                    if imported and imported.type == "identifier" and not any(c.type == "namespace" for c in n.children):
++                        names.append(imported)
++                for name in names:
++                    if name and name.type in ("identifier", "field_identifier"):
++                        body = n.child_by_field_name("body") if n.type == "for_range_loop" else None
++                        visible_from = body.start_byte if body else name.end_byte
++                        declarations.setdefault((scope, text(name)), []).append((visible_from, n))
++        for c in n.named_children:
++            scan_declarations(c)
++
++    scan_declarations(tree.root_node)
++
++    def visible_declarations(name, site, global_only=False):
++        for scope in (tree.root_node,) if global_only else scopes(site):
++            visible = [decl for start, decl in declarations.get((scope, name), ())
++                       if start <= site.start_byte or scope.type == "field_declaration_list"]
++            if visible:
++                return visible
++        return []
++
++    def container_type(name, site):
++        visible = visible_declarations(name, site)
++        if visible:
++            declared_type = visible[-1].child_by_field_name("type")
++            if declared_type:
++                return classify_type_str(text(declared_type))
++        return None
+ 
+     def imports_std(call):
+         scope = call.parent
+@@ -252,15 +296,21 @@
+             scope = scope.parent
+         return False
+ 
++    def dot_member_owner(member):
++        if member.type != "field_expression":
++            return None
++        owner = member.child_by_field_name("argument")
++        operator = member.child_by_field_name("operator")
++        return text(owner) if owner.type == "identifier" and operator and operator.type == "." else None
++
+     def range_owner(arg, endpoint):
+         if arg.type != "call_expression" or arg.child_by_field_name("arguments").named_child_count:
+             return None
+         member = arg.child_by_field_name("function")
+-        if member.type != "field_expression" or text(member.child_by_field_name("field")) != endpoint:
+-            return None
+-        owner = member.child_by_field_name("argument")
+-        operator = member.child_by_field_name("operator")
+-        return text(owner) if owner.type == "identifier" and operator and operator.type == "." else None
++        owner = dot_member_owner(member)
++        if owner and text(member.child_by_field_name("field")) == endpoint:
++            return owner
++        return None
+ 
+     def linear_call_weight(call):
+         callee = call.child_by_field_name("function")
+@@ -274,31 +324,69 @@
+                 return None
+         elif callee.type != "identifier" or text(callee) not in algorithms:
+             return None
+-        elif text(callee) in declared_algorithms or not imports_std(call):
++        elif visible_declarations(text(callee), call) or not imports_std(call):
+             return None
+         args = call.child_by_field_name("arguments").named_children
+         if len(args) < 2:
+             return None
+         owner = range_owner(args[0], "begin")
+-        if owner and owner == range_owner(args[1], "end") and var_types.get(owner) == "seq_container":
++        if owner and owner == range_owner(args[1], "end") and container_type(owner, call) == "seq_container":
+             return f"(unsigned long long)({owner}.size())"
+         return None
+ 
+-    def tracked_calls(root, recursive_name=None):
++    def call_expressions(root):
+         if root is None or root.type in (
+             "function_definition", "lambda_expression", "sizeof_expression", "alignof_expression",
+-            "decltype", "noexcept", "type_descriptor",
++            "decltype", "noexcept", "noexcept_expression", "type_descriptor",
+         ):
+             return
+         if root.type == "call_expression":
+-            callee = root.child_by_field_name("function")
+-            weight = linear_call_weight(root)
++            yield root
++        for child in root.named_children:
++            yield from call_expressions(child)
++
++    def tracked_calls(root, recursive_name=None):
++        for call in call_expressions(root):
++            callee = call.child_by_field_name("function")
++            weight = linear_call_weight(call)
+             if weight is None and recursive_name is not None and text(callee) == recursive_name:
+                 weight = "1ULL"
+             if weight is not None:
+-                yield root, weight
+-        for child in root.named_children:
+-            yield from tracked_calls(child, recursive_name)
++                yield call, weight
++
++    def member_call_weight(root):
++        sites = []
++        for call in call_expressions(root):
++            member = call.child_by_field_name("function")
++            owner = dot_member_owner(member)
++            if owner and text(member.child_by_field_name("field")) in container_methods:
++                sites.append((call, owner))
++        if len(sites) == 1:
++            (call, owner), = sites
++            receiver_type = container_type(owner, call)
++            if receiver_type == "tree_container":
++                return f"(unsigned long long)__eapg_log2({owner}.size() + 2)"
++            if receiver_type == "seq_container":
++                return f"(unsigned long long)({owner}.size())"
++        return "1ULL"
++
++    def direct_target(call):
++        callee = call.child_by_field_name("function")
++        global_only = callee.type == "qualified_identifier" and callee.child_by_field_name("scope") is None
++        if global_only:
++            callee = callee.child_by_field_name("name")
++        if callee.type != "identifier":
++            return None
++        enclosing_function = next((scope for scope in scopes(call) if scope.type == "function_definition"), None)
++        if enclosing_function and not global_only:
++            name = declarator_name(enclosing_function.child_by_field_name("declarator"))
++            if enclosing_function.parent.type != "translation_unit" or (name and name.type == "qualified_identifier"):
++                return None
++        visible = visible_declarations(text(callee), call, global_only)
++        # shortcut: direct calls to one lexical global definition; extend if C++ name resolution is needed.
++        if len(visible) != 1 or visible[0].type != "function_definition" or visible[0] == enclosing_function:
++            return None
++        return visible[0].start_byte
+ 
+     def add_call(call, weight, parent, inside_branch):
+         nodes.append({
+@@ -306,6 +394,7 @@
+             "role": "CALL",
+             "parent": parent,
+             "insert_pos": call.start_byte,
++            "normalized_span": (call.start_byte, call.end_byte),
+             "call_span": (call.start_byte, call.end_byte),
+             "defs": [],
+             "uses": sorted(extract_identifiers(call, raw_b)),
+@@ -357,6 +446,7 @@
+                     "role": "FUNCTION_ENTRY",
+                     "parent": parent_id,
+                     "insert_pos": insert_pos,
++                    "normalized_span": (n.start_byte, n.end_byte),
+                     "name": fn_name,
+                     "defs": sorted(list(defs)),
+                     "uses": [],
+@@ -406,6 +496,7 @@
+                 "role": "LOOP",
+                 "parent": parent_id,
+                 "insert_pos": insert_pos,
++                "normalized_span": (n.start_byte, n.end_byte),
+                 "type": n.type,
+                 "defs": sorted(list(defs)),
+                 "uses": sorted(list(uses)),
+@@ -416,6 +507,8 @@
+                 "in_nested_branch": inside_branch,
+                 "source_preview": header_txt
+             })
++            caller_roots.extend((nodes[-1], n.child_by_field_name(field))
++                                for field in ("initializer", "condition", "update"))
+             for call, weight in tracked_calls(cond):
+                 add_call(call, weight, current_id, inside_branch)
+ 
+@@ -433,6 +526,7 @@
+                 "role": "BRANCH",
+                 "parent": parent_id,
+                 "insert_pos": insert_pos,
++                "normalized_span": (n.start_byte, n.end_byte),
+                 "defs": [],
+                 "uses": sorted(list(uses)),
+                 "weight_expr": "1ULL",
+@@ -441,6 +535,7 @@
+                 "in_nested_branch": inside_branch,
+                 "source_preview": header_txt
+             })
++            caller_roots.append((nodes[-1], cond))
+             for call, weight in tracked_calls(cond):
+                 add_call(call, weight, current_id, True)
+ 
+@@ -513,16 +608,7 @@
+                             call, weight_expr = sites[0]
+                             call_span = (call.start_byte, call.end_byte)
+                         elif not sites:
+-                            method_match = re.search(r'\b([a-zA-Z_]\w*)\.(find|count|insert|erase|substr)\s*\(', txt)
+-                            if method_match:
+-                                container_name = method_match.group(1)
+-                                c_type = var_types.get(container_name, "seq_container")
+-                                if c_type == "hash_container":
+-                                    weight_expr = "1ULL"
+-                                elif c_type == "tree_container":
+-                                    weight_expr = f"(unsigned long long)__eapg_log2({container_name}.size() + 2)"
+-                                else:
+-                                    weight_expr = f"(unsigned long long)({container_name}.size())"
++                            weight_expr = member_call_weight(n)
+ 
+                         role = "CALL" if (txt.startswith("return") or (has_call and not has_assign)) else "STATE_UPD"
+                         stmt_insert_pos = n.start_byte if (n.type == "return_statement" or role == "CALL") else n.end_byte
+@@ -532,6 +618,7 @@
+                             "role": role,
+                             "parent": parent_id,
+                             "insert_pos": stmt_insert_pos,
++                            "normalized_span": (n.start_byte, n.end_byte),
+                             "defs": sorted(list(defs)),
+                             "uses": sorted(list(uses)),
+                             "weight_expr": weight_expr,
+@@ -544,6 +631,7 @@
+                             macro_node["insert_pos"] = call_span[0]
+                             macro_node["call_span"] = call_span
+                         nodes.append(macro_node)
++                        caller_roots.append((macro_node, n))
+                         if len(sites) > 1:
+                             for call, weight in sites:
+                                 add_call(call, weight, current_id, inside_branch)
+@@ -554,6 +642,11 @@
+             walk(c, next_parent, is_now_branch, recursive_name)
+ 
+     walk(tree.root_node)
++    for node, root in caller_roots:
++        for call in call_expressions(root):
++            target = direct_target(call)
++            if target is not None:
++                node.setdefault("direct_call_targets", []).append(target)
+     return nodes
+ 
+ 
+@@ -912,16 +1005,12 @@
+ 
+ 
+ def _infer_callers(macro_nodes: List[Dict]) -> Dict[str, str]:
+-    caller_map = {}
+-    for n in macro_nodes:
+-        preview = n.get("source_preview", "")
+-        if "(" in preview:
+-            for fn_node in macro_nodes:
+-                if fn_node["role"] == "FUNCTION_ENTRY":
+-                    fn_name = fn_node["name"]
+-                    if re.search(r'\b' + re.escape(fn_name) + r'\b', preview):
+-                        caller_map[fn_node["id"]] = n["id"]
+-    return caller_map
++    callers = {}
++    for node in macro_nodes:
++        for target in node.get("direct_call_targets", ()):
++            callers.setdefault(target, []).append(node["id"])
++    return {node["id"]: sites[0] for node in macro_nodes if node["role"] == "FUNCTION_ENTRY"
++            and len(sites := callers.get(node.get("normalized_span", (None,))[0], ())) == 1}
+ 
+ 
+ def _select_work_symptom(macro_nodes: List[Dict], scaling_results: Dict, caller_map: Dict):

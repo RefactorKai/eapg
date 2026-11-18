@@ -1,0 +1,327 @@
+% ==============================================================================
+% Execution-Annotated Program Graphs (EAPG): LaTeX manuscript
+% The ablation table is generated separately from the saved evaluation log.
+% ==============================================================================
+\begin{filecontents*}{references.bib}
+@inproceedings{goldsmith2007trendprof,
+  author    = {Simon F. Goldsmith and Alex S. Aiken and Daniel S. Wilkerson},
+  title     = {{Measuring Empirical Computational Complexity}},
+  booktitle = {Proceedings of the 6th Joint Meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE)},
+  pages     = {395--404},
+  year      = {2007},
+  doi       = {10.1145/1287624.1287681}
+}
+
+@inproceedings{copik2021extrap,
+  author    = {Marcin Copik and Alexandru Calotoiu and Tobias Grosser and Torsten Hoefler and Felix Wolf},
+  title     = {{Extracting Clean Performance Models from Tainted Programs}},
+  booktitle = {Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP)},
+  pages     = {403--417},
+  year      = {2021},
+  doi       = {10.1145/3437801.3441613}
+}
+
+@inproceedings{madaan2024pie,
+  author    = {Aman Madaan and Alexander Shypula and Uri Alon and Milad Hashemi and Parthasarathy Ranganathan and Yiming Yang and Graham Neubig and Amir Yazdanbakhsh},
+  title     = {{Learning Performance-Improving Code Edits}},
+  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=QaRk3932cb}
+}
+
+@inproceedings{liu2024evalperf,
+  author    = {Jiawei Liu and Songrun Xie and Junhao Wang and Yuxiang Wei and Yifeng Ding and Lingming Zhang},
+  title     = {{Evaluating Language Models for Efficient Code Generation}},
+  booktitle = {First Conference on Language Modeling (COLM)},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=IBCBMeAhmC}
+}
+
+@inproceedings{huang2024effilearner,
+  author    = {Dong Huang and Jianbo Dai and Han Weng and Puzhen Wu and Yuhao Qing and Heming Cui and Zhijiang Guo and Jie M. Zhang},
+  title     = {{EffiLearner: Enhancing Efficiency of Generated Code via Self-Optimization}},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024},
+  url       = {https://arxiv.org/abs/2405.15189}
+}
+
+@inproceedings{dettmers2023qlora,
+  author    = {Tim Dettmers and Artidoro Pagnoni and Ari Holtzman and Luke Zettlemoyer},
+  title     = {{QLoRA: Efficient Finetuning of Quantized LLMs}},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {36},
+  pages     = {10088--10115},
+  year      = {2023},
+  url       = {https://arxiv.org/abs/2305.14314}
+}
+
+@article{hui2024qwen25coder,
+  author    = {Binyuan Hui and Jian Yang and Zeyu Cui and Jiaxi Yang and Dayiheng Liu and Lei Zhang and Tianyu Liu and Jiajun Zhang and Bowen Yu and Keming Lu and Kai Dang and Yang Fan and Yichang Zhang and An Yang and Rui Men and Fei Huang and Bo Zheng and Yibo Miao and Shanghaoran Quan and Yunlong Feng and Xingzhang Ren and Xuancheng Ren and Jingren Zhou and Junyang Lin},
+  title     = {{Qwen2.5-Coder Technical Report}},
+  journal   = {CoRR},
+  volume    = {abs/2409.12186},
+  year      = {2024},
+  url       = {https://arxiv.org/abs/2409.12186}
+}
+
+@inproceedings{weiser1981slicing,
+  author    = {Mark Weiser},
+  title     = {{Program Slicing}},
+  booktitle = {Proceedings of the 5th International Conference on Software Engineering (ICSE)},
+  pages     = {439--449},
+  year      = {1981},
+  url       = {https://dl.acm.org/doi/10.5555/800078.802557}
+}
+
+@article{ferrante1987pdg,
+  author    = {Jeanne Ferrante and Karl J. Ottenstein and Joe D. Warren},
+  title     = {{The Program Dependence Graph and Its Use in Optimization}},
+  journal   = {ACM Transactions on Programming Languages and Systems (TOPLAS)},
+  volume    = {9},
+  number    = {3},
+  pages     = {319--349},
+  year      = {1987},
+  doi       = {10.1145/24039.24041}
+}
+\end{filecontents*}
+
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\title{Execution-Annotated Program Graphs: Neurosymbolic Choke-Point Localization for Algorithmic Complexity Bugs}
+
+\author{\IEEEauthorblockN{Anonymous Authors}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Line-hit profilers can flag the inner loop of a quadratic sliding window while missing the pointer reset that causes repeated work. They can also miss work hidden in container copies or linear library operations. We introduce Execution-Annotated Program Graphs (EAPG), which combine C++17 macro-nodes, empirical work scaling, backward program dependence slicing, and a fine-tuned language model for bottleneck localization. On a controlled benchmark of 100 constructed slow/fast pairs, work-weighted counters detect all 20 pass-by-value and linear-library bottlenecks missed by hit counters. The pruned slice retains every reference node and removes $89.0\%$ of candidates on average. In five-fold evaluation grouped by problem ID, canonical source template, and exact prompt tokens, slice-constrained Abstract EAPG with binary tags reaches $98.0\%$ Top-1. On the 66 pairs with multiple candidates, it selects 64 references, compared with 62 for the deterministic ranker.
+\end{abstract}
+
+% ==============================================================================
+% Section 1: Introduction
+% ==============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Algorithmic complexity bugs degrade software performance when input sizes scale from unit-test dimensions to production workloads. Unlike localized syntactic defects, asymptotic bottlenecks arise from an interaction between static control/data dependencies and dynamic execution scaling. Recent work on performance-improving code edits (\textit{PIE}~\cite{madaan2024pie}, \textit{EvalPerf}~\cite{liu2024evalperf}, \textit{EffiLearner}~\cite{huang2024effilearner}) prompts Large Language Models (LLMs) with raw source code or line-level execution hotspots. However, our empirical investigation reveals three structural failure modes when applying standard profilers or raw-code LLMs to algorithmic complexity localization:
+
+\begin{enumerate}
+    \item \textbf{The Symptom-vs.-Cause Fallacy in Line Profilers:} Consider a two-pointer sliding window where a developer inadvertently writes \texttt{int right\_p = left\_p;} at the top of the outer loop instead of initializing \texttt{right\_p = 0;} before the loop. The inner \texttt{while} loop executes $\Theta(N^2)$ times, whereas the offending reset statement executes only $\Theta(N)$ times ($\alpha_{\text{hits}} = 1.00$). A standard hotspot profiler flags the inner loop header (the \emph{symptom}) and achieves \textbf{0.0\%} Top-1 localization on state-reset bugs.
+    \item \textbf{Hidden Container-Level Work ($\alpha_v^{\text{work}} > \alpha_v^{\text{hits}}$):} In C++17, passing a \texttt{std::vector} by value into a linear-depth recursion (\texttt{void dfs(int d, vector<int> path)}) or invoking \texttt{std::find(v.begin(), v.end(), x)} inside a single loop executes the statement only $O(N)$ times ($\alpha_v^{\text{hits}} = 1.00$), while performing $\Theta(N^2)$ underlying element operations ($\alpha_v^{\text{work}} = 2.00$). Control-flow hit counters miss \textbf{52.6\%} ($20/38$) of all Track A1 surgical bottlenecks.
+    \item \textbf{Candidate Ambiguity in Backward Slicing.} Backward Program Dependence Graph (PDG) slicing~\cite{weiser1981slicing,ferrante1987pdg} from an $\Omega(N^2)$ loop guard recovers upstream and intra-loop statements that modify guard variables. Pruning unidirectional progress statements reduces the mean candidate set from $4.89$ to $1.90$ nodes. The raw slice order ranks the reference node first on $7/18$ state-reset pairs. A separate role-priority ranker reaches $14/18$.
+\end{enumerate}
+
+To resolve these three failure modes simultaneously, we present \textbf{Execution-Annotated Program Graphs (EAPG)}, a four-stage neurosymbolic localization architecture designed to run entirely on a single 8 GB consumer GPU. First, EAPG normalizes C++17 abstract syntax trees (ASTs) via \texttt{tree-sitter} into a compact macro-node skeleton (at most 25 nodes in this pilot) with explicit synthetic braces and static \texttt{Defs}/\texttt{Uses} sets. Second, EAPG injects dual-counter micro-instrumentation that weights statement hits by container-type-resolved operation costs (distinguishing $O(N)$ sequence copies and linear scans from $O(\log N)$ tree-container and $O(1)$ hash-container lookups) and fits both power-law ($W(N) \propto N^\alpha$) and semi-log2 exponential ($W(N) \propto 2^{\beta N}$) scaling models across an adaptive input ladder bounded by a dynamic execution ceiling $B(N) = \max(2\times 10^6, 5N^2)$. Third, when a node exhibits an asymptotic jump $\Delta\alpha_s \ge 0.7$, EAPG extracts a two-tier backward PDG slice $C_{\text{slice}}(s)$ that retains the symptom $s$ and filters the candidates using \emph{Monotonic Progress Pruning}. Fourth, a 4-bit NF4 QLoRA-adapted \texttt{Qwen2.5-Coder-1.5B} model inspects the annotated EAPG skeleton and resolves which candidate $u \in C_{\text{slice}}$ violates the target algorithmic invariant.
+
+This paper makes four contributions:
+\begin{itemize}
+    \item \textbf{Two-Dimensional Bottleneck Taxonomy:} We formalize a joint structural edit metric ($|\Delta V| \le 3 \land \rho \le 0.30$) separating localized \textbf{Track A} complexity bugs (\textbf{Track A1} state/work corruption and \textbf{Track A2} guard omission) from \textbf{Track B} full algorithmic paradigm shifts across 100 constructed C++17 slow/fast pairs (41 problem IDs).
+    \item \textbf{Container-Resolved Dual-Family Scaling.} We combine static container-type alias resolution with dual-family OLS regression and an adaptive backoff ladder that tests intermediate scales $N_{\text{last}}+\delta$ above the last completed scale. The profiler detects all hidden-container and exponential mechanisms in the pilot at \texttt{-O2}.
+    \item \textbf{Monotonic Progress Pruning in Two-Tier PDG Slicing.} The pruned backward slice retains the symptom node and all reference nodes across the pilot. Pruning reduces the mean candidate count from $4.89$ to $1.90$ nodes ($R_{\text{search}} = 89.0\%$).
+    \item \textbf{Five-Fold Evaluation on Held-Out Templates.} We compare graph representations and role-priority tags under folds that keep shared problem IDs, canonical code templates, and identical prompt sequences together.
+\end{itemize}
+
+% ==============================================================================
+% Section 2: Empirical Taxonomy of Algorithmic Bottlenecks
+% ==============================================================================
+\section{Empirical Taxonomy of Algorithmic Bottlenecks}
+\label{sec:taxonomy}
+
+\subsection{Two-Dimensional Structural Edit Boundary ($|\Delta V|$ and $\rho$)}
+Given a constructed slow/fast pair $(C_{\text{slow}}, C_{\text{fast}})$, let $V_{\text{slow}}$ and $V_{\text{fast}}$ denote the extracted AST macro-node multisets, with each node represented by its structural role and normalized statement signature. The absolute edit distance $|\Delta V|$ and relative edit ratio $\rho$ are
+\begin{equation}
+|\Delta V| = \max\!\left(|V_{\text{slow}} \setminus V_{\text{fast}}|,\; |V_{\text{fast}} \setminus V_{\text{slow}}|\right), \quad \rho = \frac{|\Delta V|}{|V_{\text{slow}}|}.
+\end{equation}
+Evaluating a single percentage cutoff ($\rho$ alone) misclassifies small helper functions, whereas an absolute node count ($|\Delta V|$ alone) misclassifies multi-loop functions. As shown in Table~\ref{tab:pilot_edit_dist}, a joint two-dimensional threshold:
+\begin{equation}
+\text{Track A (Surgical Bug)} \iff |\Delta V| \le 3 \;\land\; \rho \le 0.30
+\end{equation}
+cleanly separates localized surgical complexity bugs (\textbf{Track A}, $N=62$ pairs) from full data-structure or algorithmic rewrites (\textbf{Track B}, $N=38$ pairs), achieving $98.4\%$ Track A recall ($61/62$) and $100.0\%$ Track B specificity ($38/38$, $99.0\%$ overall classification accuracy).
+
+\begin{table}[t]
+\centering
+\caption{2D Structural Macro-Node Edit Distribution ($|\Delta V|$ vs.\ $\rho$) and Track A1/A2/B Split ($N=100$ Pairs, 41 Problem IDs).}
+\label{tab:pilot_edit_dist}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+\textbf{$|\Delta V|$ Bucket} & \textbf{$\rho \le .15$} & \textbf{$(.15, .30]$} & \textbf{$(.30, .50]$} & \textbf{$\rho > .50$} & \textbf{Tot} & \textbf{A1} & \textbf{A2} & \textbf{B} \\
+\midrule
+$|\Delta V| = 1$ & 18 & 0 & 0 & 0 & 18 & 14 & 4 & 0 \\
+$|\Delta V| = 2$ & 37 & 0 & 0 & 0 & 37 & 20 & 17 & 0 \\
+$|\Delta V| = 3$ & 1 & 5 & 0 & 0 & 6 & 3 & 3 & 0 \\
+$|\Delta V| = 4$ & 0 & 3 & 0 & 0 & 3 & 1 & 0 & 2 \\
+$|\Delta V| \ge 5$ & 0 & 0 & 4 & 32 & 36 & 0 & 0 & 36 \\
+\midrule
+\textbf{Total} & 56 & 8 & 4 & 32 & 100 & 38 & 24 & 38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Nine Bottleneck Mechanisms Across Tracks A1, A2, and B}
+Table~\ref{tab:pilot_mechanisms} breaks down the 100 benchmark pairs across nine distinct bottleneck mechanisms:
+\begin{itemize}
+    \item \textbf{Track A1 (State \& Work Corruption, $N=38$):} An existing statement corrupts loop progress or triggers hidden linear container work: (\texttt{A1.1}) monotonic pointer or index resets ($N=12$), (\texttt{A1.2}) pass-by-value sequence container copies in recursion ($N=9$), (\texttt{A1.3}) linear STL scans (\texttt{std::find}, \texttt{std::count}) inside loops ($N=11$), and (\texttt{A1.4}) loop bound or stride resets ($N=6$).
+    \item \textbf{Track A2 (Guard Omission, $N=24$):} The slow program omits a constant-size guard: (\texttt{A2.1}) missing dynamic programming memoization table lookup ($N=13$, scaling as $O(2^{\beta N})$), and (\texttt{A2.2}) missing early-exit \texttt{break} or pruning branch ($N=11$).
+    \item \textbf{Track B (Algorithmic Paradigm Shift, $N=38$):} Eliminating the bottleneck requires replacing the overarching algorithm ($|\Delta V| \ge 4$): (\texttt{B.1}) brute-force nested loops to prefix sums or two pointers ($N=13$), (\texttt{B.2}) quadratic scan to hash table or binary search ($N=13$), and (\texttt{B.3}) exponential recursion to bottom-up tabular DP ($N=12$).
+\end{itemize}
+As shown in the rightmost columns of Table~\ref{tab:pilot_mechanisms}, control-flow hit exponents ($\alpha_v^{\text{hits}}$) detect $0.0\%$ of \texttt{A1.2} and \texttt{A1.3} bottlenecks ($20/38$ of Track A1), whereas container-type-resolved work exponents ($\alpha_v^{\text{work}}$) detect \textbf{100.0\%} across all nine mechanisms.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Bottleneck Mechanism Breakdown and Dual-Counter Symptom Detection Across $N=100$ Pairs (41 Problem IDs). $\alpha_{\text{hits}}$ and $\alpha_{\text{work}}$ denote mean empirical scaling exponents on $C_{\text{slow}}$; $\alpha_{\text{fast}}$ denotes mean work exponent on $C_{\text{fast}}$.}
+\label{tab:pilot_mechanisms}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}cllccccccccc@{}}
+\toprule
+\textbf{ID} & \textbf{Track} & \textbf{Mechanism} & \textbf{$N$} & \textbf{$|V_{\text{slow}}|$} & \textbf{$|\Delta V|$} & \textbf{$\rho$} & \textbf{$\alpha_{\text{hits}}$} & \textbf{$\alpha_{\text{work}}$} & \textbf{$\alpha_{\text{fast}}$} & \textbf{Hit (\%)} & \textbf{Work (\%)} \\
+\midrule
+\texttt{A1.1} & A1 & Monotonic Pointer / Index Reset & 12 & 20.9 & 2.1 & 0.10 & 1.99 & 1.99 & 1.00 & 100.0 & 100.0 \\
+\texttt{A1.2} & A1 & Pass-by-Value Container Copy & 9 & 16.2 & 1.8 & 0.11 & 1.00 & 1.99 & 1.00 & 0.0 & 100.0 \\
+\texttt{A1.3} & A1 & Linear STL Operation in Loop & 11 & 17.6 & 1.8 & 0.10 & 1.00 & 2.00 & 1.00 & 0.0 & 100.0 \\
+\texttt{A1.4} & A1 & Loop Bound / Stride Corruption & 6 & 15.7 & 1.0 & 0.06 & 2.00 & 2.00 & 1.06 & 100.0 & 100.0 \\
+\midrule
+\texttt{A2.1} & A2 & Missing DP Memoization Guard & 13 & 16.0 & 2.2 & 0.14 & EXP & EXP & 1.02 & 100.0 & 100.0 \\
+\texttt{A2.2} & A2 & Missing Early-Exit Pruning Guard & 11 & 18.2 & 1.6 & 0.09 & 2.01 & 2.01 & 1.00 & 100.0 & 100.0 \\
+\midrule
+\texttt{B.1} & B & Nested scan $\to$ prefix sums or two pointers & 13 & 16.4 & 9.0 & 0.55 & 1.99 & 1.99 & 1.00 & 100.0 & 100.0 \\
+\texttt{B.2} & B & Quadratic scan $\to$ hashing or search & 13 & 16.5 & 9.9 & 0.61 & 2.01 & 2.01 & 1.03 & 100.0 & 100.0 \\
+\texttt{B.3} & B & Exponential recursion $\to$ tabular DP & 12 & 15.3 & 8.0 & 0.53 & EXP & EXP & 1.01 & 100.0 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ==============================================================================
+% Section 3: EAPG Methodology
+% ==============================================================================
+\section{EAPG Methodology}
+\label{sec:methodology}
+
+\subsection{Stage 1: Preprocessor Pass 0 and Tree-Sitter AST Normalization}
+Competitive programming C++ submissions frequently obscure control-flow and container types behind preprocessor macros (e.g., \texttt{\#define vi vector<int>}, \texttt{\#define REP(i,n) for(int i=0;i<(n);++i)}) and braceless single-statement loops. Before parsing, EAPG executes \textbf{Preprocessor Pass 0}: we strip standard library \texttt{\#include} directives, record user \texttt{\#define} and \texttt{using}/\texttt{typedef} type aliases in an alias table, run \texttt{g++ -E -P} to expand all macros, and restore the \texttt{\#include} headers.
+
+We parse the expanded source with \texttt{tree-sitter-cpp}. We combine AST traversal with lexical pattern matching for statement-level def/use extraction and container signatures. In \textbf{Pass 1}, we normalize all single-statement \texttt{for}, \texttt{while}, \texttt{do}, \texttt{if}, and \texttt{else} bodies by inserting explicit curly braces \texttt{\{...\}} in reverse byte order (bottom-to-top) so earlier byte offsets remain invariant, iterating until fixed-point convergence and verifying syntactic validity via \texttt{g++ -std=c++17 -fsyntax-only}. In \textbf{Pass 2}, we extract five macro-node classes (\texttt{FUNCTION\_ENTRY}, \texttt{LOOP}, \texttt{BRANCH}, \texttt{CALL}, and \texttt{STATE\_UPD}) along with their parent scope edges and static variable \texttt{Defs}/\texttt{Uses} sets. For \texttt{for}-loop headers, we separate the initializer left-hand side (\texttt{Defs}) from the condition and right-hand side (\texttt{Uses}) so outer induction variables referenced in \texttt{for (int j = i + 1; j < n; ++j)} are recorded strictly in \texttt{Uses} ($\{i,j,n\}$) rather than \texttt{Defs} ($\{j\}$).
+
+\subsection{Stage 2: Container-Resolved Micro-Instrumentation and Dual-Family Scaling}
+For each macro-node $v_i$, EAPG injects dual 64-bit counters (\texttt{\_\_eapg\_hits[$i$] += 1ULL;} and \texttt{\_\_eapg\_work[$i$] += $w(v_i)$;}). For \texttt{CALL} and \texttt{RETURN} statements, counters are injected \emph{immediately before} the statement (rather than post-statement) so recursive calls that hit the dynamic execution ceiling during deeper frames still register their pre-call execution counts. The work weight $w(v_i)$ is resolved statically from the declared C++ container type of the receiver or parameter:
+\begin{itemize}
+    \item \textbf{Pass-by-value sequence containers} (\texttt{std::vector}, \texttt{std::string}, \texttt{std::deque} without reference \texttt{\&}): $w(v_i) = \texttt{c.size()}$ at \texttt{FUNCTION\_ENTRY}.
+    \item \textbf{Linear STL algorithms} (\texttt{std::find}, \texttt{std::count}, \texttt{std::reverse}): $w(v_i) = \texttt{c.size()}$.
+    \item \textbf{Associative tree vs.\ hash member methods}: \texttt{.find()}, \texttt{.count()}, and \texttt{.insert()} on \texttt{std::set}/\texttt{std::map} receive $O(\log N)$ weight, whereas the same methods on \texttt{std::unordered\_set}/\texttt{std::unordered\_map} receive $O(1)$ weight (\texttt{1ULL}).
+\end{itemize}
+To prevent infinite loops or exponential timeouts on unvetted code, every counter increment checks a dynamic tick ceiling:
+\begin{equation}
+B(N) = \max\!\left(2 \times 10^6,\; 5N^2\right),
+\end{equation}
+which flushes all partial counters via an \texttt{atexit} handler and terminates cleanly (\texttt{exit(0)}) when total work exceeds $B(N)$.
+
+We compile each instrumented binary with \texttt{g++ -O2 -std=c++17} and run it on generated inputs at scales $N \in \{16,64,256,1024,4096\}$. After the first non-completing run, we test intermediate scales above the last completed scale and below the failed one, stopping at the first non-completion. We fit both a power-law model ($\log W = \alpha \log N + c_1$) and a semi-log2 exponential model ($\log_2 W = \beta N + c_2$) on uncapped completions. The exponential fit requires at least three points, $R^2_{\text{exp}} > R^2_{\text{poly}}$, $R^2_{\text{exp}} \ge 0.85$, and $\beta \ge 0.02$.
+
+\subsection{Stage 3: Two-Tier Backward PDG Slicing with Monotonic Progress Pruning}
+For every node $v$, we compute its relative work-scaling jump $\Delta\alpha_v$ against its enclosing parent scope $p(v)$ (or caller scope for \texttt{FUNCTION\_ENTRY}), taking the maximum with its internal hidden-work gap $(\alpha_v^{\text{work}} - \alpha_v^{\text{hits}})$. When a symptom node $s$ triggers $\Delta\alpha_s \ge 0.7$ or initiates an \texttt{EXP} regime, the two-tier backward PDG slice retains $s$ and adds candidates identified from its guard variables $V_{\text{guard}}(s)$.
+\begin{equation}
+C_{\text{slice}}(s) = \{s\} \cup C_{\text{inter}}(s) \cup C_{\text{intra}}^{\text{pruned}}(s).
+\end{equation}
+Let $D_s$ be the nodes whose def sets intersect $V_{\text{guard}}(s)$, $R$ the nodes marked as state resets or inside nested branches, and $M$ the nodes marked as unidirectional steps. For polynomial growth, the tiers are
+\begin{align}
+C_{\text{inter}}(s) &= \{u \in D_s \setminus \{s\} \mid p(u)=p(s), \notag\\
+&\qquad \alpha_u^{\text{work}} \le \alpha_s^{\text{work}}-0.5\}, \\
+C_{\text{intra}}^{\text{pruned}}(s) &= \{u \in (D_s \cap R) \setminus M \mid p(u)=s\}.
+\end{align}
+When $s$ has exponential growth, the inter-scope tier omits the work-exponent inequality. \emph{Monotonic Progress Pruning} removes ordinary iterator steps such as \texttt{r++} while retaining qualifying resets such as \texttt{p\_right = p\_left;} or \texttt{jump\_step = 1;}.
+
+The extractor assigns top-level statements in \texttt{main} a separate scope without adding a macro-node. Under the earlier shared root, 34 recursive helper slices each included two statements from \texttt{main}. Scope isolation removes those 68 candidates and retains all reference nodes.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Candidate selection on 100 pairs. A1, A2, B, and All report slice recall. Reset and Rule report first-candidate Top-1 on the 18 reset pairs and on all pairs, respectively. $|C|$ is mean candidate count. All other numeric metrics are percentages.}
+\label{tab:pilot_slicing_recall}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+\textbf{Strategy} & \textbf{A1} & \textbf{A2} & \textbf{B} & \textbf{All} & \textbf{Reset} & \textbf{Rule} & \textbf{$|C|$} & \textbf{$R_{\text{search}}$} & \textbf{Gate} \\
+\midrule
+1. Hit symptom & 0.0 & 100.0 & 100.0 & 62.0 & 0.0 & 62.0 & 0.80 & 95.2 & LOW-REC \\
+2. Work symptom & 52.6 & 100.0 & 100.0 & 82.0 & 0.0 & 82.0 & 1.00 & 94.1 & LOW-REC \\
+3. Inter-scope slice & 81.6 & 100.0 & 100.0 & 93.0 & 38.9 & 41.0 & 1.83 & 89.3 & LOW-REC \\
+4. Unpruned two-tier & 100.0 & 100.0 & 100.0 & 100.0 & 0.0 & 34.0 & 4.89 & 71.2 & BLOAT-FAIL \\
+5. \textbf{Pruned two-tier} & \textbf{100.0} & \textbf{100.0} & \textbf{100.0} & \textbf{100.0} & \textbf{38.9} & \textbf{41.0} & \textbf{1.90} & \textbf{89.0} & \textbf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:pilot_slicing_recall} compares five candidate selection strategies. Each of the three slice-based strategies retains the symptom node $s$. The pilot gate requires at least $75\%$ mean reduction and $95\%$ recall.
+\begin{itemize}
+    \item \textbf{Row 3 ($C_{\text{inter}}$ Only):} Misses $18.4\%$ of Track A1 bugs (all intra-loop pointer and stride resets), failing the $95\%$ recall gate ($93.0\%$).
+    \item \textbf{Row 4 (Unpruned Two-Tier $C_{\text{inter}} \cup C_{\text{intra}}^{\text{raw}}$):} Recovers $100.0\%$ recall across all tracks, but retains $4.89$ candidate nodes per program, collapsing search-space reduction to $71.2\%$ (\texttt{BLOAT-FAIL}).
+    \item \textbf{Row 5 (Full Pruned EAPG).} The pruned slice retains all reference nodes and reduces the mean candidate count from $4.89$ to $1.90$ ($R_{\text{search}} = 89.0\%$). Selecting the first node in raw slice order gives $41.0\%$ overall Top-1 and $38.9\%$ ($7/18$) on state resets. The refined role-priority ranker (Variant~2) gives $96.0\%$ overall Top-1 and $77.8\%$ ($14/18$) on state resets.
+\end{itemize}
+
+% ==============================================================================
+% Section 4: Experimental Setup and Evaluation Protocol
+% ==============================================================================
+\section{Experimental Setup and Evaluation}
+\label{sec:experimental_setup}
+
+\subsection{Five-Fold Cross-Validation by Problem and Template}
+The revised pilot contains 100 constructed C++17 slow/fast pairs across 41 problem IDs. Six input-validation implementations vary the number of executable statements before the workload. The reference macro-node occupies at least two positions within each mechanism. We group programs by shared problem ID and by canonical ASTs of the workload before adding the input checks. Canonicalization normalizes local identifiers and preserves syntax and literals. This yields 29 source groups. We then merge groups whose prompts have identical tokenizer output in any of the evaluated representations. We assign the resulting 23 groups to five folds of 20 pairs, using seed 42 to break ties before balancing fold sizes. Each pair is evaluated once with its group held out. The evaluation uses the constructed base pairs and excludes the separate counterfactual dataset.
+
+\subsection{Baseline and Ablation Configurations}
+Variant 1 ranks the work-weighted profiling symptom. Variant 2 orders the pruned slice using the extracted def/use names. An inter-scope state update outranks a loop symptom only if the update defines a variable with multiple write sites in the function or reads an enclosing loop's induction variable. This ordering preserves the candidate set. Variants 3a and 3b use statement previews, with zero-shot and fine-tuned decoding, respectively. Variant 4 adds the line-hit exponent to the preview. Variant 5 adds AST roles and def/use identifiers to the preview.
+
+Abstract EAPG (6a/6b) supplies AST roles, def/use cardinalities, and hit/work exponents. Lexical EAPG (7a/7b) uses def/use identifiers and adds the same statement preview as the other code-bearing variants, separated from the graph fields by a pipe. The two tag conditions either mark each slice member with \texttt{SLICE} or distinguish the first two symbolic choices with \texttt{RANK1} and \texttt{RANK2}. Nonmembers carry no tag. The \texttt{a} rows decode over all nodes. The \texttt{b} rows restrict decoding to the pruned slice.
+
+\subsection{Training Protocol and Metrics}
+We load \texttt{Qwen/Qwen2.5-Coder-1.5B}~\cite{hui2024qwen25coder} with 4-bit NF4 double quantization~\cite{dettmers2023qlora} and bfloat16 computation. Each fine-tuned model uses LoRA adapters in decoder blocks 20--27, with activations from the first 20 blocks cached. We use six epochs, learning rate $6\times 10^{-4}$, AdamW weight decay $0.01$, two examples per microbatch, four gradient accumulation steps, and fold seeds $42+k$. LoRA uses rank $16$, scale $32$, dropout $0.05$, and gradient checkpointing. The cross-entropy objective predicts the single token for the reference node. Both EAPG representations serialize hit and work exponents as \texttt{hits/work}. The longest prompt and target together use 498 tokens. The run took 2243.9 seconds and peaked at 1566.7 MiB of PyTorch-allocated GPU memory.
+
+Top-1 and Top-2 measure whether the reference macro-node appears first or among the first two predictions. For all variants, we also report Top-1 on the same 66 pairs whose slices contain two or more candidates. The other 34 pairs have singleton slices that contain the reference.
+
+\input{scope_isolated_pilot/node_only_ablation/table_ablation.tex}
+
+\subsection{Ablation Results}
+Table~\ref{tab:ablation_results} reports $66.0\%$ Top-1 for the fine-tuned raw-code baseline and $69.0\%$ for the hotspot-guided baseline. The refined deterministic ranker reaches $96.0\%$, including all 26 B.1 and B.2 pairs. With binary tags and slice-constrained decoding, Abstract EAPG reaches $98.0\%$ overall and $97.0\%$ ($64/66$) on multi-candidate slices. It corrects four A1.4 misses of the ranker and misses two A1.1 pairs the ranker gets right.
+
+Adding rank tags to slice-constrained Abstract EAPG lowers Top-1 to $93.0\%$. Slice-constrained Lexical EAPG reaches $88.0\%$ under both tag conditions. Its binary-tag variant localizes $14/18$ state resets, up from $12/18$ in the preceding protocol with the auxiliary repair-family objective. The rank-tag variant localizes $13/18$. On Track B, both slice-constrained Abstract variants reach $100.0\%$, while the Lexical variants reach $94.7\%$ with binary tags and $86.8\%$ with rank tags. Each Track B mechanism is absent from fine-tuning in its test fold.
+
+\subsection{Linear STL Scan Cases}
+In \texttt{PAIR\_029} through \texttt{PAIR\_032}, each slice contains the query preparation at \texttt{N13} and the linear \texttt{std::find} call at \texttt{N14}. The two exponents appear as \texttt{1/1} for preparation and \texttt{1/2} for the scan. Slice-constrained Lexical EAPG with binary tags selects the reference scan on all four pairs in both the node-only and the earlier scope-isolated runs. Its work-only predecessor missed all four.
+
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
+% Section 5: Threats to Validity and Related Work
+% ==============================================================================
+\section{Threats to Validity and Related Work}
+\label{sec:threats_to_validity}
+
+\paragraph{Internal Validity (Template Reuse).}
+In the earlier pilot, identifier-renamed slow/fast pairs crossed folds for 49 of 100 pairs. The revised folds keep canonical workloads and identical input-token sequences together. Near-duplicates beyond those criteria may remain. Holding out whole groups also concentrates some mechanisms in single folds, so outcomes on related pairs can be correlated. We refined the symbolic rule after inspecting pilot errors. Its score on these same pairs is descriptive. The node-only rerun changes the training objective, prompt layout, and rank features together, so it cannot isolate their individual effects.
+
+\paragraph{Construct Validity (Reference Labels and Inputs).}
+A static AST-diff heuristic assigns the reference macro-node using the known mechanism scope and the slow/fast source pair. It uses no runtime measurements. We have not measured agreement with human localization judgments. The earlier six A1.4 pairs produced different outputs. In the revised pilot, the build checks stdout agreement at $N=16$ and $N=24$ for all 100 pairs. Independent uninstrumented checks repeat both sizes and test the six A1.4 repairs at six additional sizes. These checks cover the tested inputs. Scaling fits use generated size-parameterized inputs and \texttt{-O2}.
+
+\paragraph{External Validity (Language Portability).}
+The evaluation covers C++17 and its container cost rules. Extending EAPG to other languages requires adapting the parser and the rules used to weight collection operations.
+
+\paragraph{Related Work.}
+\textit{TrendProf} and \textit{Extra-P} fit scaling models to execution counts across input sizes~\cite{goldsmith2007trendprof,copik2021extrap}. \textit{PIE}, \textit{EvalPerf}, and \textit{EffiLearner} study neural code optimization from source or execution cues~\cite{madaan2024pie,liu2024evalperf,huang2024effilearner}. EAPG connects work scaling with dependence slices to separate the measured symptom from candidate causes.
+
+% ==============================================================================
+% Section 6: Conclusion
+% ==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+On the scope-isolated C++17 microbenchmark, work-weighted profiling and pruned backward slicing retain all reference nodes in a mean candidate set of 1.90 nodes. With held-out template and prompt groups, binary-tagged Abstract EAPG achieves $98.0\%$ Top-1, compared with $96.0\%$ for the refined deterministic ranker. Binary-tagged Lexical EAPG reaches $88.0\%$ and identifies all four linear STL scans.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

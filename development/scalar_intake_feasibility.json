@@ -1,0 +1,612 @@
+{
+  "candidates": [
+    {
+      "description": "Binary weight prefix sum: block-doubling O(log N) vs per-integer scan O(N log N)",
+      "mechanism_family": "track_b_rewrite",
+      "oeis_group": "G01_binary_weight",
+      "oeis_id": "A000788",
+      "reason": "O(log N) bit-block recursion vs O(N log N) scan requires Track B rewrite",
+      "slot": "positive_off_site",
+      "status": "intervention_rejected"
+    },
+    {
+      "analytic_arms": {
+        "work_conventional": {
+          "candidates": [
+            "N1",
+            "N2",
+            "N4",
+            "N5",
+            "N6",
+            "N7",
+            "N8",
+            "N11"
+          ],
+          "ranking": [
+            "N1",
+            "N5",
+            "N6",
+            "N7",
+            "N8",
+            "N2",
+            "N4",
+            "N11"
+          ],
+          "retained": true,
+          "symptom_id": "N8",
+          "top1_hit": false
+        },
+        "work_scoped": {
+          "candidates": [
+            "N6",
+            "N7",
+            "N8"
+          ],
+          "ranking": [
+            "N6",
+            "N7",
+            "N8"
+          ],
+          "retained": true,
+          "symptom_id": "N8",
+          "top1_hit": false
+        },
+        "work_symptom": {
+          "candidates": [
+            "N8"
+          ],
+          "ranking": [
+            "N8"
+          ],
+          "retained": false,
+          "symptom_id": "N8",
+          "top1_hit": false
+        }
+      },
+      "analytic_slope": 0.9631,
+      "band_pass": true,
+      "description": "Partitions into <= 3 parts via direct jump O(N) vs unit scan O(N^2)",
+      "edit_counts": [
+        102,
+        374,
+        1430,
+        5590,
+        22102,
+        87894
+      ],
+      "largest_size_ratio": 128.5,
+      "mechanism_family": "loop_step_alias",
+      "node_counts": {
+        "edited": 12,
+        "original": 12
+      },
+      "oeis_group": "G02_partitions_3",
+      "oeis_id": "A001399",
+      "orig_counts": [
+        22,
+        44,
+        86,
+        172,
+        342,
+        684
+      ],
+      "reference_node": "N7",
+      "sizes": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "slot": "positive_off_site",
+      "status": "eligible_static_and_analytic",
+      "target_band": "strong",
+      "template_sha256": {
+        "edited": "4ff8f168e50cdf80dfce6310ae1dcc8111c2c0e02de4039a6985404266483541",
+        "original": "5b536cfa3c5ec54530c345a2df0b58efa78f3616d6c64ca79b9cc4b812957e8d"
+      }
+    },
+    {
+      "analytic_arms": {
+        "work_conventional": {
+          "candidates": [
+            "N1",
+            "N2",
+            "N3",
+            "N6",
+            "N7",
+            "N8",
+            "N9"
+          ],
+          "ranking": [
+            "N9",
+            "N1",
+            "N3",
+            "N7",
+            "N8",
+            "N2",
+            "N6"
+          ],
+          "retained": true,
+          "symptom_id": "N8",
+          "top1_hit": false
+        },
+        "work_scoped": {
+          "candidates": [
+            "N7",
+            "N8"
+          ],
+          "ranking": [
+            "N7",
+            "N8"
+          ],
+          "retained": true,
+          "symptom_id": "N8",
+          "top1_hit": true
+        },
+        "work_symptom": {
+          "candidates": [
+            "N8"
+          ],
+          "ranking": [
+            "N8"
+          ],
+          "retained": false,
+          "symptom_id": "N8",
+          "top1_hit": false
+        }
+      },
+      "analytic_slope": 0.931,
+      "band_pass": true,
+      "description": "Disk lattice points: monotone y descent O(R) vs reset bound O(R^2)",
+      "edit_counts": [
+        286,
+        1011,
+        3782,
+        14583,
+        57300,
+        227100
+      ],
+      "largest_size_ratio": 110.889,
+      "mechanism_family": "monotone_cursor_reset",
+      "node_counts": {
+        "edited": 13,
+        "original": 13
+      },
+      "oeis_group": "G03_disk_lattice",
+      "oeis_id": "A000328",
+      "orig_counts": [
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "reference_node": "N7",
+      "sizes": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "slot": "positive_off_site",
+      "status": "eligible_static_and_analytic",
+      "target_band": "strong",
+      "template_sha256": {
+        "edited": "e5f33651836d7217935f0bcbef39f83a6f0a3e372a1a13b3301e98294dccd3cc",
+        "original": "e5f33651836d7217935f0bcbef39f83a6f0a3e372a1a13b3301e98294dccd3cc"
+      }
+    },
+    {
+      "description": "Fibonacci modular sum: coupled (a,b,step) state reset requires multi-statement edit",
+      "mechanism_family": "multi_statement_state_reset",
+      "oeis_group": "G04_fibonacci_pell",
+      "oeis_id": "A000045",
+      "reason": "Recomputing F_k from scratch requires resetting coupled tuple (a, b, step)",
+      "slot": "positive_off_site",
+      "status": "intervention_rejected"
+    },
+    {
+      "analytic_arms": null,
+      "analytic_slope": 0.4827,
+      "band_pass": false,
+      "description": "Divisor prefix sum via Dirichlet quotient blocks O(sqrt(N)) vs unit step O(N)",
+      "edit_counts": [
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "largest_size_ratio": 23.011,
+      "mechanism_family": "quotient_block_jump",
+      "node_counts": {
+        "edited": 11,
+        "original": 11
+      },
+      "oeis_group": "G05_divisor_prefix",
+      "oeis_id": "A006218_quotient",
+      "orig_counts": [
+        15,
+        21,
+        31,
+        44,
+        63,
+        89
+      ],
+      "reference_node": "N9",
+      "sizes": [
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "slot": "positive_off_site",
+      "status": "growth_band_failed",
+      "target_band": "near_below",
+      "template_sha256": {
+        "edited": "3e6000758b7642b70eb1af57c072a9f36a0ab28bfb60fd98e0a3a24c00b835f2",
+        "original": "4ec8c5e5637815a8ff909615ec4189866376f837a955d9784bd11ec201b49375"
+      }
+    },
+    {
+      "analytic_arms": {
+        "work_conventional": {
+          "candidates": [
+            "N1",
+            "N2",
+            "N4",
+            "N5",
+            "N6"
+          ],
+          "ranking": [
+            "N1",
+            "N5",
+            "N6",
+            "N2",
+            "N4"
+          ],
+          "retained": true,
+          "symptom_id": "N6",
+          "top1_hit": false
+        },
+        "work_scoped": {
+          "candidates": [
+            "N5",
+            "N6"
+          ],
+          "ranking": [
+            "N5",
+            "N6"
+          ],
+          "retained": true,
+          "symptom_id": "N6",
+          "top1_hit": true
+        },
+        "work_symptom": {
+          "candidates": [
+            "N6"
+          ],
+          "ranking": [
+            "N6"
+          ],
+          "retained": false,
+          "symptom_id": "N6",
+          "top1_hit": false
+        }
+      },
+      "analytic_slope": 0.8065,
+      "band_pass": true,
+      "description": "Divisor prefix sum via harmonic step O(N log N) vs unit step O(N^2)",
+      "edit_counts": [
+        528,
+        2080,
+        8256,
+        32896,
+        131328,
+        524800
+      ],
+      "largest_size_ratio": 72.267,
+      "mechanism_family": "harmonic_step_alias",
+      "node_counts": {
+        "edited": 9,
+        "original": 9
+      },
+      "oeis_group": "G05_divisor_prefix",
+      "oeis_id": "A006218_step",
+      "orig_counts": [
+        119,
+        280,
+        645,
+        1466,
+        3280,
+        7262
+      ],
+      "reference_node": "N5",
+      "sizes": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "slot": "positive_off_site",
+      "status": "eligible_static_and_analytic",
+      "target_band": "near_above",
+      "template_sha256": {
+        "edited": "d910770a92147a1e8063d0d6d2530afdf50ec049e11c84ffe1db3e872785c1cb",
+        "original": "2e6d4817dc742ead439f93bd6c2416e8ff657b44037e6246e0ab54a878adb6c7"
+      }
+    },
+    {
+      "analytic_arms": {
+        "work_conventional": {
+          "candidates": [
+            "N1",
+            "N2",
+            "N5",
+            "N6",
+            "N7",
+            "N8"
+          ],
+          "ranking": [
+            "N8",
+            "N1",
+            "N6",
+            "N7",
+            "N2",
+            "N5"
+          ],
+          "retained": true,
+          "symptom_id": "N7",
+          "top1_hit": false
+        },
+        "work_scoped": {
+          "candidates": [
+            "N6",
+            "N7"
+          ],
+          "ranking": [
+            "N6",
+            "N7"
+          ],
+          "retained": true,
+          "symptom_id": "N7",
+          "top1_hit": true
+        },
+        "work_symptom": {
+          "candidates": [
+            "N7"
+          ],
+          "ranking": [
+            "N7"
+          ],
+          "retained": false,
+          "symptom_id": "N7",
+          "top1_hit": false
+        }
+      },
+      "analytic_slope": 0.9885,
+      "band_pass": true,
+      "description": "Wythoff floor(k*phi) sum: monotone m=prev_m O(N) vs m=0 reset O(N^2)",
+      "edit_counts": [
+        1197,
+        4683,
+        18525,
+        73686,
+        293914,
+        1174001
+      ],
+      "largest_size_ratio": 382.162,
+      "mechanism_family": "monotone_cursor_reset",
+      "node_counts": {
+        "edited": 11,
+        "original": 11
+      },
+      "oeis_group": "G06_wythoff",
+      "oeis_id": "A000201",
+      "orig_counts": [
+        96,
+        192,
+        384,
+        768,
+        1536,
+        3072
+      ],
+      "reference_node": "N6",
+      "sizes": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "slot": "positive_off_site",
+      "status": "eligible_static_and_analytic",
+      "target_band": "strong",
+      "template_sha256": {
+        "edited": "746a8c3269add75571abafda6a8e445ecda439c96e7c40bcb90ff367106073be",
+        "original": "8be6e89f0b7c5cfb25481e0e42d20fb84cd03c7ae3b5ce991d0f66ee0ea65a94"
+      }
+    },
+    {
+      "description": "Step-2 Josephus survivor (Track B algorithmic rewrite, not single-statement)",
+      "mechanism_family": "track_b_rewrite",
+      "oeis_group": "G07_josephus",
+      "oeis_id": "A006257",
+      "reason": "Closed-form power-of-2 vs linear recurrence simulation is a multi-statement Track B rewrite",
+      "slot": "positive_off_site",
+      "status": "intervention_rejected"
+    },
+    {
+      "description": "Count of 3-smooth numbers <= N (no natural single-statement growth edit)",
+      "mechanism_family": "track_b_rewrite",
+      "oeis_group": "G08_3smooth",
+      "oeis_id": "A003586",
+      "reason": "Changing p3 *= 3 to p3 += p2 alters output semantics; membership test requires Track B rewrite",
+      "slot": "positive_off_site",
+      "status": "semantic_mismatch_rejected"
+    },
+    {
+      "analytic_arms": null,
+      "analytic_slope": 0.5116,
+      "band_pass": false,
+      "description": "Totient prefix sum via trial division O(N^{1.5}) vs full bound O(N^2) (0.50 gap)",
+      "edit_counts": [
+        152,
+        560,
+        2144,
+        8384,
+        33152,
+        131840
+      ],
+      "largest_size_ratio": 16.474,
+      "mechanism_family": "trial_division_bound",
+      "node_counts": {
+        "edited": 19,
+        "original": 19
+      },
+      "oeis_group": "G09_totient_prefix",
+      "oeis_id": "A002088",
+      "orig_counts": [
+        54,
+        142,
+        380,
+        1041,
+        2872,
+        8003
+      ],
+      "reference_node": "N10",
+      "sizes": [
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "slot": "positive_off_site",
+      "status": "growth_band_failed",
+      "target_band": "near_below",
+      "template_sha256": {
+        "edited": "9d10eada0dc78329b893cbf8dd5d828c6ed782e6c42c934b45bd5f38136434ac",
+        "original": "9d10eada0dc78329b893cbf8dd5d828c6ed782e6c42c934b45bd5f38136434ac"
+      }
+    },
+    {
+      "analytic_arms": {
+        "work_conventional": {
+          "candidates": [
+            "N1",
+            "N2",
+            "N7",
+            "N8",
+            "N9"
+          ],
+          "ranking": [
+            "N1",
+            "N7",
+            "N9",
+            "N2",
+            "N8"
+          ],
+          "retained": true,
+          "symptom_id": "N9",
+          "top1_hit": false
+        },
+        "work_scoped": {
+          "candidates": [
+            "N9"
+          ],
+          "ranking": [
+            "N9"
+          ],
+          "retained": false,
+          "symptom_id": "N9",
+          "top1_hit": false
+        },
+        "work_symptom": {
+          "candidates": [
+            "N9"
+          ],
+          "ranking": [
+            "N9"
+          ],
+          "retained": false,
+          "symptom_id": "N9",
+          "top1_hit": false
+        }
+      },
+      "analytic_slope": 0.6836,
+      "band_pass": true,
+      "description": "Min half-surface box O(N^{4/3}) vs O(N^2) outer bound (two-scope jump)",
+      "edit_counts": [
+        39,
+        139,
+        532,
+        2085,
+        8262,
+        32903
+      ],
+      "largest_size_ratio": 18.506,
+      "mechanism_family": "outer_loop_bound_two_scope",
+      "node_counts": {
+        "edited": 14,
+        "original": 14
+      },
+      "oeis_group": "G10_min_surface_box",
+      "oeis_id": "A400004",
+      "orig_counts": [
+        24,
+        48,
+        126,
+        315,
+        759,
+        1778
+      ],
+      "reference_node": "N7",
+      "sizes": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "slot": "positive_off_site",
+      "status": "eligible_static_and_analytic",
+      "target_band": "near_below",
+      "template_sha256": {
+        "edited": "6e542f0b119ae5e9bcf298c55980872a0cdb06ace01ceb288f886846d398f3f5",
+        "original": "6e542f0b119ae5e9bcf298c55980872a0cdb06ace01ceb288f886846d398f3f5"
+      }
+    }
+  ],
+  "cohort_scope": "development_only_feasibility_intake",
+  "funnel": {
+    "conventional_retained_on_eligible": 5,
+    "conventional_top1_on_eligible": 0,
+    "domain_or_mapping_rejected": 0,
+    "eligible_distinct_mechanisms": 4,
+    "eligible_distinct_oeis_groups": 5,
+    "eligible_static_and_analytic": 5,
+    "growth_band_failed": 2,
+    "oeis_groups_covered": 10,
+    "proposed_specs": 11,
+    "scoped_retained_on_eligible": 4,
+    "scoped_top1_on_eligible": 3,
+    "semantic_or_single_stmt_rejected": 4
+  },
+  "linux_sandbox_status": "pending_wsl_hcs_service",
+  "pipeline_sha256": "2c95df0e5676e8b19464457adfb34cdf85a8a10cc0dca8b70557a1d587ced383",
+  "schema": "eapg-dev-scalar-intake-feasibility-v2"
+}

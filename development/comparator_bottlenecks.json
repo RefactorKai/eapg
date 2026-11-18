@@ -1,0 +1,361 @@
+{
+  "comparator_sha256": "d8798ba72f25d5809d4fa1647c7d4e4985d4cce0de8f461a2909e4ed854c9378",
+  "parsers": {
+    "tree-sitter": "0.26.0",
+    "tree-sitter-cpp": "0.23.4"
+  },
+  "pilot_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
+  "pilot_slow": {
+    "header_omission_cfg_pass": {
+      "distinct_problem_ids": 0,
+      "pair_rows": 0
+    },
+    "header_omission_first_blocker": {
+      "declaration": {
+        "distinct_problem_ids": 5,
+        "pair_rows": 13
+      },
+      "not_one_function_definition": {
+        "distinct_problem_ids": 36,
+        "pair_rows": 87
+      }
+    },
+    "header_only_rescued": {
+      "distinct_problem_ids": 0,
+      "pair_rows": 0
+    },
+    "published": {
+      "distinct_problem_ids": 41,
+      "pair_rows": 100
+    },
+    "raw_cfg_pass": {
+      "distinct_problem_ids": 0,
+      "pair_rows": 0
+    },
+    "raw_first_blocker": {
+      "preproc_include": {
+        "distinct_problem_ids": 41,
+        "pair_rows": 100
+      }
+    }
+  },
+  "uoj_cpp_evaluated": {
+    "easy": {
+      "header_omission_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "header_omission_first_blocker": {
+        "alias_declaration": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "declaration": {
+          "distinct_problem_ids": 19,
+          "pair_rows": 19
+        },
+        "namespace_definition": {
+          "distinct_problem_ids": 4,
+          "pair_rows": 4
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 10,
+          "pair_rows": 11
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 89,
+          "pair_rows": 105
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 18,
+          "pair_rows": 18
+        },
+        "preproc_ifdef": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 112,
+          "pair_rows": 138
+        },
+        "type_definition": {
+          "distinct_problem_ids": 7,
+          "pair_rows": 8
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 139,
+          "pair_rows": 193
+        }
+      },
+      "header_only_rescued": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "published": {
+        "distinct_problem_ids": 256,
+        "pair_rows": 500
+      },
+      "raw_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "raw_first_blocker": {
+        "declaration": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 2,
+          "pair_rows": 2
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "preproc_include": {
+          "distinct_problem_ids": 210,
+          "pair_rows": 343
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 112,
+          "pair_rows": 138
+        },
+        "type_definition": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        }
+      }
+    },
+    "explicit_cpp17": {
+      "header_omission_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "header_omission_first_blocker": {
+        "declaration": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 2,
+          "pair_rows": 2
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 7,
+          "pair_rows": 7
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 16,
+          "pair_rows": 17
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 10,
+          "pair_rows": 11
+        }
+      },
+      "header_only_rescued": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "published": {
+        "distinct_problem_ids": 38,
+        "pair_rows": 41
+      },
+      "raw_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "raw_first_blocker": {
+        "preproc_include": {
+          "distinct_problem_ids": 22,
+          "pair_rows": 24
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 16,
+          "pair_rows": 17
+        }
+      }
+    },
+    "hard": {
+      "header_omission_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "header_omission_first_blocker": {
+        "declaration": {
+          "distinct_problem_ids": 12,
+          "pair_rows": 13
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 4,
+          "pair_rows": 4
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 26,
+          "pair_rows": 32
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 54,
+          "pair_rows": 69
+        },
+        "type_definition": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 5
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 65,
+          "pair_rows": 88
+        }
+      },
+      "header_only_rescued": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "published": {
+        "distinct_problem_ids": 129,
+        "pair_rows": 214
+      },
+      "raw_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "raw_first_blocker": {
+        "declaration": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "preproc_include": {
+          "distinct_problem_ids": 96,
+          "pair_rows": 140
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 54,
+          "pair_rows": 69
+        },
+        "type_definition": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        }
+      }
+    },
+    "pooled": {
+      "header_omission_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "header_omission_first_blocker": {
+        "alias_declaration": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "declaration": {
+          "distinct_problem_ids": 31,
+          "pair_rows": 32
+        },
+        "namespace_definition": {
+          "distinct_problem_ids": 4,
+          "pair_rows": 4
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 14,
+          "pair_rows": 15
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 108,
+          "pair_rows": 137
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 20,
+          "pair_rows": 21
+        },
+        "preproc_ifdef": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 151,
+          "pair_rows": 207
+        },
+        "type_definition": {
+          "distinct_problem_ids": 9,
+          "pair_rows": 13
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 173,
+          "pair_rows": 281
+        }
+      },
+      "header_only_rescued": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "published": {
+        "distinct_problem_ids": 303,
+        "pair_rows": 714
+      },
+      "raw_cfg_pass": {
+        "distinct_problem_ids": 0,
+        "pair_rows": 0
+      },
+      "raw_first_blocker": {
+        "declaration": {
+          "distinct_problem_ids": 4,
+          "pair_rows": 4
+        },
+        "preproc_call": {
+          "distinct_problem_ids": 11,
+          "pair_rows": 12
+        },
+        "preproc_def": {
+          "distinct_problem_ids": 2,
+          "pair_rows": 2
+        },
+        "preproc_function_def": {
+          "distinct_problem_ids": 1,
+          "pair_rows": 1
+        },
+        "preproc_include": {
+          "distinct_problem_ids": 251,
+          "pair_rows": 483
+        },
+        "raw_parse_error": {
+          "distinct_problem_ids": 151,
+          "pair_rows": 207
+        },
+        "type_definition": {
+          "distinct_problem_ids": 2,
+          "pair_rows": 2
+        },
+        "using_declaration": {
+          "distinct_problem_ids": 3,
+          "pair_rows": 3
+        }
+      }
+    }
+  },
+  "uoj_files_sha256": {
+    "sampled_large_submission_pairs.json": "7484b43a68846cba43d2f664bebb891a56e27ac35a5b13eb065f861ecc4844a3",
+    "small_submission_pairs.json": "4b83be1865148e8dcd9cdff22b9ebe60bd6f5fbeca42cf3d55651dd6f16182e0"
+  },
+  "uoj_revision": "ce1c006d9f6cf57670d15e62c3e63a08ea669adb"
+}

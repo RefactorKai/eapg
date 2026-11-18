@@ -1,0 +1,209 @@
+{
+  "official_revision": "ce1c006d9f6cf57670d15e62c3e63a08ea669adb",
+  "tracks": {
+    "easy": {
+      "all_languages": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "published": {
+          "distinct_problem_ids": 256,
+          "pair_rows": 500
+        }
+      },
+      "cpp_family": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 255,
+          "pair_rows": 491
+        },
+        "published": {
+          "distinct_problem_ids": 256,
+          "pair_rows": 500
+        }
+      },
+      "explicit_cpp17": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 0,
+          "pair_rows": 0
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 30,
+          "pair_rows": 32
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 30,
+          "pair_rows": 32
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 30,
+          "pair_rows": 32
+        },
+        "published": {
+          "distinct_problem_ids": 30,
+          "pair_rows": 32
+        }
+      }
+    },
+    "hard": {
+      "all_languages": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 4,
+          "pair_rows": 4
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "published": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 216
+        }
+      },
+      "cpp_family": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 2,
+          "pair_rows": 2
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 212
+        },
+        "published": {
+          "distinct_problem_ids": 129,
+          "pair_rows": 214
+        }
+      },
+      "explicit_cpp17": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 0,
+          "pair_rows": 0
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        },
+        "published": {
+          "distinct_problem_ids": 8,
+          "pair_rows": 9
+        }
+      }
+    },
+    "pooled": {
+      "all_languages": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 12,
+          "pair_rows": 13
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "published": {
+          "distinct_problem_ids": 303,
+          "pair_rows": 716
+        }
+      },
+      "cpp_family": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 10,
+          "pair_rows": 11
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 302,
+          "pair_rows": 703
+        },
+        "published": {
+          "distinct_problem_ids": 303,
+          "pair_rows": 714
+        }
+      },
+      "explicit_cpp17": {
+        "both_without_observed_unsupported_literal_header": {
+          "distinct_problem_ids": 0,
+          "pair_rows": 0
+        },
+        "comparison_has_unsupported_literal_header": {
+          "distinct_problem_ids": 38,
+          "pair_rows": 41
+        },
+        "either_has_unsupported_literal_header": {
+          "distinct_problem_ids": 38,
+          "pair_rows": 41
+        },
+        "evaluated_has_unsupported_literal_header": {
+          "distinct_problem_ids": 38,
+          "pair_rows": 41
+        },
+        "published": {
+          "distinct_problem_ids": 38,
+          "pair_rows": 41
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4625 @@
+{
+  "gate": {
+    "uid": 1000,
+    "network": "loopback-only",
+    "host_mounts": "unreachable",
+    "preprocessor_host_include": "denied",
+    "toolchain": "read-only",
+    "scratch_bytes": 67108864,
+    "per_process_address_space_probe": "denied",
+    "output_bound_bytes": 8388608,
+    "process_tree_timeout": "zero surviving child processes",
+    "counter_fixtures": {
+      "early_return": "CLEAN_COMPLETION",
+      "helper_exit": "CLEAN_COMPLETION",
+      "fork_owner": "CLEAN_COMPLETION",
+      "tick_cap": "CAP_BREACHED",
+      "closed_descriptor": "reject",
+      "duplicate_record": "reject",
+      "forged_stdout_and_stderr": "reject",
+      "abnormal_exit": "reject"
+    }
+  },
+  "compiler": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "python": "3.14.4",
+  "parser": {
+    "tree-sitter": "0.26.0",
+    "tree-sitter-cpp": "0.23.4"
+  },
+  "slow": {
+    "nodes": [
+      {
+        "id": "N1",
+        "role": "CALL",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N2",
+        "role": "CALL",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N3",
+        "role": "LOOP",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N4",
+        "role": "CALL",
+        "parent": "N3",
+        "unit_weight": true
+      },
+      {
+        "id": "N5",
+        "role": "STATE_UPD",
+        "parent": "N3",
+        "unit_weight": true
+      },
+      {
+        "id": "N6",
+        "role": "STATE_UPD",
+        "parent": "N3",
+        "unit_weight": true
+      },
+      {
+        "id": "N7",
+        "role": "BRANCH",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N8",
+        "role": "CALL",
+        "parent": "N7",
+        "unit_weight": true
+      },
+      {
+        "id": "N9",
+        "role": "STATE_UPD",
+        "parent": "N7",
+        "unit_weight": true
+      },
+      {
+        "id": "N10",
+        "role": "STATE_UPD",
+        "parent": "N7",
+        "unit_weight": true
+      },
+      {
+        "id": "N11",
+        "role": "LOOP",
+        "parent": "N7",
+        "unit_weight": true
+      },
+      {
+        "id": "N12",
+        "role": "LOOP",
+        "parent": "N11",
+        "unit_weight": true
+      },
+      {
+        "id": "N13",
+        "role": "BRANCH",
+        "parent": "N12",
+        "unit_weight": true
+      },
+      {
+        "id": "N14",
+        "role": "STATE_UPD",
+        "parent": "N13",
+        "unit_weight": true
+      },
+      {
+        "id": "N15",
+        "role": "BRANCH",
+        "parent": "N12",
+        "unit_weight": true
+      },
+      {
+        "id": "N16",
+        "role": "STATE_UPD",
+        "parent": "N15",
+        "unit_weight": true
+      },
+      {
+        "id": "N17",
+        "role": "STATE_UPD",
+        "parent": "N15",
+        "unit_weight": true
+      },
+      {
+        "id": "N18",
+        "role": "STATE_UPD",
+        "parent": "N15",
+        "unit_weight": true
+      },
+      {
+        "id": "N19",
+        "role": "BRANCH",
+        "parent": "N15",
+        "unit_weight": true
+      },
+      {
+        "id": "N20",
+        "role": "CALL",
+        "parent": "N7",
+        "unit_weight": true
+      }
+    ],
+    "fits": {
+      "42": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N12": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N13": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N14": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N15": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N16": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N17": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N18": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N19": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N20": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      },
+      "43": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N12": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N13": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N14": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N15": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N16": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N17": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N18": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N19": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N20": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      },
+      "44": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N12": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N13": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N14": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N15": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 2.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N16": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N17": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N18": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N19": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N20": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      }
+    },
+    "runs": {
+      "42": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 7078,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 32,
+              "work": 32
+            },
+            "N12": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N13": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N14": {
+              "cnt": 127,
+              "work": 127
+            },
+            "N15": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N16": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N17": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N18": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N19": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 26438,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 64,
+              "work": 64
+            },
+            "N12": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N13": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N14": {
+              "cnt": 255,
+              "work": 255
+            },
+            "N15": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N16": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N17": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N18": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N19": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 102022,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N12": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N13": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N14": {
+              "cnt": 511,
+              "work": 511
+            },
+            "N15": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N16": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N17": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N18": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N19": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 400646,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N12": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N13": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N14": {
+              "cnt": 1023,
+              "work": 1023
+            },
+            "N15": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N16": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N17": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N18": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N19": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1587718,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N12": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N13": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N14": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N15": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N16": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N17": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N18": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N19": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 6321158,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N12": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N13": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N14": {
+              "cnt": 4095,
+              "work": 4095
+            },
+            "N15": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N16": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N17": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N18": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N19": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ],
+      "43": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 7078,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 32,
+              "work": 32
+            },
+            "N12": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N13": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N14": {
+              "cnt": 127,
+              "work": 127
+            },
+            "N15": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N16": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N17": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N18": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N19": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 26438,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 64,
+              "work": 64
+            },
+            "N12": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N13": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N14": {
+              "cnt": 255,
+              "work": 255
+            },
+            "N15": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N16": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N17": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N18": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N19": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 102022,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N12": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N13": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N14": {
+              "cnt": 511,
+              "work": 511
+            },
+            "N15": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N16": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N17": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N18": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N19": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 400646,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N12": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N13": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N14": {
+              "cnt": 1023,
+              "work": 1023
+            },
+            "N15": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N16": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N17": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N18": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N19": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1587718,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N12": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N13": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N14": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N15": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N16": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N17": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N18": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N19": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 6321158,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N12": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N13": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N14": {
+              "cnt": 4095,
+              "work": 4095
+            },
+            "N15": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N16": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N17": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N18": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N19": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ],
+      "44": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 7078,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 32,
+              "work": 32
+            },
+            "N12": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N13": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N14": {
+              "cnt": 127,
+              "work": 127
+            },
+            "N15": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N16": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N17": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N18": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N19": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 26438,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 64,
+              "work": 64
+            },
+            "N12": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N13": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N14": {
+              "cnt": 255,
+              "work": 255
+            },
+            "N15": {
+              "cnt": 8191,
+              "work": 8191
+            },
+            "N16": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N17": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N18": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N19": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 102022,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N12": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N13": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N14": {
+              "cnt": 511,
+              "work": 511
+            },
+            "N15": {
+              "cnt": 32767,
+              "work": 32767
+            },
+            "N16": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N17": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N18": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N19": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 400646,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N12": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N13": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N14": {
+              "cnt": 1023,
+              "work": 1023
+            },
+            "N15": {
+              "cnt": 131071,
+              "work": 131071
+            },
+            "N16": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N17": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N18": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N19": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1587718,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N12": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N13": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N14": {
+              "cnt": 2047,
+              "work": 2047
+            },
+            "N15": {
+              "cnt": 524287,
+              "work": 524287
+            },
+            "N16": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N17": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N18": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N19": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 6321158,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 0,
+              "work": 0
+            },
+            "N9": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N10": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N11": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N12": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N13": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N14": {
+              "cnt": 4095,
+              "work": 4095
+            },
+            "N15": {
+              "cnt": 2097151,
+              "work": 2097151
+            },
+            "N16": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N17": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N18": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N19": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N20": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ]
+    },
+    "normalized_sha256": "6133cd499c91e0fb4c6c83b10d7e4b6a160067e740e95a40cc6a6851f853955b",
+    "plain_oracle_checks": 18,
+    "sanitizer_oracle_checks": 18
+  },
+  "fast": {
+    "nodes": [
+      {
+        "id": "N1",
+        "role": "CALL",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N2",
+        "role": "LOOP",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N3",
+        "role": "CALL",
+        "parent": "N2",
+        "unit_weight": true
+      },
+      {
+        "id": "N4",
+        "role": "BRANCH",
+        "parent": "N2",
+        "unit_weight": true
+      },
+      {
+        "id": "N5",
+        "role": "STATE_UPD",
+        "parent": "N4",
+        "unit_weight": true
+      },
+      {
+        "id": "N6",
+        "role": "STATE_UPD",
+        "parent": "N2",
+        "unit_weight": true
+      },
+      {
+        "id": "N7",
+        "role": "STATE_UPD",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N8",
+        "role": "CALL",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N9",
+        "role": "LOOP",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      },
+      {
+        "id": "N10",
+        "role": "STATE_UPD",
+        "parent": "N9",
+        "unit_weight": true
+      },
+      {
+        "id": "N11",
+        "role": "CALL",
+        "parent": "MAIN_SCOPE",
+        "unit_weight": true
+      }
+    ],
+    "fits": {
+      "42": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.01,
+            "beta": 0.0,
+            "r2_poly": 0.003,
+            "r2_exp": 0.096,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.01,
+            "beta": 0.0,
+            "r2_poly": 0.003,
+            "r2_exp": 0.096,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      },
+      "43": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.19,
+            "beta": 0.0,
+            "r2_poly": 0.637,
+            "r2_exp": 0.44,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.19,
+            "beta": 0.0,
+            "r2_poly": 0.637,
+            "r2_exp": 0.44,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      },
+      "44": {
+        "N1": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N2": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N3": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N4": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N5": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.51,
+            "beta": 0.0,
+            "r2_poly": 0.498,
+            "r2_exp": 0.3,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.51,
+            "beta": 0.0,
+            "r2_poly": 0.498,
+            "r2_exp": 0.3,
+            "points": 6
+          }
+        },
+        "N6": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.82,
+            "points": 6
+          }
+        },
+        "N7": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N8": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        },
+        "N9": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N10": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 1.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 0.822,
+            "points": 6
+          }
+        },
+        "N11": {
+          "fit_hits": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          },
+          "fit_work": {
+            "growth": "POLY",
+            "alpha": 0.0,
+            "beta": 0.0,
+            "r2_poly": 1.0,
+            "r2_exp": 1.0,
+            "points": 6
+          }
+        }
+      }
+    },
+    "runs": {
+      "42": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 656,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 10,
+              "work": 10
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N10": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1292,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 6,
+              "work": 6
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N10": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 2575,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 9,
+              "work": 9
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N10": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 5133,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 7,
+              "work": 7
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N10": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 10253,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 7,
+              "work": 7
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N10": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 20496,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 10,
+              "work": 10
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N10": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ],
+      "43": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 651,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 5,
+              "work": 5
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N10": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1293,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 7,
+              "work": 7
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N10": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 2571,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 5,
+              "work": 5
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N10": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 5135,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 9,
+              "work": 9
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N10": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 10256,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 10,
+              "work": 10
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N10": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 20495,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 9,
+              "work": 9
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N10": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ],
+      "44": [
+        {
+          "n": 128,
+          "returncode": 0,
+          "stdout": "96\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 649,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N3": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N4": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N5": {
+              "cnt": 3,
+              "work": 3
+            },
+            "N6": {
+              "cnt": 128,
+              "work": 128
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N10": {
+              "cnt": 65,
+              "work": 65
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 256,
+          "returncode": 0,
+          "stdout": "192\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 1287,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N3": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N4": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N5": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N6": {
+              "cnt": 256,
+              "work": 256
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N10": {
+              "cnt": 129,
+              "work": 129
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 512,
+          "returncode": 0,
+          "stdout": "384\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 2573,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N3": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N4": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N5": {
+              "cnt": 7,
+              "work": 7
+            },
+            "N6": {
+              "cnt": 512,
+              "work": 512
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N10": {
+              "cnt": 257,
+              "work": 257
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 1024,
+          "returncode": 0,
+          "stdout": "768\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 5139,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N3": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N4": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N5": {
+              "cnt": 13,
+              "work": 13
+            },
+            "N6": {
+              "cnt": 1024,
+              "work": 1024
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N10": {
+              "cnt": 513,
+              "work": 513
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 2048,
+          "returncode": 0,
+          "stdout": "1536\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 10253,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N3": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N4": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N5": {
+              "cnt": 7,
+              "work": 7
+            },
+            "N6": {
+              "cnt": 2048,
+              "work": 2048
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N10": {
+              "cnt": 1025,
+              "work": 1025
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        },
+        {
+          "n": 4096,
+          "returncode": 0,
+          "stdout": "3072\n",
+          "status": "CLEAN_COMPLETION",
+          "total_ticks": 20496,
+          "nodes": {
+            "N1": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N2": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N3": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N4": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N5": {
+              "cnt": 10,
+              "work": 10
+            },
+            "N6": {
+              "cnt": 4096,
+              "work": 4096
+            },
+            "N7": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N8": {
+              "cnt": 1,
+              "work": 1
+            },
+            "N9": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N10": {
+              "cnt": 2049,
+              "work": 2049
+            },
+            "N11": {
+              "cnt": 1,
+              "work": 1
+            }
+          }
+        }
+      ]
+    },
+    "normalized_sha256": "ea586bc1ebb89daea63add5094e6f7b5f474673c6593af0569719bc4bed19b17",
+    "plain_oracle_checks": 18,
+    "sanitizer_oracle_checks": 18
+  },
+  "slices_by_seed": {
+    "42": {
+      "primary_symptom": "N11",
+      "c_naive_hits": [
+        "N12"
+      ],
+      "c_naive_work": [
+        "N11"
+      ],
+      "c_inter_only": [
+        "N10",
+        "N11"
+      ],
+      "c_unpruned": [
+        "N7",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18",
+        "N19"
+      ],
+      "c_pruned": [
+        "N10",
+        "N11"
+      ],
+      "v_total": 20,
+      "ranked_candidates": [
+        "N10",
+        "N11"
+      ]
+    },
+    "43": {
+      "primary_symptom": "N11",
+      "c_naive_hits": [
+        "N12"
+      ],
+      "c_naive_work": [
+        "N11"
+      ],
+      "c_inter_only": [
+        "N10",
+        "N11"
+      ],
+      "c_unpruned": [
+        "N7",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18",
+        "N19"
+      ],
+      "c_pruned": [
+        "N10",
+        "N11"
+      ],
+      "v_total": 20,
+      "ranked_candidates": [
+        "N10",
+        "N11"
+      ]
+    },
+    "44": {
+      "primary_symptom": "N11",
+      "c_naive_hits": [
+        "N12"
+      ],
+      "c_naive_work": [
+        "N11"
+      ],
+      "c_inter_only": [
+        "N10",
+        "N11"
+      ],
+      "c_unpruned": [
+        "N7",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18",
+        "N19"
+      ],
+      "c_pruned": [
+        "N10",
+        "N11"
+      ],
+      "v_total": 20,
+      "ranked_candidates": [
+        "N10",
+        "N11"
+      ]
+    }
+  },
+  "study": "PIE validation feasibility, development only",
+  "workload_sha256": "7b62a1aa49b27d116937ca1ed2a786f61ae3cfc7fc321eb175ecfaf96cee0bf7",
+  "validation_sha256": "6608a303c5c6ab61e7936599f3aa8cbde67bc36007e1a9739d7868665c531dab",
+  "pipeline_sha256": "7c855651566c1a7dc003fdcb291d8edd3ff1a99c671f781eb595d72c492ae743",
+  "runner_sha256": "281812519de68a2b29fed8045a08b26a80910f2942d9cd2fb4761a0cb6c2a9df",
+  "sandbox_limits": {
+    "cgroup_memory_bytes": 805306368,
+    "cgroup_tasks": 24,
+    "cgroup_cpu_quota": "100%",
+    "run_wall_seconds": 12,
+    "compile_wall_seconds": 25,
+    "file_bytes": 8388608
+  },
+  "case": {
+    "stage": "development only, source programs not executed",
+    "problem_id": "p03497",
+    "statement": "https://atcoder.jp/contests/arc086/tasks/arc086_a",
+    "slow_submission_id": "s653476033",
+    "fast_submission_id": "s650438982",
+    "slow_sha256": "cd15dd8fa9ce9d543f23b13a374a41b97aa6796130f51ff3df3dd230365618fa",
+    "fast_sha256": "6e0b4b6f8216ef8ee3bd8c394b3a74bc6727295797c078377a27939708bb8bbb",
+    "oracle": "With K=1, N minus the maximum input frequency.",
+    "hypothesis": "Repeated ordered-map passes are quadratic on these inputs, while sorting the frequency array is O(N log N)."
+  },
+  "source_result_sha256": "7ea1c7777c967ffe87de537e2ea0d9c59986683d42b17d0f312e5d920c297b70",
+  "export": "Source previews and source identifiers removed. Counts, fits, node IDs, roles, parents, and slices are unchanged.",
+  "released_runner_sha256": "6ebba4b60bfcff69e5dbbe66e9b8d74563a7bb0f69c2197213f24f7627aa56dd"
+}

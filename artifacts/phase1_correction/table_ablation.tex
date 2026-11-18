@@ -1,0 +1,29 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Five-fold evaluation on 100 pilot pairs grouped by problem ID, canonical template, and identical prompt tokens. Variants 6a and 7a receive slice tags and score all nodes. Variants 6b and 7b score the slice. Reset, A1, and A2 report subset Top-1. Multi-candidate Top-1 uses the 66 pairs with at least two slice candidates. $R_{\text{search}}$ reports reduction from explicit slice restriction. The work-symptom row emits a single candidate directly. Metrics are percentages.}
+\label{tab:ablation_results}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}cllccccccc@{}}
+\toprule
+\textbf{ID} & \textbf{Method} & \textbf{Backbone} & \textbf{Top-1} & \textbf{Top-2} & \textbf{Reset} & \textbf{A1} & \textbf{A2} & \textbf{$R_{\text{search}}$} & \textbf{Multi-cand. Top-1} \\
+\midrule
+1 & Work Symptom & None & 82.0 & 82.0 & 0.0 & 52.6 & 100.0 & -- & 72.7 \\
+2 & Deterministic Slice Ranker & None & 96.0 & 96.0 & 77.8 & 89.5 & 100.0 & 89.0 & 93.9 \\
+\midrule
+3a & AST Preview SLM & 1.5B (0 ep) & 9.0 & 12.0 & 0.0 & 5.3 & 12.5 & 0.0 & 0.0 \\
+3b & AST Preview SLM & 1.5B (QLoRA) & 66.0 & 84.0 & 77.8 & 65.8 & 79.2 & 0.0 & 51.5 \\
+4 & Hit-Annotated Preview & 1.5B (QLoRA) & 69.0 & 90.0 & 72.2 & 73.7 & 75.0 & 0.0 & 53.0 \\
+5 & Static AST Features & 1.5B (QLoRA) & 58.0 & 75.0 & 38.9 & 60.5 & 58.3 & 0.0 & 39.4 \\
+\midrule
+6a-slice & Abstract EAPG & 1.5B (QLoRA) & 87.0 & 92.0 & 66.7 & 81.6 & 100.0 & 0.0 & 80.3 \\
+6b-slice & Abstract EAPG & 1.5B (QLoRA) & 98.0 & 99.0 & 88.9 & 94.7 & 100.0 & 89.0 & 97.0 \\
+6a-rank & Abstract EAPG & 1.5B (QLoRA) & 93.0 & 95.0 & 61.1 & 81.6 & 100.0 & 0.0 & 89.4 \\
+6b-rank & Abstract EAPG & 1.5B (QLoRA) & 93.0 & 99.0 & 61.1 & 81.6 & 100.0 & 89.0 & 89.4 \\
+7a-slice & Lexical EAPG & 1.5B (QLoRA) & 71.0 & 90.0 & 61.1 & 57.9 & 66.7 & 0.0 & 63.6 \\
+7b-slice & Lexical EAPG & 1.5B (QLoRA) & 88.0 & 100.0 & 77.8 & 81.6 & 87.5 & 89.0 & 81.8 \\
+7a-rank & Lexical EAPG & 1.5B (QLoRA) & 83.0 & 91.0 & 61.1 & 73.7 & 91.7 & 0.0 & 77.3 \\
+7b-rank & Lexical EAPG & 1.5B (QLoRA) & 88.0 & 98.0 & 72.2 & 81.6 & 100.0 & 89.0 & 81.8 \\
+\bottomrule
+\end{tabular}
+\end{table*}
