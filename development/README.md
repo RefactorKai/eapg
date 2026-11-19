@@ -4,6 +4,8 @@ To preserve cryptographic digests pinned in [`custodian_revision()`](synthetic_s
 
 For top-level verification and replay commands, prefer [`../eapg.py`](../eapg.py) from the repository root.
 
+The [paired-study runbook](../docs/PAIRED_STUDY_RUNBOOK.md) covers the new C++ repeated-work panel, independent timing, source-attributed predictions, and blinded scoring. Its development intake and results use a separate study namespace.
+
 ---
 
 ## 1. Core Candidate, Slicing & Custody Contracts

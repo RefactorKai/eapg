@@ -1,0 +1,108 @@
+// Authored C++17 mechanism fixture. The runner replaces only executable expressions.
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+int integer_root(int n)
+{
+    int root = 0;
+    while ((root + 1) * (root + 1) <= n) {
+        ++root;
+    }
+    return root;
+}
+
+int log_width(int n)
+{
+    int width = 0;
+    for (; n > 1; n /= 2) {
+        ++width;
+    }
+    return width;
+}
+
+int main()
+{
+    int requests;
+    if (!(std::cin >> requests) || requests < 1 || requests > 100) {
+        return 2;
+    }
+    for (int request = 0; request < requests; ++request) {
+        int n;
+        if (!(std::cin >> n) || n < 1 || n > 256) {
+            return 2;
+        }
+        std::vector<int> data(n);
+        std::iota(data.begin(), data.end(), 1);
+        int prior = 0;
+        volatile unsigned activity = 0;
+#if defined(TRACE)
+        unsigned long long advances = 0, auxiliary = 0;
+#elif defined(COUNT)
+        unsigned long long tally = 0;
+#endif
+#if defined(TRACE) || defined(COUNT)
+        const auto cap = std::max(2'000'000ULL, 5ULL * n * n);
+        const auto check_cap = [cap](auto ticks) {
+            if (ticks >= cap) {
+                std::cerr << "CAP " << ticks << '\n';
+                std::exit(0);
+            }
+        };
+#endif
+        for (int query = 0; query < n; ++query) {
+            int q;
+            if (!(std::cin >> q) || q < 1 || q > n) {
+                return 2;
+            }
+            int seed = @killed@;
+            const int killed_value = seed;
+            seed = @seed@;
+            int first = seed;
+            int second = first;
+            int entry = second;
+            if (query % 2 == 0) {
+                entry = @odd@;
+            } else {
+                entry = @even@;
+            }
+            const int key = @key@;
+            const int extent = static_cast<int>(data.size());
+            const int extra = @extra@;
+            for (int j = 0; j < extra; ++j) {
+                activity = activity * 33U + static_cast<unsigned>(j);
+#if defined(TRACE)
+                ++auxiliary;
+                check_cap(advances + auxiliary);
+#elif defined(COUNT)
+                check_cap(++tally);
+#endif
+            }
+            int start;
+            int cursor;
+            for (cursor = (start = @scan@); cursor < extent && data[cursor] <= key; ++cursor) {
+#if defined(TRACE)
+                ++advances;
+                check_cap(advances + auxiliary);
+#elif defined(COUNT)
+                check_cap(++tally);
+#endif
+            }
+            prior = cursor;
+            std::cout << cursor << '\n';
+#if defined(TRACE)
+            std::cerr << query << ' ' << start << ' ' << cursor << ' ' << killed_value << ' '
+                      << seed << ' ' << first << ' ' << second << ' ' << entry << ' ' << key << ' '
+                      << extra << '\n';
+#endif
+        }
+#if defined(TRACE)
+        std::cerr << "TRACE " << advances << ' ' << auxiliary << '\n';
+#elif defined(COUNT)
+        std::cerr << "COUNT " << tally << '\n';
+#endif
+    }
+    return 0;
+}
