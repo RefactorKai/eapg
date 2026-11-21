@@ -79,6 +79,16 @@ def artifact(record):
     return raw
 
 
+def fixture_bindings(fixture):
+    samples, variants = fixture["samples"], fixture["variants"]
+    return {
+        "oracle": [sample["expected"] for sample in samples],
+        "workload": [[sample["stream"], sample["size"], sample["input"]] for sample in samples],
+        "counter_calibration": {side: variant["counted"] for side, variant in variants.items()},
+        "intervention": variants,
+    }
+
+
 def validate_fixture(row, fixture):
     require(fixture.get("evidence", {}).keys() == set(ARTIFACTS),
             "missing independent oracle, workload, counter or intervention evidence")
@@ -108,13 +118,7 @@ def validate_fixture(row, fixture):
         require(len(sizes) == 6 and len(set(sizes)) == 6, "requires six sizes per stream")
         require(all(a * sizes[1] == b * sizes[0] for a, b in zip(sizes, sizes[1:])),
                 "sizes must be geometric")
-    bindings = {
-        "oracle": [sample["expected"] for sample in fixture["samples"]],
-        "workload": [[sample["stream"], sample["size"], sample["input"]] for sample in fixture["samples"]],
-        "counter_calibration": {side: variant["counted"] for side, variant in fixture["variants"].items()},
-        "intervention": fixture["variants"],
-    }
-    for name, value in bindings.items():
+    for name, value in fixture_bindings(fixture).items():
         proof = proofs[name]
         require(proof.get("binding_sha256") == json_pin(value) and isinstance(proof.get("rationale"), str)
                 and proof["rationale"].strip(), f"{name} evidence does not bind to the fixture")
@@ -141,15 +145,15 @@ def held_scope(bundle, entries, required, amendment_pin, held_pin):
     return decisions
 
 
-def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=None, held_pin=HELD_SHA):
-    manifest_raw, bundle_raw = stream.readline(), stream.readline()
-    require(digest(manifest_raw) == manifest_pin, "wrong frozen manifest SHA-256")
-    manifest = json.loads(manifest_raw)
+def load_manifest(raw, pin):
+    require(digest(raw) == pin, "wrong frozen manifest SHA-256")
+    manifest = json.loads(raw)
     require(manifest["protocol_sha256"] == PROTOCOL_SHA and manifest["status"] == "scrape_frozen"
             and manifest["held_out_used"] is False, "manifest is not frozen under this protocol")
-    require(bundle_raw.strip(), "missing adjudicated S1 labels and case fixtures")
-    require(digest(bundle_raw) == bundle_pin, "wrong adjudicated S1/fixture bundle SHA-256")
-    bundle = json.loads(bundle_raw)
+    return manifest
+
+
+def load_s1(manifest, bundle, manifest_pin, amendment_pin, held_pin):
     require(bundle.get("schema") == "eapg.expansion.inputs.v1" and
             bundle.get("manifest_sha256") == manifest_pin, "S1/fixture bundle is not bound to this manifest")
     rows = sorted(manifest["pairs"], key=rank)
@@ -167,31 +171,39 @@ def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=
     else:
         require(evidence.get("agreement_draw_sha256") == AGREEMENT_DRAW_SHA,
                 "missing fixed S1 agreement-draw pin")
-    passes = set()
     for key, judgment in desk.items():
         require(isinstance(judgment.get("evidence"), str) and judgment["evidence"].strip(),
                 f"{key}: missing S1 rationale")
         if judgment.get("status") == "pass":
             require(judgment.get("reason") is None and judgment.get("bucket") is None,
                     "S1 pass carries a stop reason or bucket")
-            passes.add(key)
         else:
             require(judgment.get("status") in ("desk_excluded", "desk_blocked") and
                     judgment.get("reason") in DESK_STOPS.get(judgment.get("bucket"), "").split(),
                     f"{key}: invalid S1 stop")
+    return entries, {**desk, **holds}
+
+
+def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=None, held_pin=HELD_SHA):
+    manifest_raw, bundle_raw = stream.readline(), stream.readline()
+    manifest = load_manifest(manifest_raw, manifest_pin)
+    require(bundle_raw.strip(), "missing adjudicated S1 labels and case fixtures")
+    require(digest(bundle_raw) == bundle_pin, "wrong adjudicated S1/fixture bundle SHA-256")
+    bundle = json.loads(bundle_raw)
+    entries, desk = load_s1(manifest, bundle, manifest_pin, amendment_pin, held_pin)
+    passes = {key for key, judgment in desk.items() if judgment["status"] == "pass"}
     fixtures = bundle.get("fixtures")
     require(isinstance(fixtures, dict) and fixtures.keys() == passes,
             "need exactly one pinned fixture for each S1 pass")
     for key, fixture in fixtures.items():
         validate_fixture(entries[key], fixture)
-    desk = {**desk, **holds}
     header = {
         "schema": "eapg.expansion.checkpoint.v1", "manifest_sha256": manifest_pin,
         "protocol_sha256": PROTOCOL_SHA, "bundle_sha256": bundle_pin, "compiler": "15.2.0",
         "runner_sha256": digest(Path(__file__).read_bytes()),
         "gate1_sha256": digest(Path(gate.__file__).read_bytes()),
         "fit_sha256": digest(Path(predict.__file__).read_bytes()),
-        "amendment_sha256": amendment_pin, "held_list_sha256": held_pin if holds else None,
+        "amendment_sha256": amendment_pin, "held_list_sha256": held_pin if amendment_pin else None,
         "s1_design": "amendment_1" if amendment_pin else "adjudicated",
         "modes": list(MODES), "node_filter_applied": False,
     }
