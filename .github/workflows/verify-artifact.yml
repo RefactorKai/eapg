@@ -23,7 +23,7 @@ jobs:
       - name: Verify AST, selector, and unit suites
         run: |
           python -m pip install -r requirements-ast.txt pytest
-          python -B eapg.py verify --mode linux --verbose
+          python -B eapg.py verify --mode linux --verbose --allow-skips
           python -B -m pytest -q
       - name: Run Gate 1 Bubblewrap probes when userns and user systemd are available
         if: runner.os == 'Linux'

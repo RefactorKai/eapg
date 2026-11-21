@@ -28,6 +28,8 @@ CALLER_CWD = Path.cwd()
 CANDIDATE_ARCHIVE_SHA256 = "ab43a6e4882bbba6d2f54a9dc9be99dfeb031d5d5633c265e993d53109f41563"
 CANDIDATE_PROSPECTIVE_SHA256 = "2c95df0e5676e8b19464457adfb34cdf85a8a10cc0dca8b70557a1d587ced383"
 RESULTS_MULTIAGENT = ROOT / "development/prospective_multiagent_results.json"
+SKIPPED_TEST_STATUS = 3
+VERIFY_SKIPPED_STATUS = 2
 
 COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "verify_release.py"),
@@ -36,6 +38,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "-S", "development/replay_resplit_ablation.py", "--verify-manuscript-table", "--quiet"),
     ("-B", "development/verify_weighted_panel.py"),
     ("-B", "-S", "development/verify_manuscript_pilot.py"),
+    ("-B", "-S", "artifacts/paired_development/replay.py"),
     ("-B", "-S", "development/test_prospective_multiagent_study.py"),
     ("-B", "development/test_assemble_pilot_resplit.py"),
     ("-B", "-S", "development/test_resplit_ablation.py"),
@@ -50,7 +53,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "development/test_synthetic_study_score.py"),
 )
 
-FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:7]
+FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:8]
 
 REPLAY_TARGETS: dict[str, tuple[str, ...]] = {
     "release": ("-B", "verify_release.py"),
@@ -66,27 +69,48 @@ def _resolve_caller_path(path: Path) -> Path:
     return path if path.is_absolute() else (CALLER_CWD / path).resolve()
 
 
-def _run_py(args: tuple[str, ...], *, verbose: bool = False, cwd: Path = ROOT) -> None:
+def _run_py(
+    args: tuple[str, ...], *, verbose: bool = False, cwd: Path = ROOT, allowed_returncode: int = 0
+) -> int:
     cmd = [sys.executable, *args]
     env = {**os.environ, "PYTHONUTF8": "1"}
     if verbose:
         print(f"+ {' '.join(args)}", flush=True)
-        subprocess.run(cmd, cwd=cwd, env=env, check=True)
-        return
-    proc = subprocess.run(cmd, cwd=cwd, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    proc = subprocess.run(
+        cmd, cwd=cwd, env=env, capture_output=not verbose, text=True, encoding="utf-8", errors="replace"
+    )
     if proc.returncode != 0:
         if proc.stdout:
             sys.stdout.write(proc.stdout)
         if proc.stderr:
             sys.stderr.write(proc.stderr)
-        raise subprocess.CalledProcessError(proc.returncode, cmd)
+        if proc.returncode != allowed_returncode:
+            raise subprocess.CalledProcessError(proc.returncode, cmd)
+    return proc.returncode
+
+
+def _run_verify_check(args: tuple[str, ...], *, verbose: bool) -> str | None:
+    script_index = next(i for i, arg in enumerate(args) if not arg.startswith("-"))
+    script = args[script_index]
+    tests = Path(script).name.startswith("test_")
+    reexec = (tests and script != "development/test_prospective_multiagent_study.py") or script in {
+        "development/audit_pilot_baseline_domain.py", "development/build_candidate.py", "development/probe_gate1.py",
+    }
+    print(f"{'Re-executed' if reexec else 'Replay-only'}: {script}", flush=True)
+    if tests:
+        args = (*args[:script_index], "development/verify_unittest.py", *args[script_index:])
+        if _run_py(args, verbose=verbose, allowed_returncode=SKIPPED_TEST_STATUS) == SKIPPED_TEST_STATUS:
+            return script
+    else:
+        _run_py(args, verbose=verbose)
+    return None
 
 
 def _check_candidate_build(*, prospective: bool, verbose: bool = False) -> Path | None:
     with TemporaryDirectory(prefix="eapg_cand_") as td:
         out = Path(td) / ("prospective.py" if prospective else "candidate_pipeline.py")
         flags = ("--prospective", str(out)) if prospective else (str(out),)
-        _run_py(("-B", "development/build_candidate.py", *flags), verbose=verbose)
+        _run_verify_check(("-B", "development/build_candidate.py", *flags), verbose=verbose)
         expected = CANDIDATE_PROSPECTIVE_SHA256 if prospective else CANDIDATE_ARCHIVE_SHA256
         actual = sha256(out.read_bytes()).hexdigest()
         if actual != expected:
@@ -94,10 +118,10 @@ def _check_candidate_build(*, prospective: bool, verbose: bool = False) -> Path 
     return None
 
 
-def _run_linux_checks(*, with_probes: bool, verbose: bool) -> None:
+def _run_linux_checks(*, with_probes: bool, verbose: bool) -> list[str]:
     with TemporaryDirectory(prefix="eapg_linux_") as td:
         prosp = Path(td) / "prospective.py"
-        _run_py(("-B", "development/build_candidate.py", "--prospective", str(prosp)), verbose=verbose)
+        _run_verify_check(("-B", "development/build_candidate.py", "--prospective", str(prosp)), verbose=verbose)
         if sha256(prosp.read_bytes()).hexdigest() != CANDIDATE_PROSPECTIVE_SHA256:
             raise RuntimeError("Prospective candidate SHA-256 mismatch")
         linux_cmds: list[tuple[str, ...]] = [
@@ -114,23 +138,21 @@ def _run_linux_checks(*, with_probes: bool, verbose: bool) -> None:
         ]
         if with_probes:
             linux_cmds.append(("-B", "development/probe_gate1.py", "--probes-only"))
-        for args in linux_cmds:
-            _run_py(args, verbose=verbose)
+        return [script for cmd in linux_cmds if (script := _run_verify_check(cmd, verbose=verbose))]
 
 
-def cmd_verify(args: argparse.Namespace) -> int:
+def cmd_verify(args: argparse.Namespace, *, summarize_success: bool = True) -> int:
     mode = args.mode
     if mode == "auto":
         mode = "linux" if sys.platform.startswith("linux") else "common"
 
     commands = FAST_VERIFY_COMMANDS if mode == "fast" else COMMON_VERIFY_COMMANDS
-    for cmd_args in commands:
-        _run_py(cmd_args, verbose=args.verbose)
+    skipped = [script for cmd in commands if (script := _run_verify_check(cmd, verbose=args.verbose))]
     _check_candidate_build(prospective=False, verbose=args.verbose)
 
     ran = f"{len(commands)} + candidate_build"
     if mode == "linux":
-        _run_linux_checks(with_probes=args.with_probes, verbose=args.verbose)
+        skipped.extend(_run_linux_checks(with_probes=args.with_probes, verbose=args.verbose))
         ran += f" + {10 + int(args.with_probes)} linux"
     elif mode == "wsl2":
         if sys.platform != "win32" or not ROOT.drive:
@@ -140,13 +162,26 @@ def cmd_verify(args: argparse.Namespace) -> int:
             "set -e",
             'export PYTHONPATH="$HOME/.local/share/eapg-phase2/deps"',
             f'cd "{wsl_root}"',
-            "python3 -B eapg.py verify --mode linux" + (" --with-probes" if args.with_probes else "") + (" --verbose" if args.verbose else ""),
+            "python3 -B -c 'import eapg; raise SystemExit(eapg.cmd_verify("
+            "eapg.build_parser().parse_args(), summarize_success=False))' verify --mode linux"
+            + (" --with-probes" if args.with_probes else "") + (" --verbose" if args.verbose else ""),
             "",
         ])
-        subprocess.run(["wsl", "-d", args.wsl_distro, "--", "bash", "-s"], input=script.encode("utf-8"), check=True)
+        cmd = ["wsl", "-d", args.wsl_distro, "--", "bash", "-s"]
+        status = subprocess.run(cmd, input=script.encode("utf-8")).returncode
+        if status not in (0, VERIFY_SKIPPED_STATUS):
+            raise subprocess.CalledProcessError(status, cmd)
+        if status == VERIFY_SKIPPED_STATUS:
+            skipped.append("the WSL Linux suite (see above)")
         ran += " + wsl2_linux"
+    else:
+        print(f"Not selected in {mode} mode: Linux/WSL2 checks, including paired intervention sandbox tests.")
 
-    print(f"Verified EAPG artifact checks cleanly ({mode}: {ran}).")
+    if skipped:
+        print(f"SKIPPED: tests in {', '.join(skipped)} ({mode}; all non-skipped checks passed).")
+        return 0 if args.allow_skips else VERIFY_SKIPPED_STATUS
+    if summarize_success:
+        print(f"Verified selected EAPG artifact checks ({mode}: {ran}).")
     return 0
 
 
@@ -232,6 +267,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_ver = sub.add_parser("verify", help="Run archived release checks, table verifiers, and unit tests.")
     p_ver.add_argument("--mode", choices=("auto", "fast", "common", "linux", "wsl2"), default="auto")
     p_ver.add_argument("--with-probes", action="store_true", help="Include Bubblewrap Gate 1 isolation probes on Linux/WSL2.")
+    p_ver.add_argument("--allow-skips", action="store_true", help="Allow a zero exit status when tests are skipped.")
     p_ver.add_argument("--wsl-distro", default="Ubuntu", help="WSL distro name for --mode wsl2.")
     p_ver.add_argument("-v", "--verbose", action="store_true")
     p_ver.set_defaults(func=cmd_verify)
