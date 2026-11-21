@@ -6,6 +6,9 @@ import subprocess
 import pytest
 
 
+pytestmark = pytest.mark.skipif(os.name != "posix", reason="Agent tools installer requires a POSIX shell and filesystem")
+
+
 INSTALLER = Path(__file__).parent / "tools" / "install_agent_tools.sh"
 
 
