@@ -36,6 +36,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "-S", "development/replay_resplit_ablation.py", "--verify-manuscript-table", "--quiet"),
     ("-B", "development/verify_weighted_panel.py"),
     ("-B", "-S", "development/verify_manuscript_pilot.py"),
+    ("-B", "-S", "artifacts/paired_development/replay.py"),
     ("-B", "-S", "development/test_prospective_multiagent_study.py"),
     ("-B", "development/test_assemble_pilot_resplit.py"),
     ("-B", "-S", "development/test_resplit_ablation.py"),
@@ -50,7 +51,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "development/test_synthetic_study_score.py"),
 )
 
-FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:7]
+FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:8]
 
 REPLAY_TARGETS: dict[str, tuple[str, ...]] = {
     "release": ("-B", "verify_release.py"),
@@ -66,20 +67,23 @@ def _resolve_caller_path(path: Path) -> Path:
     return path if path.is_absolute() else (CALLER_CWD / path).resolve()
 
 
-def _run_py(args: tuple[str, ...], *, verbose: bool = False, cwd: Path = ROOT) -> None:
+def _run_py(
+    args: tuple[str, ...], *, verbose: bool = False, cwd: Path = ROOT, allowed_returncode: int = 0
+) -> int:
     cmd = [sys.executable, *args]
     env = {**os.environ, "PYTHONUTF8": "1"}
     if verbose:
         print(f"+ {' '.join(args)}", flush=True)
-        subprocess.run(cmd, cwd=cwd, env=env, check=True)
-        return
-    proc = subprocess.run(cmd, cwd=cwd, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
-    if proc.returncode != 0:
+    proc = subprocess.run(
+        cmd, cwd=cwd, env=env, capture_output=not verbose, text=True, encoding="utf-8", errors="replace"
+    )
+    if proc.returncode not in (0, allowed_returncode):
         if proc.stdout:
             sys.stdout.write(proc.stdout)
         if proc.stderr:
             sys.stderr.write(proc.stderr)
         raise subprocess.CalledProcessError(proc.returncode, cmd)
+    return proc.returncode
 
 
 def _check_candidate_build(*, prospective: bool, verbose: bool = False) -> Path | None:
@@ -94,7 +98,7 @@ def _check_candidate_build(*, prospective: bool, verbose: bool = False) -> Path 
     return None
 
 
-def _run_linux_checks(*, with_probes: bool, verbose: bool) -> None:
+def _run_linux_checks(*, with_probes: bool, verbose: bool) -> bool:
     with TemporaryDirectory(prefix="eapg_linux_") as td:
         prosp = Path(td) / "prospective.py"
         _run_py(("-B", "development/build_candidate.py", "--prospective", str(prosp)), verbose=verbose)
@@ -104,7 +108,6 @@ def _run_linux_checks(*, with_probes: bool, verbose: bool) -> None:
             ("-B", "artifacts/phase2_data/test_phase2_ast.py", "--pipeline", str(prosp)),
             ("-B", "artifacts/phase2_data/test_phase2_selection.py", "--pipeline", str(prosp)),
             ("-B", "development/test_backward_slice.py", "--pipeline", str(prosp)),
-            ("-B", "development/test_synthetic_intervention.py", "--pipeline", str(prosp)),
             ("-B", "development/test_synthetic_arms.py"),
             ("-B", "development/audit_pilot_baseline_domain.py"),
             ("-B", "development/test_synthetic_study_custodian.py"),
@@ -112,10 +115,17 @@ def _run_linux_checks(*, with_probes: bool, verbose: bool) -> None:
             ("-B", "development/test_audit_synthetic_frame_domain.py"),
             ("-B", "development/test_audit_scalar_intake.py"),
         ]
-        if with_probes:
-            linux_cmds.append(("-B", "development/probe_gate1.py", "--probes-only"))
         for args in linux_cmds:
             _run_py(args, verbose=verbose)
+        skip_code = 3
+        paired_status = _run_py(
+            ("-B", "development/test_synthetic_intervention.py", "--pipeline", str(prosp),
+             "--skip-exit-code", str(skip_code)),
+            verbose=verbose, allowed_returncode=skip_code,
+        )
+        if with_probes:
+            _run_py(("-B", "development/probe_gate1.py", "--probes-only"), verbose=verbose)
+        return paired_status == skip_code
 
 
 def cmd_verify(args: argparse.Namespace) -> int:
@@ -130,8 +140,12 @@ def cmd_verify(args: argparse.Namespace) -> int:
 
     ran = f"{len(commands)} + candidate_build"
     if mode == "linux":
-        _run_linux_checks(with_probes=args.with_probes, verbose=args.verbose)
+        paired_skipped = _run_linux_checks(with_probes=args.with_probes, verbose=args.verbose)
         ran += f" + {10 + int(args.with_probes)} linux"
+        if paired_skipped:
+            print(f"SKIPPED: paired intervention sandbox tests require Linux systemd --user + Bubblewrap "
+                  f"({mode}: {ran}; all non-skipped checks passed).")
+            return 0
     elif mode == "wsl2":
         if sys.platform != "win32" or not ROOT.drive:
             raise RuntimeError("--mode wsl2 is supported only from Windows hosts with a WSL distro")
@@ -144,7 +158,7 @@ def cmd_verify(args: argparse.Namespace) -> int:
             "",
         ])
         subprocess.run(["wsl", "-d", args.wsl_distro, "--", "bash", "-s"], input=script.encode("utf-8"), check=True)
-        ran += " + wsl2_linux"
+        return 0
 
     print(f"Verified EAPG artifact checks cleanly ({mode}: {ran}).")
     return 0

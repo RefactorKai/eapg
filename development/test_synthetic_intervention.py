@@ -163,7 +163,13 @@ int main() {
 if __name__ == "__main__":
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--pipeline", type=Path, default=None)
+    cli.add_argument("--skip-exit-code", type=int, choices=range(3, 126), metavar="CODE",
+                     help="Exit with CODE if tests succeed but some were skipped.")
     args, remaining = cli.parse_known_args()
     if args.pipeline is not None:
         InterventionTest.pipeline = load_pipeline(args.pipeline.resolve())
-    unittest.main(argv=[sys.argv[0], *remaining])
+    result = unittest.main(argv=[sys.argv[0], *remaining], exit=args.skip_exit_code is None).result
+    if not result.wasSuccessful():
+        raise SystemExit(1)
+    if result.skipped:
+        raise SystemExit(args.skip_exit_code)
