@@ -61,8 +61,7 @@ what the comparisons that survive can establish. We account for every selected
 pair, including dependency stops, deferrals, and a reference that fails an
 independent oracle despite an upstream Accepted label. Among fitted cases, the
 same screen distinguishes a large fixed-table initialization excess from a work
-ratio that increases over its tested inputs. An authored rank-query experiment
-compares process-per-request and in-process timing protocols for one mechanism.
+ratio that increases over its tested inputs.
 
 \draftcolumn
 \section{Audited Frame and Four-Variant Protocol}
@@ -327,32 +326,6 @@ all 12 of their streams, LeetCode 315 fails all three of its streams, and the
 eight inherited controls contribute eight case-level negatives with prior
 validation.
 
-\begin{widepanel}{table}
-\centering
-\caption{Authored \caseid{a01} timing by measurement boundary. Times are
-medians in ns per full request. The historical no-op and in-process empty
-controls were measured in separate calls and are shown without subtraction.}
-\label{tab:timing}
-\small
-\renewcommand{\arraystretch}{1.16}
-\setlength{\tabcolsep}{4pt}
-\ifdefined\IEEEauthorblockN\else\footnotesize\setlength{\tabcolsep}{2pt}\fi
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X rrrrrrrl@{}}
-\toprule
-Boundary / stream & Size & Target & Reference & \shortstack{Overhead\\control}
- &\shortstack{Largest\\ratio}&\shortstack{Full\\slope}
- &\shortstack{Drop-largest\\slope}&Screen\\
-\midrule
-Historical process per request & --- & --- & --- &731,000&---&---&---&Unconfirmed\\
-Dense in-process bridge &256&10,106.66&156.34&1.18&---&---&---&Bridge only\\
-\midrule
-Dense in-process &8192&8,212,676.81&5,379.50&8.41&1526.662&0.9702&0.9495&Pass\\
-Plateau in-process &8192&3,981,574.47&4,223.06&6.72&942.817&0.9296&0.9173&Pass\\
-Curved in-process &8192&5,248,630.75&15,158.50&18.88&346.250&0.7843&0.7348&Pass\\
-\bottomrule
-\end{tabularx}
-\end{widepanel}
-
 \subsection{Desk judgment consistency}
 
 Of the 24 rows with three sealed judgments, auditors used identical status
@@ -370,43 +343,7 @@ of \([0.530,0.849]\) from whole-vector resampling within allocation cells.
 The unweighted estimates describe the sampled exclusions. The intervals
 condition on singleton cells and repeated projects may induce dependence.
 
-\subsection{Authored timing}
-
-The historical \caseid{a01} measurement starts a new process for each rank
-request and leaves the timing screen unconfirmed. Its no-op process median
-is 731,000~ns. The dense in-process target takes 10,106.66~ns at the bridge
-size \(n=256\), making the no-op control about 98.6\% of the illustrative sum
-of the two medians. Table~\ref{tab:timing} compares the scales of these
-separate measurements under their respective timing protocols.
-
-The in-process harness times complete requests with data and output space
-allocated outside the timed region. It uses paired blocks in seeded balanced
-order, with two warm-up pairs and eight measured pairs per condition. An
-independent rank oracle checks outputs outside the timed blocks. At
-\(n=8192\), the target-to-reference time ratio ranges from 346 to 1,527
-across the three streams, and all three slopes clear the screen both with
-and without the largest point. We retain the empty-control measurements
-without subtraction because they were measured in separate calls. The result
-applies to one authored mechanism under the in-memory boundary and the tested
-size range. The experiment changes both the boundary and the ladder.
-
 \draftcolumn
-\section{Operational Remark on Repeated Scans}
-
-For \(m\) scans on the same logical sequence, let \(a_j,b_j\) be the entry
-and exit coordinates, \(F=\sum_j(b_j-a_j)\) the successful unit advances,
-and \(R\) and \(J\) the sums of the backward and forward gaps between
-\(b_{j-1}\) and \(a_j\), respectively, for \(j=2,\ldots,m\). Telescoping gives
-\begin{equation}
-F=b_m-a_1+R-J.
-\end{equation}
-On aligned episodes, with \(\Delta\) denoting target minus reference,
-\begin{equation}
-\Delta F=\Delta b_m-\Delta a_1+\Delta R-\Delta J,
-\end{equation}
-so an attribution to resets requires checking endpoint changes and forward
-skips as well as rewinds.
-
 \section{Threats to Validity}
 
 \paragraph{Internal validity.}
@@ -431,7 +368,7 @@ different properties. The ratio slope describes the tested ladder, and event
 choice bounds the interpretation of the alert. The digit case has a short
 legal range, the range-sum workloads use designated full-range endpoints,
 and the LeetCode comparator counts depend on the library's merge behavior.
-The timing result depends on the host and the in-memory contract. Zero natural
+Zero natural
 cases meet the prerequisites for paired ranking of source units.
 
 \draftpage
@@ -449,10 +386,6 @@ Goldsmith et al.\ fit empirical computational complexity over increasing
 inputs~\cite{goldsmith2007measuring}. We fit a paired ratio for a shared
 logical operation on each workload stream. Mytkowicz et al.\ show how
 measurement setup can bias performance comparisons~\cite{mytkowicz2009producing}.
-Georges et al.\ separate startup and steady-state performance, and Kalibera
-and Jones distinguish levels at which variation can arise and repetition
-can help~\cite{georges2007statistically,kalibera2013rigorous}. Our authored
-experiment reports these two measurement protocols for a specific workload.
 
 The audit locates the stage that limits each comparison and preserves the
 denominator for each frame. Reporting first stops, the reference oracle
@@ -463,7 +396,7 @@ different build or measurement evidence.
 \draftcolumn
 \section*{Data Availability}
 The working artifact contains the pinned 147-pair ledger, derived tables,
-verification scripts, and the authored timing receipt. Its README identifies
+and verification scripts. Its README identifies
 the upstream inputs and describes the checks available in a clean checkout
 and the checks that require restricted development evidence. Anonymous
 distribution of the artifact is pending.

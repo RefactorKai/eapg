@@ -59,7 +59,7 @@ def counts(rows: list[dict]) -> dict[str, int]:
     }
 
 
-def render(ledger: dict) -> str:
+def render(ledger: dict, stream_designation: str = "predefined") -> str:
     rows = ledger["cases"]
     if ledger["schema"] != "eapg.paired.development-ledger.v1" or len({r["id"] for r in rows}) != 24:
         raise ValueError("Expected the fixed 24 distinct development slots.")
@@ -104,7 +104,7 @@ def render(ledger: dict) -> str:
         "The fit uses the screened event. Each pair gives the target/reference count ratio",
         "at the largest common size and the slope of the log ratio against log size.",
         "The example input can be smaller than the largest common size.",
-        "An alert requires a ratio ≥1.50× and slope ≥0.50 on every registered stream.", "",
+        f"An alert requires a ratio ≥1.50× and slope ≥0.50 on every {stream_designation} stream.", "",
         "| Case | Restoration event | Example input | Target / reference / restoration / sham | Screened event and counts when distinct | Largest ratio / slope by stream | Screen |",
         "|---|---|---|---|---|---|---|",
     ])
@@ -334,7 +334,7 @@ def render_path_b(ledger, timing):
                      + ", ".join(f"`{name}`" for name in includes) + " |")
     lines.extend(["", "## New isolated comparisons", "",
                   "Counts are target, reference, restoration and sham. The screen concerns the first",
-                  "registered event. An empty drop-largest slope means the shorter grid lacks four",
+                  "predefined event. An empty drop-largest slope means the shorter grid lacks four",
                   "distinct sizes spanning eightfold.", "",
                   "| Case | Stream | Largest size | Four counts | Ratio | Slope | Drop-largest slope | Pass |",
                   "|---|---|---:|---|---:|---:|---:|---|"])
@@ -354,24 +354,8 @@ def render_path_b(ledger, timing):
             passed = fit["slope"] >= .50 and fit["largest_ratio"] >= 1.50
             lines.append(f"| {row['case_id']} | {screen['stream']} | {size} | {values} | "
                          f"{fit['largest_ratio']:.4f} | {fit['slope']:.4f} | {drop_text} | {'yes' if passed else 'no'} |")
-    lines.extend(["", "## Authored a01 steady-state timing", "",
-                  "Medians are nanoseconds per full request. The historical no-op process median",
-                  "was 731,000 ns and the startup-inclusive growth screen was unconfirmed.",
-                  f"At dense size 256 the target median is {timing['screens']['dense']['samples'][0]['target']['median_ns']:.2f} ns. "
-                  f"The historical control is {731000 / (731000 + timing['screens']['dense']['samples'][0]['target']['median_ns']):.1%} "
-                  "of the sum of those separate medians.", "",
-                  "| Stream | Size | Target median (ns) | Reference median (ns) | Empty median (ns) |",
-                  "|---|---:|---:|---:|---:|"])
-    for stream, value in timing["screens"].items():
-        for row in value["samples"]:
-            values = " | ".join(f"{row[side]['median_ns']:.2f}" for side in ("target", "reference", "empty"))
-            lines.append(f"| {stream} | {row['size']} | {values} |")
-    lines.extend(["", "| Stream | Largest ratio | Slope | Drop-largest slope | Pass |",
-                  "|---|---:|---:|---:|---|"])
-    for stream, s in timing["screens"].items():
-        f = s["fit"]
-        lines.append(f"| {stream} | {f['largest_ratio']:.3f} | {f['slope']:.4f} | "
-                     f"{s['drop_largest']['slope']:.4f} | {'yes' if s['passes_screen'] else 'no'} |")
+    lines.extend(["", "## Authored a01 steady-state timing (exploratory; not used in the manuscript)", "",
+                  "The a01-steady.json receipt is validated and exploratory; it is not used in the manuscript."])
     return "\n".join(lines) + "\n"
 
 
@@ -408,7 +392,7 @@ def historical_index():
     for name in ("ledger.json", "tables.md"):
         if digest(HERE / f"historical-{name}") != archived["public"][PREFIX + name]:
             raise ValueError(f"Historical {name} differs from the archived manifest")
-    if render(read_json(HERE / "historical-ledger.json")).encode() != (HERE / "historical-tables.md").read_bytes():
+    if render(read_json(HERE / "historical-ledger.json"), stream_designation="registered").encode() != (HERE / "historical-tables.md").read_bytes():
         raise ValueError("Historical table rendering mismatch")
     return archived
 
@@ -449,7 +433,7 @@ def verify_public(manifest, ledger, timing):
     if any(pins[key] != value for key, value in expected_pins.items()):
         raise ValueError("Manifest does not reproduce study pins")
     if pins["draft_sha256"] != "29176fea17f9f65273f4d70f2f6cbc420add1dcd1b4cfdc37d20296af7afb00d":
-        raise ValueError("Desk draft disagrees with the registered pin")
+        raise ValueError("Desk draft disagrees with the pinned digest")
     if historical["public"][PREFIX + "ledger.json"] != pins["historical_ledger_sha256"]:
         raise ValueError("Historical ledger and Path B pin disagree")
     if manifest["row_evidence"] != row_index(ledger):
