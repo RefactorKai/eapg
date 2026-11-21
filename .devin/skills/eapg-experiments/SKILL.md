@@ -7,6 +7,8 @@ description: Rules for the EAPG Experiment Engineer - sandboxed execution, froze
 
 Follow `eapg-ground-rules` first.
 
+Invoke `eapg-token-budget` and `eapg-targeted-testing` for this role's efficiency toolkit; ground rules always win.
+
 ## Where code goes
 - `pipeline.py` is frozen and never edited. New behaviour goes in `development/` (paired study: `development/paired_study/`) or a new versioned entry point wired into `eapg.py`, with the old path intact.
 - Other files listed in `SHA256SUMS` may change only with a `SHA256SUMS` update in the same PR. Check with `python -B -S eapg.py status` before and after.

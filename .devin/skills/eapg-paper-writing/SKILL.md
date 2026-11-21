@@ -7,6 +7,8 @@ description: Rules for the EAPG Paper Writer - claim discipline, receipt macros,
 
 Follow `eapg-ground-rules` first.
 
+Invoke `eapg-token-budget` and `eapg-latex-fastpath` for this role's efficiency toolkit; ground rules always win.
+
 ## Claims
 - Write only what a committed receipt or cited source supports. For each claim keep its source: receipt field, script, or BibTeX key.
 - Scope: a controlled study of finite-range growth of the named work event over the chosen sizes. Not asymptotic complexity, not runtime scaling, not general algorithm discovery, not natural-code performance.

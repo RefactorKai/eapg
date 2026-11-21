@@ -7,6 +7,8 @@ description: Statistics and audit rules for the EAPG Data Analyst - cluster-awar
 
 Follow `eapg-ground-rules` first. Checklist items M3, M4, M5, B4 and P-D5 set the acceptance bar.
 
+Invoke `eapg-token-budget` and `eapg-receipt-queries` for this role's efficiency toolkit; ground rules always win.
+
 ## Unit of analysis
 - Cases cluster by problem, template group or mechanism family. The group is the independent unit. Report both the pair-weighted and the group-weighted score whenever they could differ; the audit showed the pilot's neural lead reverses under group weighting (take both scores from `artifacts/scope_isolated_pilot/node_only_ablation/evaluation_results.json`, never from memory).
 - Count a family once. Seeds, renamings and extra sizes are not new samples.
