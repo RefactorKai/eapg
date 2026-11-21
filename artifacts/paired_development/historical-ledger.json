@@ -1,0 +1,541 @@
+{
+  "cases": [
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/p00464-milestone-2026-11-19/execution.json",
+      "evidence_sha256": "3e12f1691a260dc14beb0cd039a62faffdf8902e3636bc3fe28c03c2f1e18f2b",
+      "finite_range": [
+        {
+          "largest_ratio": 5.748084942319984,
+          "slope": -1.9474393945226374,
+          "stream": "seed-11"
+        },
+        {
+          "largest_ratio": 5.748084942319984,
+          "slope": -1.9474393945226374,
+          "stream": "seed-29"
+        },
+        {
+          "largest_ratio": 5.748084942319984,
+          "slope": -1.9474393945226374,
+          "stream": "seed-47"
+        }
+      ],
+      "id": "p00464",
+      "metric": "Logical DP cell writes (clear, seed, and propagation)",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Active-rectangle reset removes fixed-table write excess.",
+      "reference": "s506157009",
+      "sample_counts": [
+        1034770,
+        49410,
+        49410,
+        1034770
+      ],
+      "sample_input": "128 × 128, 17 walkers",
+      "screen": "no_alert",
+      "target": "s081776240"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": "docs/PAIRED_STUDY_INTAKE.md",
+      "evidence_sha256": "17cc9763cd488293b7ccfe0f6e52cf1444b5f146bbd8774566d72c3e5bfabb9f",
+      "id": "p00537",
+      "phase_a": "alignment_boundary",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "Reference difference-array updates eliminate the target’s per-trip scans. Counts are source-derived.",
+      "reference": "s927361703",
+      "screen": "not_run",
+      "target": "s172351000"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": "docs/PAIRED_STUDY_INTAKE.md",
+      "evidence_sha256": "17cc9763cd488293b7ccfe0f6e52cf1444b5f146bbd8774566d72c3e5bfabb9f",
+      "id": "p02621",
+      "phase_a": "fixed_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "A fixed scalar contract supplies no size ladder.",
+      "reference": "s444901685",
+      "screen": "not_run",
+      "target": "s423853685"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": "docs/PAIRED_STUDY_INTAKE.md",
+      "evidence_sha256": "17cc9763cd488293b7ccfe0f6e52cf1444b5f146bbd8774566d72c3e5bfabb9f",
+      "id": "p02639",
+      "phase_a": "fixed_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "The contract supplies five inputs and no size ladder.",
+      "reference": "s004750872",
+      "screen": "not_run",
+      "target": "s662076996"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": "docs/PAIRED_STUDY_INTAKE.md",
+      "evidence_sha256": "17cc9763cd488293b7ccfe0f6e52cf1444b5f146bbd8774566d72c3e5bfabb9f",
+      "id": "p02753",
+      "phase_a": "fixed_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "The string has exactly three characters.",
+      "reference": "s846580268",
+      "screen": "not_run",
+      "target": "s334099038"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": "docs/PAIRED_STUDY_INTAKE.md",
+      "evidence_sha256": "17cc9763cd488293b7ccfe0f6e52cf1444b5f146bbd8774566d72c3e5bfabb9f",
+      "id": "p03635",
+      "phase_a": "fixed_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "The contract specifies one scalar pair, so EOF repetition changes the task.",
+      "reference": "s254640114",
+      "screen": "not_run",
+      "target": "s555674093"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/p03592-lean-2026-11-19/run1/evaluation.json",
+      "evidence_sha256": "e092e41e7cd5387b5bca84b40c668842f9f4ecf5f04c4fc361f441a37c55c9ce",
+      "finite_range": [
+        {
+          "largest_ratio": 2.003875792257535,
+          "slope": -0.012418876500328056,
+          "stream": "rectangular-half"
+        },
+        {
+          "largest_ratio": 1.0038986057915618,
+          "slope": -0.028881929419456946,
+          "stream": "rectangular-quarter-columns"
+        },
+        {
+          "largest_ratio": 1.0038909914428586,
+          "slope": -0.027320217321415857,
+          "stream": "square-zero"
+        }
+      ],
+      "id": "p03592",
+      "metric": "Candidate-pair trials",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Inner break recovers candidate-pair visits. Table and scalar writes remain separate.",
+      "reference": "s362308868",
+      "sample_counts": [
+        131841,
+        65793,
+        65793,
+        131841
+      ],
+      "sample_input": "256 × 512, half black",
+      "screen": "no_alert",
+      "target": "s831924990"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/full-a1/triage.json",
+      "evidence_sha256": "adea79618baea64e2606c0bb6899430753cb2871a6fd417d5a1cd5abf56663bd",
+      "id": "p02698",
+      "phase_a": "host_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "Both exact files force AVX2. The reference also uses native word loads to parse input.",
+      "reference": "s649784841",
+      "screen": "not_run",
+      "target": "s265070209"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/full-b-p02316/run1/evaluation.json",
+      "evidence_sha256": "0e6242842a43ff7c9cbbdadc8a77739fb6db104d6933ea8df54cddc7e08f61fb",
+      "finite_range": [
+        {
+          "largest_ratio": 1972.853515625,
+          "slope": -1.0,
+          "stream": "heavier"
+        },
+        {
+          "largest_ratio": 1972.853515625,
+          "slope": -1.0,
+          "stream": "light"
+        },
+        {
+          "largest_ratio": 1972.853515625,
+          "slope": -1.0,
+          "stream": "mixed"
+        }
+      ],
+      "id": "p02316",
+      "metric": "Explicit memo/DP initialization writes",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Active memo rectangle removes 96.80% of excess initialization writes at the largest registered sample.",
+      "reference": "s202415160",
+      "sample_counts": [
+        1010101,
+        512,
+        32832,
+        1010101
+      ],
+      "sample_input": "64 items, capacity 512",
+      "screen": "no_alert",
+      "target": "s178919620"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/fmt-2026-11-19/run-01/execution.json",
+      "evidence_sha256": "e49ad5720b776af3a8841f61437d1069cd90cf76ec6d0ff80274a77826450e8b",
+      "finite_range": [
+        {
+          "largest_ratio": 2.0,
+          "slope": 0.0,
+          "stream": "ascii"
+        },
+        {
+          "largest_ratio": 2.0,
+          "slope": 0.0,
+          "stream": "mixed_width"
+        },
+        {
+          "largest_ratio": 2.0,
+          "slope": 0.0,
+          "stream": "multibyte_narrow"
+        }
+      ],
+      "id": "fmtlib/fmt",
+      "metric": "Non-initializer precision-state writes",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Precision traversal merge removes the redundant UTF-8 scan on the registered valid inputs.",
+      "reference": "067bc479b4ac16df42e67b8842c5d852bf6292c3",
+      "sample_counts": [
+        770,
+        258,
+        258,
+        770
+      ],
+      "sample_input": "512 UTF-8 code points",
+      "screen": "no_alert",
+      "screen_sample": {
+        "counts": [
+          514,
+          257,
+          257,
+          514
+        ],
+        "metric": "UTF-8 code-point callback visits"
+      },
+      "target": "730fd4d9a7a9f5973a47c5c540becc71b62b8387"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-a2/leetcode-run01/evaluation.json",
+      "evidence_sha256": "e7c00dd6eb6b3a9f02683ff5d6f7118c6140f9edbeae457bb4ba9e130583ac5b",
+      "finite_range": [
+        {
+          "largest_ratio": 1.0016432815067626,
+          "slope": -0.008244701149171122,
+          "stream": "alternating"
+        },
+        {
+          "largest_ratio": 1.0019045200609447,
+          "slope": -0.010324461136534976,
+          "stream": "clustered"
+        },
+        {
+          "largest_ratio": 1.0015202381706467,
+          "slope": -0.007256764318056408,
+          "stream": "homogeneous"
+        }
+      ],
+      "id": "wisdompeak/LeetCode",
+      "metric": "Feasibility accumulator writes",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Both search bounds agree at two computers. Predicate restoration recovers logical accumulator edits.",
+      "reference": "c30a5cc13e1770b2521812589d3b26b0b7b9bcff",
+      "sample_counts": [
+        15848,
+        15822,
+        15822,
+        15848
+      ],
+      "sample_input": "2 computers, 256 alternating batteries",
+      "screen": "no_alert",
+      "target": "a5504eeb6d4c1e5146e9687e0db4920f5a215c5d"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-a2/triage.json",
+      "evidence_sha256": "8e2c77044df00a6d6ce5b4682973c2f378c415261fd31c88dec24b4498b8551f",
+      "id": "qicosmos/iguana",
+      "phase_a": "output_contract_boundary",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "Source-derived repeated packed segments witness append versus overwrite in the audited reader.",
+      "reference": "1e76a1473ae1137b858f83d625703d1c0f315fc6",
+      "screen": "not_run",
+      "target": "90dff0f47c30841e3cce9d0d75294e3e23d7c4f7"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-a2/triage.json",
+      "evidence_sha256": "8e2c77044df00a6d6ce5b4682973c2f378c415261fd31c88dec24b4498b8551f",
+      "id": "zxing-cpp/zxing-cpp",
+      "phase_a": "output_contract_boundary",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "Source-derived cursor witness gives different bounded optional acceptance. End-to-end barcode decode was outside this check.",
+      "reference": "fc1c188d3705cd4816164455055fd3a0d93babe4",
+      "screen": "not_run",
+      "target": "ac0f61d137d44f2c3b4f8776a60af63c0312f881"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/full-a3/p03788/diagnostic/evaluation.json",
+      "evidence_sha256": "c75276802debcf26a521c1a2b62bcf421809a14bcc13c388e5b0c2c91a8de8e7",
+      "id": "p03788",
+      "phase_a": "eligible",
+      "phase_b": "output_mismatch",
+      "ranking_eligible": false,
+      "reason": "B.3 output-oracle failure. The pinned reference, marked Accepted in PIE, returned ABA on (3,7,AAB). The oracle and target variants returned BBA. No fitted count screen.",
+      "reference": "s831559970",
+      "screen": "invalid_output",
+      "target": "s115405996"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/full-a3/p00502/run1/evaluation.json",
+      "evidence_sha256": "a434dbd253bfcc152d085ca11ac29d591e0bce7695adbd302fcadf5834e07e9d",
+      "finite_range": [
+        {
+          "largest_ratio": 109.44010416666667,
+          "slope": -1.0,
+          "stream": "D2"
+        },
+        {
+          "largest_ratio": 82.080078125,
+          "slope": -1.0000000000000002,
+          "stream": "D3"
+        },
+        {
+          "largest_ratio": 65.6640625,
+          "slope": -1.0000000000000002,
+          "stream": "D4"
+        }
+      ],
+      "id": "p00502",
+      "metric": "Destination DP-cell initialization writes",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Active destination rectangle matches reference initialization writes on the measured workload.",
+      "reference": "s825933329",
+      "sample_counts": [
+        42025,
+        384,
+        384,
+        42025
+      ],
+      "sample_input": "2 days, 128 items",
+      "screen": "no_alert",
+      "target": "s344300106"
+    },
+    {
+      "corpus": "PIE validation",
+      "evidence_file": ".codex/private/lab/full-a3/p02994/run1/evaluation.json",
+      "evidence_sha256": "5a6ca2ed8bcc7979ac1a9253506402531cbd574b0604d61bcdd5c3661ee61166",
+      "finite_range": [
+        {
+          "largest_ratio": 1.248062015503876,
+          "slope": 0.010728745885788869,
+          "stream": "crossing"
+        },
+        {
+          "largest_ratio": 1.4883720930232558,
+          "slope": 0.058264128127257196,
+          "stream": "negative"
+        },
+        {
+          "largest_ratio": 1.0,
+          "slope": 0.0,
+          "stream": "positive"
+        }
+      ],
+      "id": "p02994",
+      "metric": "Subtotal materializations",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "Materialize the subtotal once after selection while preserving both scans.",
+      "reference": "s544380016",
+      "sample_counts": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "sample_input": "64 items, L = −100",
+      "screen": "no_alert",
+      "screen_sample": {
+        "counts": [
+          192,
+          129,
+          129,
+          192
+        ],
+        "metric": "Item visits plus subtotal materializations"
+      },
+      "target": "s475834242"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-b-a4/project-dependency-receipt.json",
+      "evidence_sha256": "61985e575bd1a3d6ed7ba89e60a898ab7b1f1046cad6f77798ccfa8bb46a3902",
+      "id": "open-telemetry/opentelemetry-cpp",
+      "phase_a": "eligible",
+      "phase_b": "unsupported_dependencies",
+      "ranking_eligible": false,
+      "reason": "B.3 preprocessing stopped at the current Gate 1 single-translation-unit boundary. The proposed log and span checks require the full OpenTelemetry SDK runtime, including the buffer, exporter and synchronization.",
+      "reference": "f0e0ef0bf3e769b609de3fd1d79a5b615b8bc881",
+      "screen": "not_run",
+      "target": "77012391b272c016b15611092626dec4c21c54bb"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-b-a4/project-dependency-receipt.json",
+      "evidence_sha256": "61985e575bd1a3d6ed7ba89e60a898ab7b1f1046cad6f77798ccfa8bb46a3902",
+      "id": "ERGO-Code/HiGHS",
+      "phase_a": "eligible",
+      "phase_b": "unsupported_dependencies",
+      "ranking_eligible": false,
+      "reason": "B.3 preprocessing stopped at the current Gate 1 single-translation-unit boundary. The proposed terminal-copy check requires the full QUASS solver runtime.",
+      "reference": "5addb609e0d3bce9fe6aebe86dff602e2f51b7c5",
+      "screen": "not_run",
+      "target": "ba3e28db61d8b470721f87bf1ce868852d75ed00"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/full-b-a4/sqlpp11/run1/execution.json",
+      "evidence_sha256": "04ff82fe47d9daec3c8f6172442c3d15b9957fb67e6b9bf7424f645d4ee634ff",
+      "finite_range": [
+        {
+          "largest_ratio": 1.5,
+          "slope": 0.0,
+          "stream": "alternating-null"
+        },
+        {
+          "largest_ratio": 2.0,
+          "slope": 0.0,
+          "stream": "boundaries"
+        },
+        {
+          "largest_ratio": 2.0,
+          "slope": 0.0,
+          "stream": "microseconds"
+        }
+      ],
+      "id": "rbock/sqlpp11",
+      "metric": "SQLite bind calls plus explicit duration normalizations",
+      "phase_a": "eligible",
+      "phase_b": "oracle_confirmed",
+      "ranking_eligible": false,
+      "reason": "The exact binder restoration removes source normalizations with equal output from real SQLite.",
+      "reference": "b445f24b24fee7727ebd1c126851078e7e0d04fe",
+      "sample_counts": [
+        512,
+        256,
+        256,
+        512
+      ],
+      "sample_input": "256 non-null microsecond bindings",
+      "screen": "no_alert",
+      "target": "e3f676079bfdc0e7e63f8d704da3ccbbacbc5936"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/a4-a5-2026-11-19/triage.json",
+      "evidence_sha256": "c69ba090be5f7a90f817a2cc94a49b461a3727d4348244021e2cae1a0eb984c2",
+      "id": "jeremy-rifkin/cpptrace",
+      "phase_a": "unsupported_metric",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "The libdwarf allocation/lifetime policy lacks a calibrated common event.",
+      "reference": "bc0164224e4294fa68e42165de4d80b00ef04f6f",
+      "screen": "not_run",
+      "target": "d18d6ee77d63562e99de4b509cee58ad060142de"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/a4-a5-2026-11-19/triage.json",
+      "evidence_sha256": "c69ba090be5f7a90f817a2cc94a49b461a3727d4348244021e2cae1a0eb984c2",
+      "id": "odygrd/quill",
+      "phase_a": "host_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "Changed behavior depends on cache placement and concurrent SPSC access.",
+      "reference": "a33d3a102b3fc16a674439fbe701667379c129fc",
+      "screen": "not_run",
+      "target": "704258ee5527b23c174bbfdd367d6d4e622f8a16"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/a4-a5-2026-11-19/triage.json",
+      "evidence_sha256": "c69ba090be5f7a90f817a2cc94a49b461a3727d4348244021e2cae1a0eb984c2",
+      "id": "projectM-visualizer/projectm",
+      "phase_a": "host_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "The border change requires a graphics context and driver.",
+      "reference": "a7df3680d9a1c08679bd005f09a26849345822f8",
+      "screen": "not_run",
+      "target": "f5d9546e83b25c67df742091b9f3d5b36c3c1050"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/a4-a5-2026-11-19/triage.json",
+      "evidence_sha256": "c69ba090be5f7a90f817a2cc94a49b461a3727d4348244021e2cae1a0eb984c2",
+      "id": "google/highway",
+      "phase_a": "host_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "AVX3 specialization. Portable execution bypasses the changed path.",
+      "reference": "2b0ea1d9e3c59d7fe5972ec9317a1030f203c282",
+      "screen": "not_run",
+      "target": "f00f9c86cc92c707368632a684a96c7bce0e2d54"
+    },
+    {
+      "corpus": "CppPerf",
+      "evidence_file": ".codex/private/lab/a4-a5-2026-11-19/triage.json",
+      "evidence_sha256": "c69ba090be5f7a90f817a2cc94a49b461a3727d4348244021e2cae1a0eb984c2",
+      "id": "google/snappy",
+      "phase_a": "host_contract",
+      "phase_b": "not_run",
+      "ranking_eligible": false,
+      "reason": "AArch64-only ExtractOffset branch. Other hosts bypass the change.",
+      "reference": "f52721b2b4e4949d26fa51572e3ad9000e1ed3be",
+      "screen": "not_run",
+      "target": "f2db8f77ce469ce00e33657b981e41a1bd1daf16"
+    }
+  ],
+  "cppperf_tree_revision": "a7cba4f6ced9535ab652f1589f1e31bf324edfe6",
+  "draw_sha256": "76196f0a83422f44df6f990c8412352c8a647b03cc3dbd362ba6dbbd42e9c5a1",
+  "held_out_used": false,
+  "human_adjudication": false,
+  "schema": "eapg.paired.development-ledger.v1",
+  "unit_of_accounting": "one drawn problem or project per slot",
+  "validation_input_sha256": "6608a303c5c6ab61e7936599f3aa8cbde67bc36007e1a9739d7868665c531dab"
+}

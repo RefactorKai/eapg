@@ -1,0 +1,473 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\stage}[2]{\fbox{\parbox[c][58pt][c]{.205\linewidth}{\centering
+  \textbf{#1}\par\smallskip\footnotesize #2}}}
+\newcommand{\caseid}[1]{\texttt{#1}}
+\makeatletter
+\NewDocumentEnvironment{widepanel}{m +b}{%
+  \ifdefined\IEEEauthorblockN
+    \twocolumn[{\begin{minipage}{\textwidth}
+      \def\@captype{#1}#2
+    \end{minipage}\vspace{1.25\baselineskip}}]%
+  \else
+    \begin{#1}[t]#2\end{#1}%
+  \fi
+}{}
+\makeatother
+\newcommand{\draftcolumn}{\ifdefined\IEEEauthorblockN\newpage\fi}
+\newcommand{\draftpage}{\ifdefined\IEEEauthorblockN\clearpage\fi}
+
+\title{From Performance Pairs to Growth Evidence: An Audit of 147 C++ Benchmark Pairs}
+\author{\IEEEauthorblockN{Anonymous authors}}
+\hypersetup{pdfauthor={Anonymous authors},pdftitle={From Performance Pairs to Growth Evidence}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+An upstream speedup identifies a useful C++ performance pair, but testing whether
+its work ratio grows requires correct outputs, a shared operation and inputs at
+multiple legal sizes. We audit 147 distinct pairs drawn from pinned PIE
+validation and CppPerf frames, and validate runnable comparisons with independent
+output oracles and four source variants. At desk review, 48 pairs stop on source
+witnesses, 48 lack a measurement prerequisite, and seven lack build support for
+the chosen route. Eighteen eligible comparisons are deferred, 12 more stop at
+preprocessing, and 14 execute, yielding one reference oracle failure and 13
+finite-range fits, of which four pass the scoped growth screen.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Performance benchmarks, software testing, empirical complexity, C++.
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+A faster program revision provides a candidate for comparative measurement. To
+use it as a growth benchmark, a researcher must establish that both programs
+solve the task on the tested inputs, that the same operation can be counted in
+both, and that the relevant input dimension can vary enough to support a fit. A
+reproducible audit of 147 pinned C++ performance pairs yields 13 usable
+logical-work fits and four scoped growth alerts, and shows where correctness,
+measurement contracts, and build support limit benchmark coverage.
+
+We ask where selected pairs cease to support a comparative growth experiment and
+what the comparisons that survive can establish. We account for every selected
+pair, including dependency stops, deferrals, and a reference that fails an
+independent oracle despite an upstream Accepted label. Among fitted cases, the
+same screen distinguishes a large fixed-table initialization excess from a work
+ratio that increases over its tested inputs. An authored rank-query experiment
+compares process-per-request and in-process timing protocols for one mechanism.
+
+\draftcolumn
+\section{Audited Frame and Four-Variant Protocol}
+
+\subsection{Selection}
+
+We use the PIE validation split~\cite{shypula2024learning} and the CppPerf
+tree~\cite{ho2026cppperf} pinned below. The target is the earlier PIE
+submission or CppPerf parent. The reference is the later submission or
+patch revision. We order groups by seeded hash and select the minimum seeded
+pair key within each group, which preserves the earlier development prefixes.
+The combined census includes one pair for each of 77 PIE problems and 42
+CppPerf projects. A second view includes the 34 CppPerf patches with at least
+one upstream significant test improvement. Six are also project-census
+patches, giving 147 distinct pairs. The significant-test stratum weights
+patches and can include several from the same project.
+
+\par\smallskip\begingroup\small\raggedright
+Selection seed\\
+\texttt{eapg-paired-development-2026-11-18-v1}.
+\par\smallskip
+PIE validation SHA-256\\
+\texttt{6608a303c5c6ab61e7936599f3aa8cbde6}\\
+\texttt{7bc36007e1a9739d7868665c531dab}.
+\par\smallskip
+CppPerf tree\\
+\texttt{a7cba4f6ced9535ab652f1589f1e31bf324edfe6}\par\endgroup
+
+\begin{widepanel}{figure}
+\centering
+\stage{Pin pairs}{Select exact revisions and preserve frame membership}
+\hfill\(\longrightarrow\)\hfill
+\stage{Check feasibility}{Identify legal inputs, comparable work and build support}
+\hfill\(\longrightarrow\)\hfill
+\stage{Test four variants}{Check independent outputs and logical counts}
+\hfill\(\longrightarrow\)\hfill
+\stage{Fit and report}{Apply fixed cutoffs and record every outcome}
+\ifdefined\Description
+\Description{Four boxes connected from left to right by arrows. The boxes are Pin pairs, Check feasibility, Test four variants, and Fit and report.}
+\fi
+\caption{Each selected pair enters once. A failure or deferral is recorded at
+the first relevant step. Shared CppPerf patches retain both frame memberships.}
+\label{fig:pipeline}
+\end{widepanel}
+
+\subsection{Feasibility}
+
+We inspect the pinned source and its dependencies, then specify a legal input
+ladder, an independent output oracle, a common work event, and an edit that
+changes the proposed mechanism. We record the first documented reason when a
+pair stops. Source witnesses include wrong outputs, undefined behavior and
+mechanisms tied to a particular execution environment. Contract gaps include
+inadequate ladders and missing common events or source alignment.
+Route-conditional desk stops identify dependencies of the isolated
+single-translation-unit build. A later preprocessing stop records an observed
+dependency failure after desk eligibility. Figure~\ref{fig:pipeline} shows
+the sequence of checks. The 24 inherited rows retain their original dispositions,
+including eight previously validated controls. The later desk audit advances
+33 proposals, 10 of which stop at isolated preprocessing and 18 of which are
+deferred.
+
+Our static sweep used a pinned tree-sitter C++ grammar to locate unparenthesized
+equality operands of bitwise XOR, AND and OR in complete PIE submissions and
+the full changed C/C++ files of CppPerf patches. A slot was fully scanned when
+the AST parsed reliably on every present file side.
+
+We re-audited a rank-keyed stratified draw of 24 of the 95 desk exclusions.
+Three fresh Codex agents used a fixed five-label rubric in separate contexts
+with the session's default model settings. Each received the same verified
+source and task evidence in a different order, without prior decisions
+or outcomes. We sealed each complete ballot before tallying.
+
+\subsection{Variants and validation}
+
+We compare the target, the reference, a target in which we replace or remove
+the proposed local source mechanism, and a sham-edited target that preserves
+the measured work. We derive the edits from syntax-tree spans and use an
+isolated C++17 environment. Plain, undefined-behavior-sanitized and counted
+executions must agree with an independent oracle on the tested workloads.
+The counted event must agree exactly at O0, O2 and O3. We censor a point
+that reaches the resource cap. We seal predictions from target and reference
+observations before the intervention runs. The restoration and sham test the
+interpretation of the named operation. For a class or library function, a
+minimal driver supplies inputs and checks the externally visible result.
+
+\draftcolumn
+\subsection{Growth screen}
+
+For positive target and reference counts \(T(n)\) and \(Q(n)\), we fit
+\(\log[T(n)/Q(n)]\) against \(\log n\) by least squares. An admissible stream
+has at least four common uncapped sizes spanning at least eightfold. We fixed
+a minimum slope of 0.50 and a ratio of at least
+1.50 at the largest common size before execution. A case alerts when all its required streams
+pass. The any-stream calculation uses the same complete set of stream fits.
+Missing required fits or an oracle failure leave the case without a verdict.
+We refit after removing the largest size when the remaining ladder still meets
+admission.
+
+\subsection{Use of AI in the research workflow}
+
+Codex agents assisted with protocol design, source-level desk judgments,
+oracle and analysis implementation, and artifact review. The archived
+desk calculation uses sealed AI agent judgments. Deterministic scripts verify
+source identities, programmatic oracles, counters and agreement statistics.
+Desk judgments were agent judgments without human adjudication.
+
+\begin{widepanel}{table}
+\centering
+\caption{Each pair has one final disposition. Six CppPerf patches belong to
+both the combined census and the significant-test stratum. Indented rows
+detail the preceding stage total. Alert counts are conditional on fitted
+cases. The 103 desk stops include 95 exclusions and eight blocks.}
+\label{tab:flow}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}Xrrrrr@{}}
+\toprule
+Disposition or outcome & PIE & \shortstack{CppPerf\\projects} & Combined &
+Significant & Distinct\\
+\midrule
+\textbf{Desk stops} & \textbf{51}&\textbf{30}&\textbf{81}&\textbf{25}&\textbf{103}\\
+\quad Source-level witness &18&20&38&11&48\\
+\quad Contract-level gap &33&10&43&7&48\\
+\quad Route-conditional desk stop &0&0&0&7&7\\
+\textbf{Eligible control or diagnostic deferred} &\textbf{16}&\textbf{1}&\textbf{17}&\textbf{2}&\textbf{18}\\
+\textbf{Single-TU preprocessing stop} &\textbf{0}&\textbf{8}&\textbf{8}&\textbf{5}&\textbf{12}\\
+\quad New dependency-only closure &0&6&6&5&10\\
+\quad Historical dependency stop &0&2&2&0&2\\
+\textbf{Reached isolated execution} &\textbf{10}&\textbf{3}&\textbf{13}&\textbf{2}&\textbf{14}\\
+\quad Oracle failure &1&0&1&0&1\\
+\quad Fitted, historical controls &5&3&8&1&8\\
+\quad Fitted, new growth evaluations &4&0&4&1&5\\
+\midrule
+Total intake &77&42&119&34&147\\
+Fitted / all-stream alerts &9 / 4&3 / 0&12 / 4&2 / 0&13 / 4\\
+No fitted verdict &68&39&107&32&134\\
+\bottomrule
+\end{tabularx}
+\end{widepanel}
+
+\section{Audit Results}
+
+\subsection{Where pairs stop}
+
+Table~\ref{tab:flow} accounts for all 147 pairs. Desk review stops 103 pairs,
+including 95 exclusions and eight unresolved cases. The first documented
+reasons are 48 source witnesses, 48 contract gaps and seven route-conditional
+dependency reasons. All eight unresolved desk cases belong to the
+significant-test stratum. After desk review, 18 proposals are deferred and
+12 stop during single-translation-unit preprocessing. Fourteen pairs execute,
+one fails the output oracle and 13 yield fits. The 134 pairs without a fit
+contribute to coverage accounting. The fitted verdicts describe the cases that
+reached measurement.
+
+\draftcolumn
+\subsection{Half Reflector}
+
+The Accepted PIE reference \caseid{s831559970} for Half Reflector
+(\caseid{p03788}) returns \caseid{ABA} for \((n,k,S)=(3,7,\caseid{AAB})\).
+The target \caseid{s115405996} and independent simulation return \caseid{BBA}.
+C++ groups two equality tests as operands of the reconstruction XOR.
+\begin{quote}
+\small\ttfamily (s[p]=='A') \string^ (((k-2*n)\%2)==0).
+\end{quote}
+In the odd-length branch for \(k>2n\), the expression uses the stored symbol
+and the remaining parity. For this input the inversion flag is zero at
+reconstruction, and the parity test selects a reconstruction with the wrong
+output. A suite lacking a distinguishing input in that branch can miss the
+defect. The target variant that changes its simulation cutoff from
+\caseid{500000} to \caseid{2*n} and the sham that spells the unchanged cutoff
+\caseid{250000+250000} both agree with the oracle on the failure witnesses.
+Those controls change the target. The witnessed reference failure leaves the
+pair without a fitted verdict.
+
+The sweep covered all 589 present file sides, with one legitimate absent
+side. Partial parses on 247 file sides left 59 of 77 PIE and 23 of 70 CppPerf
+slots fully scanned. We found the pattern in one of those 59 PIE slots and
+zero of the 23 CppPerf slots. No additional occurrences were found in the
+parsed regions of partially scanned slots, and macro bodies remained opaque.
+The two occurrences were in the Half Reflector reference. The simulation's
+XOR intentionally applies the inversion flag, while the reconstruction
+has the independently observed output mismatch above.
+
+\begin{widepanel}{table}
+\centering
+\caption{Largest work ratios and log-ratio slopes for all 13 fits. Entries
+span the minimum to maximum across the three streams. Historical control fits
+are inherited from the earlier protocol and selected for prior validity.
+The Path B summaries give ratios, slopes and stream names. Their abbreviated
+fields do not independently demonstrate the new-case ladder admission check.}
+\label{tab:fits}
+\small
+\renewcommand{\arraystretch}{1.34}
+\setlength{\tabcolsep}{4pt}
+\ifdefined\IEEEauthorblockN\else\footnotesize\setlength{\tabcolsep}{2pt}\fi
+\begin{tabularx}{\linewidth}{@{}l l >{\raggedright\arraybackslash}X r r l@{}}
+\toprule
+Case & Origin & Scoped event & Largest ratio & Slope & Criterion\\
+\midrule
+\caseid{p00256} & New PIE & Query day-accumulator updates
+ &119.15--1537.00&0.937--0.995&Passes both\\
+\caseid{p02346} & New PIE & Stored query contributions
+ &18.83--20.00&0.642--0.663&Passes both\\
+\caseid{p03048} & New PIE & Residual arithmetic entries
+ &116736.11--350208.33&1.984&Passes both\\
+\caseid{p03999} & New PIE & Input digits decoded
+ &22.00&1.346&Passes both\\
+LeetCode 315 & New stratum & Combining comparisons
+ &7.78--10.88&0.130--0.211&Slope only\\
+\midrule
+\caseid{p02316} & Hist.\ PIE & Memo initialization writes
+ &1972.85&\(-1.000\)&Slope only\\
+\caseid{p00464} & Hist.\ PIE & Logical DP cell writes
+ &5.75&\(-1.947\)&Slope only\\
+\caseid{p00502} & Hist.\ PIE & Destination initialization writes
+ &65.66--109.44&\(-1.000\)&Slope only\\
+\caseid{p03592} & Hist.\ PIE & Candidate-pair visits
+ &1.004--2.004&\(-0.029\) to \(-0.012\)&Ratio \& slope\\
+\caseid{p02994} & Hist.\ PIE & Item visits plus subtotal materializations
+ &1.000--1.488&0.000--0.058&Ratio \& slope\\
+rbock/sqlpp11 & Hist.\ project & SQLite bind calls plus explicit duration normalizations
+ &1.500--2.000&0.000&Slope only\\
+wisdompeak/LeetCode & Hist.\ project & Feasibility accumulator writes
+ &1.0015--1.0019&\(-0.010\) to \(-0.007\)&Ratio \& slope\\
+fmtlib/fmt & Hist.\ shared & UTF-8 code-point callback visits
+ &2.000&0.000&Slope only\\
+\bottomrule
+\end{tabularx}
+\end{widepanel}
+
+\subsection{Logical-work fits}
+
+Table~\ref{tab:fits} includes all five new comparisons and all eight inherited
+controls. The four alerts concern calendar day updates, stored range-query
+contributions, residual arithmetic entries, and input digit decoding. The RGB
+programs still visit the same quadratic candidate grid. The count alert
+tracks which candidates reach the arithmetic after the guard. In LeetCode 315,
+merging sorted runs reduces combining comparisons by factors of 7.78--10.88
+at the largest sampled size. The slopes are 0.130--0.211, below the growth
+cutoff in every stream.
+
+On all 84 fitted workload points in the five new pairs, restoration matches
+reference counts and sham matches target counts. A separate correct-output
+\caseid{p02346} challenge records counts 8/8/6/8 in target, reference,
+restoration and sham order.
+
+\draftcolumn
+Six of the nine fitted negatives clear the ratio cutoff on every stream and
+fail the slope cutoff. The slope cutoff rejects every negative in this sample,
+with three cases also failing the ratio cutoff on at least one stream. In
+\caseid{p02316}, replacing whole-table initialization with an active memo
+rectangle removes 96.80\% of the excess initialization writes at the largest
+sampled input, where the original target-to-reference work ratio is 1,972.9
+on all three streams. The log-ratio slope is \(-1.000\) on each stream, so
+this substantial work reduction falls outside a screen for ratios that
+increase with size.
+
+Each fitted case had the same pass or fail outcome on all three streams, so
+the all-stream and any-stream rules produce identical verdicts by construction
+and these data cannot distinguish the rules. The four positive cases pass
+all 12 of their streams, LeetCode 315 fails all three of its streams, and the
+eight inherited controls contribute eight case-level negatives with prior
+validation.
+
+\begin{widepanel}{table}
+\centering
+\caption{Authored \caseid{a01} timing by measurement boundary. Times are
+medians in ns per full request. The historical no-op and in-process empty
+controls were measured in separate calls and are shown without subtraction.}
+\label{tab:timing}
+\small
+\renewcommand{\arraystretch}{1.16}
+\setlength{\tabcolsep}{4pt}
+\ifdefined\IEEEauthorblockN\else\footnotesize\setlength{\tabcolsep}{2pt}\fi
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X rrrrrrrl@{}}
+\toprule
+Boundary / stream & Size & Target & Reference & \shortstack{Overhead\\control}
+ &\shortstack{Largest\\ratio}&\shortstack{Full\\slope}
+ &\shortstack{Drop-largest\\slope}&Screen\\
+\midrule
+Historical process per request & --- & --- & --- &731,000&---&---&---&Unconfirmed\\
+Dense in-process bridge &256&10,106.66&156.34&1.18&---&---&---&Bridge only\\
+\midrule
+Dense in-process &8192&8,212,676.81&5,379.50&8.41&1526.662&0.9702&0.9495&Pass\\
+Plateau in-process &8192&3,981,574.47&4,223.06&6.72&942.817&0.9296&0.9173&Pass\\
+Curved in-process &8192&5,248,630.75&15,158.50&18.88&346.250&0.7843&0.7348&Pass\\
+\bottomrule
+\end{tabularx}
+\end{widepanel}
+
+\subsection{Desk judgment consistency}
+
+Of the 24 rows with three sealed judgments, auditors used identical status
+strings on one row (4.2\%). Mapping the labels to exclusion, blocked and
+diagnostic families yields unanimity on 18 rows (75.0\%), 59 of 72 agreeing
+judgment pairs, and Fleiss's \(\kappa=0.700\) with a 95\% project-cluster
+bootstrap interval of \([0.469,0.837]\). The increase shows how strongly the
+observed agreement depends on the status vocabulary. The archived judgments
+cover a selected subset of the significant-test stratum from nine projects.
+
+The prospective draw shares four pairs with that panel. The three agents
+agree unanimously on 17 of 24 exclusions (70.8\%) and on 58 of 72 judgment
+pairs (80.6\%). Fleiss's \(\kappa=0.698\), with a descriptive 95\% interval
+of \([0.530,0.849]\) from whole-vector resampling within allocation cells.
+The unweighted estimates describe the sampled exclusions. The intervals
+condition on singleton cells and repeated projects may induce dependence.
+
+\subsection{Authored timing}
+
+The historical \caseid{a01} measurement starts a new process for each rank
+request and leaves the timing screen unconfirmed. Its no-op process median
+is 731,000~ns. The dense in-process target takes 10,106.66~ns at the bridge
+size \(n=256\), making the no-op control about 98.6\% of the illustrative sum
+of the two medians. Table~\ref{tab:timing} compares the scales of these
+separate measurements under their respective timing protocols.
+
+The in-process harness times complete requests with data and output space
+allocated outside the timed region. It uses paired blocks in seeded balanced
+order, with two warm-up pairs and eight measured pairs per condition. An
+independent rank oracle checks outputs outside the timed blocks. At
+\(n=8192\), the target-to-reference time ratio ranges from 346 to 1,527
+across the three streams, and all three slopes clear the screen both with
+and without the largest point. We retain the empty-control measurements
+without subtraction because they were measured in separate calls. The result
+applies to one authored mechanism under the in-memory boundary and the tested
+size range. The experiment changes both the boundary and the ladder.
+
+\draftcolumn
+\section{Operational Remark on Repeated Scans}
+
+For \(m\) scans on the same logical sequence, let \(a_j,b_j\) be the entry
+and exit coordinates, \(F=\sum_j(b_j-a_j)\) the successful unit advances,
+and \(R\) and \(J\) the sums of the backward and forward gaps between
+\(b_{j-1}\) and \(a_j\), respectively, for \(j=2,\ldots,m\). Telescoping gives
+\begin{equation}
+F=b_m-a_1+R-J.
+\end{equation}
+On aligned episodes, with \(\Delta\) denoting target minus reference,
+\begin{equation}
+\Delta F=\Delta b_m-\Delta a_1+\Delta R-\Delta J,
+\end{equation}
+so an attribution to resets requires checking endpoint changes and forward
+skips as well as rewinds.
+
+\section{Threats to Validity}
+
+\paragraph{Internal validity.}
+An independent oracle checks the specified workloads and challenges. Finite
+checks leave other inputs untested, and UBSan covers only the enabled classes
+of undefined behavior. Restoration and sham edits constrain the interpretation
+of a scoped count. Some desk decisions depend on how reviewers interpret
+dependencies, alignment or calibration. We report the first established stop
+and retain unresolved cases in the denominator.
+
+\paragraph{External validity.}
+The census selects one pair per problem or project. Different pairs in the same
+group can lead to different outcomes. The significant-test stratum includes
+shared patches and clusters several patches within some projects. The execution
+queue prioritizes supported growth hypotheses and preserves previously validated
+controls. Its outcomes are descriptive of these frames and the stated execution
+route. A project-native build may make some of the remaining paths accessible.
+
+\paragraph{Construct validity.}
+Logical operations, elapsed time and upstream test significance measure
+different properties. The ratio slope describes the tested ladder, and event
+choice bounds the interpretation of the alert. The digit case has a short
+legal range, the range-sum workloads use designated full-range endpoints,
+and the LeetCode comparator counts depend on the library's merge behavior.
+The timing result depends on the host and the in-memory contract. Zero natural
+cases meet the prerequisites for paired ranking of source units.
+
+\draftpage
+\section{Related Work and Conclusion}
+
+PIE supplies performance-improving submission pairs and CppPerf mines
+repository patches with build and test context. Repository-mining studies
+show that data selection and metadata interpretation govern the conclusions
+a sample can support~\cite{kalliamvakou2014promises}. Test benchmarks such
+as Defects4J make the role of checked witnesses explicit~\cite{just2014defects4j}.
+In our setting, upstream improvement selects a comparison, and independent
+correctness and work alignment determine whether its growth can be measured.
+
+Goldsmith et al.\ fit empirical computational complexity over increasing
+inputs~\cite{goldsmith2007measuring}. We fit a paired ratio for a shared
+logical operation on each workload stream. Mytkowicz et al.\ show how
+measurement setup can bias performance comparisons~\cite{mytkowicz2009producing}.
+Georges et al.\ separate startup and steady-state performance, and Kalibera
+and Jones distinguish levels at which variation can arise and repetition
+can help~\cite{georges2007statistically,kalibera2013rigorous}. Our authored
+experiment reports these two measurement protocols for a specific workload.
+
+The audit locates the stage that limits each comparison and preserves the
+denominator for each frame. Reporting first stops, the reference oracle
+failure, and the full set of finite-range fits makes it possible to judge
+which benchmarks support a given growth claim and which would require
+different build or measurement evidence.
+
+\draftcolumn
+\section*{Data Availability}
+The working artifact contains the pinned 147-pair ledger, derived tables,
+verification scripts, and the authored timing receipt. Its README identifies
+the upstream inputs and describes the checks available in a clean checkout
+and the checks that require restricted development evidence. Anonymous
+distribution of the artifact is pending.
+
+\bibliographystyle{IEEEtran}
+\bibliography{paired_mechanism}
+\end{document}
