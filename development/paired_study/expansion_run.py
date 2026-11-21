@@ -57,7 +57,7 @@ def is_pin(value):
 
 
 def dump(value):
-    return json.dumps(value, sort_keys=True, separators=(",", ":"))
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
 
 
 def json_pin(value):
