@@ -8,7 +8,7 @@ description: Statistics and audit rules for the EAPG Data Analyst - cluster-awar
 Follow `eapg-ground-rules` first. Checklist items M3, M4, M5, B4 and P-D5 set the acceptance bar.
 
 ## Unit of analysis
-- Cases cluster by problem, template group or mechanism family. The group is the independent unit. Report both the pair-weighted and the group-weighted score whenever they could differ; the audit showed the neural lead reverses under group weighting (98/100 vs 96/100 by pair, 93.48% vs 95.65% by group).
+- Cases cluster by problem, template group or mechanism family. The group is the independent unit. Report both the pair-weighted and the group-weighted score whenever they could differ; the audit showed the pilot's neural lead reverses under group weighting (take both scores from `artifacts/scope_isolated_pilot/node_only_ablation/evaluation_results.json`, never from memory).
 - Count a family once. Seeds, renamings and extra sizes are not new samples.
 - State quarantine keys (problem ID, aliases, normalized source, identifier- and numeric-literal-normalized templates, prompt tokens) and the number of cross-split collisions.
 
@@ -23,7 +23,7 @@ Follow `eapg-ground-rules` first. Checklist items M3, M4, M5, B4 and P-D5 set th
 - Write `k/n = p%` with the exact denominator, the unit (pair, equal-group, macro) and what is excluded and why (abstentions, ties, unsupported, indeterminate). Never set pair-level and group-level numbers side by side unlabelled (M4).
 - Ties without a unique recommendation are abstentions on Top-1 for every arm; report tie frequency and an expected score under uniform tie-breaking as secondary.
 - Name the CI method in the text or caption.
-- Small cohorts are feasibility evidence. Below the confirmatory sample-size gates (Part A `< 60` families and `< 30` off-site, Part B `< 20` groups) give no directional claim in the abstract or conclusion (B4).
+- Small cohorts are feasibility evidence. Part A needs at least 60 families and at least 30 off-site cases; missing either minimum blocks directional claims. Part B needs at least 20 groups. Below a gate, give no directional claim in the abstract or conclusion (B4).
 
 ## Power
 Use the design in `docs/RESEARCH_REWORK_PLAN.md` section 5 (paired discordance, groups as units). Report assumed effect, discordance, alpha and power with the group count; flag exclusions that cut power.

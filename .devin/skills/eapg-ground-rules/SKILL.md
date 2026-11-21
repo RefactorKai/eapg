@@ -9,7 +9,7 @@ The team is writing a Q1/Rank A paper from this repository. The owner has not ap
 
 ## Read first
 1. `README.md`, `docs/REPRODUCIBILITY.md`, `docs/ARCHITECTURE.md`
-2. The paper (owner decision D1 = A): the 147-pair paired benchmark-qualification study in `manuscript/paired_mechanism.tex`, with EAPG (`manuscript/paper.tex`) entering only as RQ3 development evidence. One manuscript is submitted; never prepare a parallel submission. Background: `docs/PAIRED_STUDY_HANDOFF.md`, `docs/PAIRED_STUDY_RUNBOOK.md`, `docs/PAIRED_STUDY_INTAKE.md`, `docs/RESEARCH_REWORK_PLAN.md`
+2. The paper (owner decision D1 = A): the paired benchmark-qualification study in `manuscript/paired_mechanism.tex` (census size and dispositions from the committed ledger `artifacts/paired_development/ledger.json`, never restated from memory), with EAPG (`manuscript/paper.tex`) entering only as RQ3 development evidence. One manuscript is submitted; never prepare a parallel submission. Background: `docs/PAIRED_STUDY_HANDOFF.md`, `docs/PAIRED_STUDY_RUNBOOK.md`, `docs/PAIRED_STUDY_INTAKE.md`, `docs/RESEARCH_REWORK_PLAN.md`
 3. Audit history: `AUDIT.md`, `artifacts/board_of_audit_professors.md`, `docs/INDEPENDENT_AUDIT.md`, `PHASE2_DECISION.md`
 4. The acceptance checklist from the Peer Reviewer (ask the coordinator for the current revision). Each work package (WP) is accepted only on evidence in the repo.
 
