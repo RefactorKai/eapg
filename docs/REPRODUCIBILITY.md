@@ -20,6 +20,24 @@ All manuscript tables and empirical claims replay deterministically from committ
 
 > **Linux Host Sandbox Note:** [`development/gate1_sandbox.py`](../development/gate1_sandbox.py) requires an unprivileged Linux user with user-level `systemd` cgroup v2 (`memory.swap.max = 0`), `bwrap` with user namespaces, `prlimit`, and x86_64 `/usr/lib64`; `eapg.py --mode wsl2` expects AST deps under `$HOME/.local/share/eapg-phase2/deps` unless installed globally.
 
+For LaTeX, install `IEEEtran.cls` from Ubuntu's `texlive-publishers` package:
+`sudo apt-get install -y texlive-publishers poppler-utils`.
+
+Gate 1 host prerequisites: stock Ubuntu 22.04 is insufficient (systemd 249 rejects
+`OOMPolicy=continue` on scopes, CPU delegation to `user@.service` is absent,
+Bubblewrap 0.6.1 lacks `--disable-userns`, and a session bus may be absent).
+Use Bubblewrap >= 0.8, a `user@.service` drop-in with
+`Delegate=cpu cpuset io memory pids`, and a `systemd-run` shim that drops
+`OOMPolicy` (or a systemd version accepting it). Enable lingering with
+`loginctl enable-linger "$USER"` and set `XDG_RUNTIME_DIR=/run/user/$(id -u)`
+with a working user session bus. The archive pins GCC 15.2.0 and Bubblewrap 0.11.1
+in `development/prospective_multiagent_results.json` (`execution_environment`).
+
+The stale paired-study Markdown draft has been removed; use
+[`paired_mechanism.tex`](../manuscript/paired_mechanism.tex). Its old pathname in
+`artifacts/paired_development/historical-manifest.json` is a sealed historical
+inventory entry, not a link to a current manuscript.
+
 ---
 
 ## 2. Optional Environment Setup
