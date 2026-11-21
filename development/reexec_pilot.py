@@ -256,6 +256,8 @@ def summarize(result):
 
 
 def main():
+    if not __debug__:
+        raise RuntimeError("Run without Python optimization so assertions remain active")
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--write-receipt", type=Path, metavar="PATH",
                      help="Write a fresh receipt to a new PATH instead of checking the committed one.")
