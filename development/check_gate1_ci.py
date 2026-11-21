@@ -1,5 +1,6 @@
 """Run the four Gate 1 probes and require all seven sandbox tests to pass."""
 
+import json
 import subprocess
 import sys
 import unittest
@@ -17,8 +18,17 @@ GATE1_TESTS = (
 
 
 def main():
-    subprocess.run([sys.executable, "-B", "development/probe_gate1.py", "--probes-only"], check=True)
-    print("Gate 1 probes: 4/4 passed", flush=True)
+    proc = subprocess.run([sys.executable, "-B", "development/probe_gate1.py", "--probes-only"],
+                          stdout=subprocess.PIPE, text=True)
+    print(proc.stdout, end="", flush=True)
+    if proc.returncode:
+        return proc.returncode
+    probes = [json.loads(line) for line in proc.stdout.splitlines()]
+    passed = {probe["probe"] for probe in probes if probe["status"] == "passed"}
+    if len(probes) != 4 or len(passed) != 4:
+        print("Expected four distinct passing Gate 1 probes.", file=sys.stderr)
+        return 1
+    print(f"Gate 1 probes: {len(passed)}/4 passed", flush=True)
     tests = unittest.defaultTestLoader.loadTestsFromNames(
         [f"test_synthetic_intervention.InterventionTest.{name}" for name in GATE1_TESTS]
     )

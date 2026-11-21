@@ -12,7 +12,7 @@ if [[ $(uname -sm) != 'Linux x86_64' || $(stat -f -c %T /sys/fs/cgroup) != cgrou
     exit 1
 fi
 
-docker build --platform linux/amd64 --file docker/gate1.Dockerfile --tag eapg-gate1 .
+docker build --platform linux/amd64 --file docker/gate1.Dockerfile --tag eapg-gate1 . >&2
 # systemd is PID 1 and owns a writable, private cgroup v2 subtree.
 container=$(docker run --rm --detach --privileged --cgroupns private --network none \
     --tmpfs /run --tmpfs /tmp:mode=1777 eapg-gate1)
