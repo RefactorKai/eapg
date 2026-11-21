@@ -1,0 +1,2560 @@
+{
+  "schema": "eapg-fair-cfg-baseline-v1",
+  "notes": "Nearest preceding: candidates below the symptom's numeric canonical ID by increasing gap, then the symptom, then candidates above it by increasing gap; ties use lower ID. A backward slice looks upstream, so the nearest upstream candidate is a natural cause guess. This chosen variant reproduces the 6/20 anchor. IDs are AST preorder (manuscript/method.tex:8), not CFG path distances; no existing nearest policy is specified in method.tex, evaluation.tex or development/RESEARCH_RECORD.md.\n\nSensitivity rows order by absolute numeric ID distance, ties by lower ID, either including the symptom or excluding it from the ranking (not from the retention slice). Symptom-first moves the symptom ahead of the stored ranking, preserving the rest. Reported rankings are used as stored, including truncated Part B symbolic predictions; no missing ranks are invented.\n\nUniform metrics are exact expectations over random permutations of the slice: Top-1 is accepted-in-slice / slice size; Top-3 is the probability of any accepted node in the first min(3, size) draws; MRR averages the reciprocal first accepted rank. Counts for uniform and MRR are expected-hit and reciprocal-rank sums, respectively. JSON stores exact fractions as well as numeric counts/rates; displayed nonintegers are rounded to two decimals. Empty strata have denominator zero and no rate.\n\nPart A core = confirmed_positive AND slot in {positive_at_site, positive_off_site}; excludes comparator-swap positives. OEIS uses eligible_static_and_analytic cases from development/scalar_intake_feasibility.json. Part B uses 14 confirmed positives of 16 pairs, the stored slice and symbolic_unbiased ranking; no conventional candidate sets or slot fields are present, so CFG policies and at/off-site splits are not computable. No slots are inferred from accepted nodes. All numbers are case-weighted counts/rates, without hypothesis tests or confidence intervals.\n\nAudit anchor reconciliation: the uniform expected-hit sum over all 21 confirmed_positive rows is 1543/360 = 4.29 (rounded). The audit's 4.29/20 included the comparator-swap duplicate row in its numerator but used the 20-case core denominator. The correct core figure is 1483/360 = 4.12/20 (20.60%). The 21-row sum belongs over denominator 21 (20.41%), not 20.",
+  "audit_anchor_reconciliation": {
+    "core": {
+      "exact_count": "1483/360",
+      "count": 4.1194444444444445,
+      "denominator": 20,
+      "rate": 0.20597222222222222
+    },
+    "all_confirmed_positive": {
+      "exact_count": "1543/360",
+      "count": 4.286111111111111,
+      "denominator": 21,
+      "rate": 0.2041005291005291
+    },
+    "extra_case_id": "bbf7f347381db1d9d9002b5ec3d307dc",
+    "extra_slot": "comparator_swap_positive",
+    "extra_exact_count": "1/6",
+    "explanation": "The audit's 4.29/20 included the comparator-swap duplicate row in the numerator; the core 20-case figure is 4.12/20."
+  },
+  "inputs": {
+    "development/prospective_multiagent_results.json": "2016611a8d142b0068b5e5c03ed9f685a0196c6159510b808ca2135c7928cf81",
+    "development/scalar_intake_feasibility.json": "46b5d2216063f888567779d8dc8d31cab6828614683bba7255f66d2f835831f7"
+  },
+  "part_a_reported_cfg_reference_ranks": {
+    "2": 14,
+    "3": 4,
+    "4": 2
+  },
+  "cases": {
+    "Part A": [
+      {
+        "id": "c70d6e7e4d9d0a7c22b6b9b24bda69ad",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N10",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N9",
+          "N10",
+          "N11"
+        ],
+        "rank": [
+          "N11",
+          "N1",
+          "N9",
+          "N10",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N9",
+          "N10"
+        ],
+        "scoped_rank": [
+          "N9",
+          "N10"
+        ]
+      },
+      {
+        "id": "9cc426b0059e7a6167ce52506ba6ded7",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      },
+      {
+        "id": "81fa14bec37109607a7fcefa7de75cb7",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N13"
+        ],
+        "symptom": "N15",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N11",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N16"
+        ],
+        "rank": [
+          "N16",
+          "N1",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N2",
+          "N8",
+          "N11"
+        ],
+        "scoped_cands": [
+          "N12",
+          "N14",
+          "N15",
+          "N16"
+        ],
+        "scoped_rank": [
+          "N16",
+          "N12",
+          "N14",
+          "N15"
+        ]
+      },
+      {
+        "id": "f60fd0008e0f96ad72bb419253ea250a",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      },
+      {
+        "id": "2e87e460057a6d902c45f6e92461260e",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N8"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N8",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N8",
+          "N9",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N8",
+          "N9"
+        ],
+        "scoped_rank": [
+          "N8",
+          "N9"
+        ]
+      },
+      {
+        "id": "ba68e5b5af9d068c340e9e2bad5e1d34",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N8"
+        ],
+        "symptom": "N8",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N8"
+        ],
+        "rank": [
+          "N1",
+          "N8",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N8"
+        ],
+        "scoped_rank": [
+          "N8"
+        ]
+      },
+      {
+        "id": "7079effb2d0262d814716e162dd091db",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N12"
+        ],
+        "symptom": "N15",
+        "cands": [
+          "N1",
+          "N2",
+          "N9",
+          "N12",
+          "N13",
+          "N15"
+        ],
+        "rank": [
+          "N1",
+          "N12",
+          "N15",
+          "N2",
+          "N9",
+          "N13"
+        ],
+        "scoped_cands": [
+          "N15"
+        ],
+        "scoped_rank": [
+          "N15"
+        ]
+      },
+      {
+        "id": "c8a55790dd7a3b84eae4b942668cd79e",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N12"
+        ],
+        "symptom": "N12",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N12"
+        ],
+        "rank": [
+          "N1",
+          "N12",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N12"
+        ],
+        "scoped_rank": [
+          "N12"
+        ]
+      },
+      {
+        "id": "e78ffc334ad5c281dd5f7eaa7ffef727",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N10"
+        ],
+        "symptom": "N13",
+        "cands": [
+          "N1",
+          "N2",
+          "N9",
+          "N10",
+          "N13",
+          "N15"
+        ],
+        "rank": [
+          "N15",
+          "N1",
+          "N10",
+          "N13",
+          "N2",
+          "N9"
+        ],
+        "scoped_cands": [
+          "N10",
+          "N13"
+        ],
+        "scoped_rank": [
+          "N10",
+          "N13"
+        ]
+      },
+      {
+        "id": "01cb7124ea770adb9660a6a2ce0f4b7c",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N11"
+        ],
+        "symptom": "N11",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N11"
+        ],
+        "rank": [
+          "N1",
+          "N11",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N11"
+        ],
+        "scoped_rank": [
+          "N11"
+        ]
+      },
+      {
+        "id": "ddc4dbc16d93d6b8808e044269994109",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N12",
+        "cands": [
+          "N1",
+          "N2",
+          "N9",
+          "N11",
+          "N12"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N12",
+          "N2",
+          "N11"
+        ],
+        "scoped_cands": [
+          "N12"
+        ],
+        "scoped_rank": [
+          "N12"
+        ]
+      },
+      {
+        "id": "d7672730f8ebba0183213da152a979a3",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N11"
+        ],
+        "symptom": "N11",
+        "cands": [
+          "N1",
+          "N2",
+          "N10",
+          "N11"
+        ],
+        "rank": [
+          "N1",
+          "N11",
+          "N2",
+          "N10"
+        ],
+        "scoped_cands": [
+          "N11"
+        ],
+        "scoped_rank": [
+          "N11"
+        ]
+      },
+      {
+        "id": "de800b7e951db67882b8744bcd9df213",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N10",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N9",
+          "N10",
+          "N11"
+        ],
+        "rank": [
+          "N11",
+          "N1",
+          "N9",
+          "N10",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N9",
+          "N10"
+        ],
+        "scoped_rank": [
+          "N9",
+          "N10"
+        ]
+      },
+      {
+        "id": "9deea557c348c61b83eb7cd78e0c1ab2",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N10"
+        ],
+        "symptom": "N10",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N9",
+          "N10",
+          "N12"
+        ],
+        "rank": [
+          "N12",
+          "N1",
+          "N9",
+          "N10",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N9",
+          "N10"
+        ],
+        "scoped_rank": [
+          "N9",
+          "N10"
+        ]
+      },
+      {
+        "id": "50422f655ab8388d1d9b7539ccae2870",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N12",
+        "cands": [
+          "N1",
+          "N2",
+          "N8",
+          "N9",
+          "N12"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N12",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N9",
+          "N12"
+        ],
+        "scoped_rank": [
+          "N9",
+          "N12"
+        ]
+      },
+      {
+        "id": "d2583c5bd93dd846b7b42d62392cfc84",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      },
+      {
+        "id": "23fd06ac292eabe51401677ec5f39409",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N8"
+        ],
+        "symptom": "N10",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N8",
+          "N10"
+        ],
+        "rank": [
+          "N1",
+          "N8",
+          "N10",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N8",
+          "N10"
+        ],
+        "scoped_rank": [
+          "N8",
+          "N10"
+        ]
+      },
+      {
+        "id": "2db16da63ea5e62a75105d76c5ed6a2a",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      },
+      {
+        "id": "49eb97f7a6b4a28fd8ba6fe65551df33",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N8"
+        ],
+        "symptom": "N11",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N8",
+          "N9",
+          "N10",
+          "N11",
+          "N12"
+        ],
+        "rank": [
+          "N12",
+          "N1",
+          "N8",
+          "N9",
+          "N10",
+          "N11",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N10",
+          "N11"
+        ],
+        "scoped_rank": [
+          "N10",
+          "N11"
+        ]
+      },
+      {
+        "id": "ea99824d34da3936f8a604866dd5901b",
+        "slot": "positive_at_site",
+        "accepted": [
+          "N9"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N9",
+          "N2",
+          "N7"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      }
+    ],
+    "OEIS": [
+      {
+        "id": "A001399",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N7"
+        ],
+        "symptom": "N8",
+        "cands": [
+          "N1",
+          "N2",
+          "N4",
+          "N5",
+          "N6",
+          "N7",
+          "N8",
+          "N11"
+        ],
+        "rank": [
+          "N1",
+          "N5",
+          "N6",
+          "N7",
+          "N8",
+          "N2",
+          "N4",
+          "N11"
+        ],
+        "scoped_cands": [
+          "N6",
+          "N7",
+          "N8"
+        ],
+        "scoped_rank": [
+          "N6",
+          "N7",
+          "N8"
+        ]
+      },
+      {
+        "id": "A000328",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N7"
+        ],
+        "symptom": "N8",
+        "cands": [
+          "N1",
+          "N2",
+          "N3",
+          "N6",
+          "N7",
+          "N8",
+          "N9"
+        ],
+        "rank": [
+          "N9",
+          "N1",
+          "N3",
+          "N7",
+          "N8",
+          "N2",
+          "N6"
+        ],
+        "scoped_cands": [
+          "N7",
+          "N8"
+        ],
+        "scoped_rank": [
+          "N7",
+          "N8"
+        ]
+      },
+      {
+        "id": "A006218_step",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N5"
+        ],
+        "symptom": "N6",
+        "cands": [
+          "N1",
+          "N2",
+          "N4",
+          "N5",
+          "N6"
+        ],
+        "rank": [
+          "N1",
+          "N5",
+          "N6",
+          "N2",
+          "N4"
+        ],
+        "scoped_cands": [
+          "N5",
+          "N6"
+        ],
+        "scoped_rank": [
+          "N5",
+          "N6"
+        ]
+      },
+      {
+        "id": "A000201",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N6"
+        ],
+        "symptom": "N7",
+        "cands": [
+          "N1",
+          "N2",
+          "N5",
+          "N6",
+          "N7",
+          "N8"
+        ],
+        "rank": [
+          "N8",
+          "N1",
+          "N6",
+          "N7",
+          "N2",
+          "N5"
+        ],
+        "scoped_cands": [
+          "N6",
+          "N7"
+        ],
+        "scoped_rank": [
+          "N6",
+          "N7"
+        ]
+      },
+      {
+        "id": "A400004",
+        "slot": "positive_off_site",
+        "accepted": [
+          "N7"
+        ],
+        "symptom": "N9",
+        "cands": [
+          "N1",
+          "N2",
+          "N7",
+          "N8",
+          "N9"
+        ],
+        "rank": [
+          "N1",
+          "N7",
+          "N9",
+          "N2",
+          "N8"
+        ],
+        "scoped_cands": [
+          "N9"
+        ],
+        "scoped_rank": [
+          "N9"
+        ]
+      }
+    ],
+    "Part B": [
+      {
+        "id": "PAIR_001",
+        "slot": null,
+        "accepted": [
+          "N16"
+        ],
+        "symptom": "N17",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N16",
+          "N17",
+          "N22"
+        ],
+        "scoped_rank": [
+          "N16",
+          "N22"
+        ]
+      },
+      {
+        "id": "PAIR_013",
+        "slot": null,
+        "accepted": [
+          "N6"
+        ],
+        "symptom": "N6",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N6"
+        ],
+        "scoped_rank": [
+          "N6"
+        ]
+      },
+      {
+        "id": "PAIR_022",
+        "slot": null,
+        "accepted": [
+          "N13"
+        ],
+        "symptom": "N13",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N12",
+          "N13"
+        ],
+        "scoped_rank": [
+          "N13",
+          "N12"
+        ]
+      },
+      {
+        "id": "PAIR_033",
+        "slot": null,
+        "accepted": [
+          "N13"
+        ],
+        "symptom": "N14",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N12",
+          "N13",
+          "N14"
+        ],
+        "scoped_rank": [
+          "N12",
+          "N13"
+        ]
+      },
+      {
+        "id": "PAIR_034",
+        "slot": null,
+        "accepted": [
+          "N13"
+        ],
+        "symptom": "N14",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N12",
+          "N13",
+          "N14"
+        ],
+        "scoped_rank": [
+          "N12",
+          "N13"
+        ]
+      },
+      {
+        "id": "PAIR_035",
+        "slot": null,
+        "accepted": [
+          "N12"
+        ],
+        "symptom": "N13",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N11",
+          "N12",
+          "N13"
+        ],
+        "scoped_rank": [
+          "N11",
+          "N12"
+        ]
+      },
+      {
+        "id": "PAIR_036",
+        "slot": null,
+        "accepted": [
+          "N12"
+        ],
+        "symptom": "N13",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N11",
+          "N12",
+          "N13"
+        ],
+        "scoped_rank": [
+          "N11",
+          "N12"
+        ]
+      },
+      {
+        "id": "PAIR_039",
+        "slot": null,
+        "accepted": [
+          "N8"
+        ],
+        "symptom": "N6",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N6"
+        ],
+        "scoped_rank": [
+          "N6"
+        ]
+      },
+      {
+        "id": "PAIR_052",
+        "slot": null,
+        "accepted": [
+          "N16"
+        ],
+        "symptom": "N16",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N15",
+          "N16"
+        ],
+        "scoped_rank": [
+          "N16",
+          "N15"
+        ]
+      },
+      {
+        "id": "PAIR_063",
+        "slot": null,
+        "accepted": [
+          "N9",
+          "N12"
+        ],
+        "symptom": "N12",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N11",
+          "N12"
+        ],
+        "scoped_rank": [
+          "N11",
+          "N12"
+        ]
+      },
+      {
+        "id": "PAIR_076",
+        "slot": null,
+        "accepted": [
+          "N12",
+          "N14"
+        ],
+        "symptom": "N14",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N13",
+          "N14"
+        ],
+        "scoped_rank": [
+          "N13",
+          "N14"
+        ]
+      },
+      {
+        "id": "PAIR_089",
+        "slot": null,
+        "accepted": [
+          "N5",
+          "N6"
+        ],
+        "symptom": "N3",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N3"
+        ],
+        "scoped_rank": [
+          "N3"
+        ]
+      },
+      {
+        "id": "PIE_DEV_p03497",
+        "slot": null,
+        "accepted": [
+          "N11",
+          "N12"
+        ],
+        "symptom": "N12",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N12"
+        ],
+        "scoped_rank": [
+          "N12"
+        ]
+      },
+      {
+        "id": "AUTHORED_SMOKE_POS",
+        "slot": null,
+        "accepted": [
+          "N4"
+        ],
+        "symptom": "N5",
+        "cands": [],
+        "rank": [],
+        "scoped_cands": [
+          "N4",
+          "N5"
+        ],
+        "scoped_rank": [
+          "N4",
+          "N5"
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "cohort": "Part A",
+      "policy": "reported CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 10,
+          "rate": 0.9
+        },
+        "mrr": {
+          "count": 4.75,
+          "exact_count": "19/4",
+          "denominator": 10,
+          "rate": 0.475
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "reported CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 10,
+          "rate": 0.9
+        },
+        "mrr": {
+          "count": 4.083333333333333,
+          "exact_count": "49/12",
+          "denominator": 10,
+          "rate": 0.4083333333333333
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "reported CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 18.0,
+          "exact_count": "18",
+          "denominator": 20,
+          "rate": 0.9
+        },
+        "mrr": {
+          "count": 8.833333333333334,
+          "exact_count": "53/6",
+          "denominator": 20,
+          "rate": 0.44166666666666665
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "symptom-first CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top3": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "symptom-first CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 10,
+          "rate": 0.5
+        },
+        "mrr": {
+          "count": 2.8666666666666667,
+          "exact_count": "43/15",
+          "denominator": 10,
+          "rate": 0.2866666666666667
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "symptom-first CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 20,
+          "rate": 0.5
+        },
+        "top3": {
+          "count": 15.0,
+          "exact_count": "15",
+          "denominator": 20,
+          "rate": 0.75
+        },
+        "mrr": {
+          "count": 12.866666666666667,
+          "exact_count": "193/15",
+          "denominator": 20,
+          "rate": 0.6433333333333333
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "uniform CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 2.4166666666666665,
+          "exact_count": "29/12",
+          "denominator": 10,
+          "rate": 0.24166666666666667
+        },
+        "top3": {
+          "count": 7.25,
+          "exact_count": "29/4",
+          "denominator": 10,
+          "rate": 0.725
+        },
+        "mrr": {
+          "count": 5.095833333333333,
+          "exact_count": "1223/240",
+          "denominator": 10,
+          "rate": 0.5095833333333334
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "uniform CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 1.7027777777777777,
+          "exact_count": "613/360",
+          "denominator": 10,
+          "rate": 0.17027777777777778
+        },
+        "top3": {
+          "count": 5.108333333333333,
+          "exact_count": "613/120",
+          "denominator": 10,
+          "rate": 0.5108333333333334
+        },
+        "mrr": {
+          "count": 4.114061948853616,
+          "exact_count": "3732277/907200",
+          "denominator": 10,
+          "rate": 0.41140619488536156
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "uniform CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 4.1194444444444445,
+          "exact_count": "1483/360",
+          "denominator": 20,
+          "rate": 0.20597222222222222
+        },
+        "top3": {
+          "count": 12.358333333333333,
+          "exact_count": "1483/120",
+          "denominator": 20,
+          "rate": 0.6179166666666667
+        },
+        "mrr": {
+          "count": 9.209895282186949,
+          "exact_count": "8355217/907200",
+          "denominator": 20,
+          "rate": 0.4604947641093474
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "nearest preceding CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "mrr": {
+          "count": 2.45,
+          "exact_count": "49/20",
+          "denominator": 10,
+          "rate": 0.245
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "nearest preceding CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 10,
+          "rate": 0.6
+        },
+        "top3": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 7.833333333333333,
+          "exact_count": "47/6",
+          "denominator": 10,
+          "rate": 0.7833333333333333
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "nearest preceding CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 20,
+          "rate": 0.3
+        },
+        "top3": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 20,
+          "rate": 0.5
+        },
+        "mrr": {
+          "count": 10.283333333333333,
+          "exact_count": "617/60",
+          "denominator": 20,
+          "rate": 0.5141666666666667
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top3": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 8.0,
+          "exact_count": "8",
+          "denominator": 10,
+          "rate": 0.8
+        },
+        "mrr": {
+          "count": 3.95,
+          "exact_count": "79/20",
+          "denominator": 10,
+          "rate": 0.395
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 20,
+          "rate": 0.5
+        },
+        "top3": {
+          "count": 18.0,
+          "exact_count": "18",
+          "denominator": 20,
+          "rate": 0.9
+        },
+        "mrr": {
+          "count": 13.95,
+          "exact_count": "279/20",
+          "denominator": 20,
+          "rate": 0.6975
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 10,
+          "rate": 0.0
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 10,
+          "rate": 0.5
+        },
+        "top3": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 10,
+          "rate": 0.9
+        },
+        "mrr": {
+          "count": 7.083333333333333,
+          "exact_count": "85/12",
+          "denominator": 10,
+          "rate": 0.7083333333333334
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 20.0,
+          "exact_count": "20",
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 20,
+          "rate": 0.25
+        },
+        "top3": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 20,
+          "rate": 0.45
+        },
+        "mrr": {
+          "count": 7.083333333333333,
+          "exact_count": "85/12",
+          "denominator": 20,
+          "rate": 0.3541666666666667
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "reported scoped",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 10,
+          "rate": 0.9
+        },
+        "top3": {
+          "count": 10.0,
+          "exact_count": "10",
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 9.5,
+          "exact_count": "19/2",
+          "denominator": 10,
+          "rate": 0.95
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "reported scoped",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 10,
+          "rate": 0.6
+        },
+        "top1": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 10,
+          "rate": 0.6
+        },
+        "top3": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 10,
+          "rate": 0.6
+        },
+        "mrr": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 10,
+          "rate": 0.6
+        }
+      }
+    },
+    {
+      "cohort": "Part A",
+      "policy": "reported scoped",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 16.0,
+          "exact_count": "16",
+          "denominator": 20,
+          "rate": 0.8
+        },
+        "top1": {
+          "count": 15.0,
+          "exact_count": "15",
+          "denominator": 20,
+          "rate": 0.75
+        },
+        "top3": {
+          "count": 16.0,
+          "exact_count": "16",
+          "denominator": 20,
+          "rate": 0.8
+        },
+        "mrr": {
+          "count": 15.5,
+          "exact_count": "31/2",
+          "denominator": 20,
+          "rate": 0.775
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 3.0,
+          "exact_count": "3",
+          "denominator": 5,
+          "rate": 0.6
+        },
+        "mrr": {
+          "count": 1.8333333333333333,
+          "exact_count": "11/6",
+          "denominator": 5,
+          "rate": 0.36666666666666664
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 3.0,
+          "exact_count": "3",
+          "denominator": 5,
+          "rate": 0.6
+        },
+        "mrr": {
+          "count": 1.8333333333333333,
+          "exact_count": "11/6",
+          "denominator": 5,
+          "rate": 0.36666666666666664
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "symptom-first CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "symptom-first CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 2.0,
+          "exact_count": "2",
+          "denominator": 5,
+          "rate": 0.4
+        },
+        "mrr": {
+          "count": 1.3166666666666667,
+          "exact_count": "79/60",
+          "denominator": 5,
+          "rate": 0.2633333333333333
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "symptom-first CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 2.0,
+          "exact_count": "2",
+          "denominator": 5,
+          "rate": 0.4
+        },
+        "mrr": {
+          "count": 1.3166666666666667,
+          "exact_count": "79/60",
+          "denominator": 5,
+          "rate": 0.2633333333333333
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "uniform CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "uniform CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.8345238095238096,
+          "exact_count": "701/840",
+          "denominator": 5,
+          "rate": 0.16690476190476192
+        },
+        "top3": {
+          "count": 2.5035714285714286,
+          "exact_count": "701/280",
+          "denominator": 5,
+          "rate": 0.5007142857142857
+        },
+        "mrr": {
+          "count": 2.0318069727891155,
+          "exact_count": "477881/235200",
+          "denominator": 5,
+          "rate": 0.4063613945578231
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "uniform CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.8345238095238096,
+          "exact_count": "701/840",
+          "denominator": 5,
+          "rate": 0.16690476190476192
+        },
+        "top3": {
+          "count": 2.5035714285714286,
+          "exact_count": "701/280",
+          "denominator": 5,
+          "rate": 0.5007142857142857
+        },
+        "mrr": {
+          "count": 2.0318069727891155,
+          "exact_count": "477881/235200",
+          "denominator": 5,
+          "rate": 0.4063613945578231
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "nearest preceding CFG",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "nearest preceding CFG",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 4.5,
+          "exact_count": "9/2",
+          "denominator": 5,
+          "rate": 0.9
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "nearest preceding CFG",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 4.5,
+          "exact_count": "9/2",
+          "denominator": 5,
+          "rate": 0.9
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 2.3333333333333335,
+          "exact_count": "7/3",
+          "denominator": 5,
+          "rate": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 2.3333333333333335,
+          "exact_count": "7/3",
+          "denominator": 5,
+          "rate": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 4.5,
+          "exact_count": "9/2",
+          "denominator": 5,
+          "rate": 0.9
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "top1": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top3": {
+          "count": 5.0,
+          "exact_count": "5",
+          "denominator": 5,
+          "rate": 1.0
+        },
+        "mrr": {
+          "count": 4.5,
+          "exact_count": "9/2",
+          "denominator": 5,
+          "rate": 0.9
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported scoped",
+      "split": "at-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top1": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "top3": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        },
+        "mrr": {
+          "count": 0.0,
+          "exact_count": "0",
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported scoped",
+      "split": "off-site",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top1": {
+          "count": 3.0,
+          "exact_count": "3",
+          "denominator": 5,
+          "rate": 0.6
+        },
+        "top3": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "mrr": {
+          "count": 3.5,
+          "exact_count": "7/2",
+          "denominator": 5,
+          "rate": 0.7
+        }
+      }
+    },
+    {
+      "cohort": "OEIS",
+      "policy": "reported scoped",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "top1": {
+          "count": 3.0,
+          "exact_count": "3",
+          "denominator": 5,
+          "rate": 0.6
+        },
+        "top3": {
+          "count": 4.0,
+          "exact_count": "4",
+          "denominator": 5,
+          "rate": 0.8
+        },
+        "mrr": {
+          "count": 3.5,
+          "exact_count": "7/2",
+          "denominator": 5,
+          "rate": 0.7
+        }
+      }
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported CFG",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported CFG",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported CFG",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "symptom-first CFG",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "symptom-first CFG",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "symptom-first CFG",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "uniform CFG",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "uniform CFG",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "uniform CFG",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "nearest preceding CFG",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "nearest preceding CFG",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "nearest preceding CFG",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute including symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "at-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "off-site",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "absolute excluding symptom CFG (sensitivity)",
+      "split": "total",
+      "not_computable": "no conventional candidate set in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported scoped",
+      "split": "at-site",
+      "not_computable": "no slot field in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported scoped",
+      "split": "off-site",
+      "not_computable": "no slot field in receipt",
+      "metrics": null
+    },
+    {
+      "cohort": "Part B",
+      "policy": "reported scoped",
+      "split": "total",
+      "not_computable": null,
+      "metrics": {
+        "retention": {
+          "count": 12.0,
+          "exact_count": "12",
+          "denominator": 14,
+          "rate": 0.8571428571428571
+        },
+        "top1": {
+          "count": 6.0,
+          "exact_count": "6",
+          "denominator": 14,
+          "rate": 0.42857142857142855
+        },
+        "top3": {
+          "count": 12.0,
+          "exact_count": "12",
+          "denominator": 14,
+          "rate": 0.8571428571428571
+        },
+        "mrr": {
+          "count": 9.0,
+          "exact_count": "9",
+          "denominator": 14,
+          "rate": 0.6428571428571429
+        }
+      }
+    }
+  ]
+}
