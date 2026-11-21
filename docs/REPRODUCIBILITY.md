@@ -26,12 +26,16 @@ For LaTeX, install `IEEEtran.cls` from Ubuntu's `texlive-publishers` package:
 Gate 1 host prerequisites: stock Ubuntu 22.04 is insufficient (systemd 249 rejects
 `OOMPolicy=continue` on scopes, CPU delegation to `user@.service` is absent,
 Bubblewrap 0.6.1 lacks `--disable-userns`, and a session bus may be absent).
-Use Bubblewrap >= 0.8, a `user@.service` drop-in with
+Use the tested Bubblewrap 0.11.1 and GCC 15.2.0 toolchain (Python 3.14 is
+recorded for the Windows execution), a `user@.service` drop-in with
 `Delegate=cpu cpuset io memory pids`, and a `systemd-run` shim that drops
-`OOMPolicy` (or a systemd version accepting it). Enable lingering with
+`OOMPolicy`. Enable lingering with
 `loginctl enable-linger "$USER"` and set `XDG_RUNTIME_DIR=/run/user/$(id -u)`
-with a working user session bus. The archive pins GCC 15.2.0 and Bubblewrap 0.11.1
-in `development/prospective_multiagent_results.json` (`execution_environment`).
+with a working user session bus. These tested versions and the Linux kernel
+6.6.87.2-microsoft-standard-WSL2 are recorded in
+`development/prospective_multiagent_results.json`
+(`execution_environment.primary_sandbox` and `cross_os_sandbox`);
+no systemd version is recorded there.
 
 The stale paired-study Markdown draft has been removed; use
 [`paired_mechanism.tex`](../manuscript/paired_mechanism.tex). Its old pathname in
