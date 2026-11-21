@@ -22,5 +22,5 @@ fork PRs. The container has networking disabled and no host mounts; only the
 tracked tree at `HEAD` is copied in. Output files are discarded with the
 container; copy out only intentional artifacts when adapting it for experiments.
 
-For another trusted experiment, pass its command to the same launcher. The
-GitHub Actions Gate 1 step has a hook for the public WP-A1 re-execution check.
+For another trusted experiment, pass its command to the same launcher. CI
+also uses it to re-execute pilot Table I with `eapg.py verify --mode reexec`.

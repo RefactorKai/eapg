@@ -29,7 +29,9 @@ jobs:
   gate1:
     # The container runs privileged. Only exercise same-repository code on a disposable hosted VM.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-24.04
+    # Noble's AppArmor policy blocks Bubblewrap's nested network setup even
+    # with a privileged outer container. Jammy avoids changing host policy.
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -44,5 +46,5 @@ jobs:
           python --version
           kpsewhich IEEEtran.cls
           python -B development/check_gate1_ci.py
-          # WP-A1: add the public re-execution verify command here when it lands.
+          python -B eapg.py verify --mode reexec
           CI
