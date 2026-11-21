@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 from tempfile import TemporaryDirectory
 import unittest
@@ -16,6 +17,17 @@ import check_fast_recurrence_sanitizer as sanitizer  # noqa: E402
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def sanitizer_links():
+    if not shutil.which("g++"):
+        return False
+    with TemporaryDirectory() as workdir:
+        try:
+            sanitizer.compile_source("int main() {}\n", Path(workdir) / "probe")
+        except subprocess.CalledProcessError:
+            return False
+    return True
 
 
 class FastRecurrenceSanitizerTests(unittest.TestCase):
@@ -42,7 +54,7 @@ class FastRecurrenceSanitizerTests(unittest.TestCase):
             self.assertIsNone(record["sizes"]["91"]["frozen"]["finding"], record["pair_id"])
             self.assertIn("signed integer overflow", record["sizes"]["92"]["frozen"]["finding"], record["pair_id"])
 
-    @unittest.skipUnless(shutil.which("g++"), "g++ is required for the live sanitizer check")
+    @unittest.skipUnless(sanitizer_links(), "g++ with UBSan runtime is required for the live check")
     def test_live_sanitizer_run_at_92(self):
         scaling = json.loads(sanitizer.SCALING_RESULTS.read_text("utf-8"))["records"]
         generated = {r["pair_id"]: r for r in sanitizer.generate_pilot_100_corpus()}
