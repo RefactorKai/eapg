@@ -1,0 +1,100 @@
+{
+  "pairs": 100,
+  "wall_seconds": 46.73815166899999,
+  "pipeline_sha256": "7c855651566c1a7dc003fdcb291d8edd3ff1a99c671f781eb595d72c492ae743",
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "discrete": {
+    "v_slow": 100,
+    "v_fast": 100,
+    "delta_v": 100,
+    "gt_node": 100,
+    "is_exp_slow": 100,
+    "slicing.primary_symptom": 100,
+    "slicing.c_naive_hits": 100,
+    "slicing.c_naive_work": 100,
+    "slicing.c_inter_only": 100,
+    "slicing.c_unpruned": 100,
+    "slicing.c_pruned": 100,
+    "slicing.v_total": 100
+  },
+  "numeric": {
+    "rho": {
+      "exact": 100,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "max_hits_slow": {
+      "exact": 100,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "max_work_slow": {
+      "exact": 100,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "max_work_fast": {
+      "exact": 100,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "skeleton.a_hits": {
+      "compared": 1617,
+      "exact": 1617,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "skeleton.a_work": {
+      "compared": 1617,
+      "exact": 1617,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    },
+    "skeleton.Delta_a": {
+      "compared": 1704,
+      "exact": 1704,
+      "max_abs_diff": 0.0,
+      "median_abs_diff": 0.0
+    }
+  },
+  "table_i": {
+    "c_naive_hits": {
+      "coverage": 80,
+      "retained": 62,
+      "mean_size": 0.8,
+      "mean_reduction_pct": 95.23753999526446
+    },
+    "c_naive_work": {
+      "coverage": 100,
+      "retained": 82,
+      "mean_size": 1,
+      "mean_reduction_pct": 94.05158675431895
+    },
+    "c_inter_only": {
+      "coverage": 100,
+      "retained": 93,
+      "mean_size": 1.83,
+      "mean_reduction_pct": 89.34690535384807
+    },
+    "c_unpruned": {
+      "coverage": 100,
+      "retained": 100,
+      "mean_size": 4.89,
+      "mean_reduction_pct": 71.21622530032747
+    },
+    "c_pruned": {
+      "coverage": 100,
+      "retained": 100,
+      "mean_size": 1.9,
+      "mean_reduction_pct": 88.97165472728166
+    }
+  },
+  "mismatches": [],
+  "decision_flips": {
+    "work_symptom": 0,
+    "hits_symptom": 0,
+    "is_exp_slow": 0,
+    "rho_cutoff_0.30": 0
+  },
+  "r2_comparison": "Unavailable: archived records/skeletons do not store per-node R2 or original scaling counters."
+}
