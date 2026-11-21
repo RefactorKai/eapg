@@ -1,6 +1,6 @@
 # Path B empirical census artifact
 
-The [147-slot ledger](ledger.json) and [derived tables](tables.md) support the paired manuscript. The [active manifest](manifest.json) indexes the standalone Path B artifact. The [historical ledger](historical-ledger.json), [tables](historical-tables.md), and [manifest](historical-manifest.json) preserve the 24-slot record. The [authored timing receipt](a01-steady.json) records separate in-process measurements.
+The [147-slot ledger](ledger.json) and [derived tables](tables.md) support the paired manuscript. The [active manifest](manifest.json) indexes the standalone Path B artifact. The [historical ledger](historical-ledger.json), [tables](historical-tables.md), and [manifest](historical-manifest.json) preserve the 24-slot record. The [authored timing receipt](a01-steady.json) records separate exploratory in-process measurements that are not used in the manuscript.
 
 ## Replay the artifact
 

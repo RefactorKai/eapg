@@ -354,12 +354,10 @@ def render_path_b(ledger, timing):
             passed = fit["slope"] >= .50 and fit["largest_ratio"] >= 1.50
             lines.append(f"| {row['case_id']} | {screen['stream']} | {size} | {values} | "
                          f"{fit['largest_ratio']:.4f} | {fit['slope']:.4f} | {drop_text} | {'yes' if passed else 'no'} |")
-    lines.extend(["", "## Authored a01 steady-state timing", "",
+    lines.extend(["", "## Authored a01 steady-state timing (exploratory; not used in the manuscript)", "",
                   "Medians are nanoseconds per full request. The historical no-op process median",
                   "was 731,000 ns and the startup-inclusive growth screen was unconfirmed.",
-                  f"At dense size 256 the target median is {timing['screens']['dense']['samples'][0]['target']['median_ns']:.2f} ns. "
-                  f"The historical control is {731000 / (731000 + timing['screens']['dense']['samples'][0]['target']['median_ns']):.1%} "
-                  "of the sum of those separate medians.", "",
+                  f"At dense size 256 the target median is {timing['screens']['dense']['samples'][0]['target']['median_ns']:.2f} ns.", "",
                   "| Stream | Size | Target median (ns) | Reference median (ns) | Empty median (ns) |",
                   "|---|---:|---:|---:|---:|"])
     for stream, value in timing["screens"].items():

@@ -32,8 +32,6 @@ The authored study used an independent binary-search output oracle, a separate c
 
 Both primary arms ranked an accepted cause first on the five cursor positives (`a01`–`a05`). Value-sensitive change impact also found the auxiliary-loop cause (`a10`). The family representative was a tie. The four negative controls comprised three verified negatives (`a06`–`a08`) and one same-growth constant-factor case (`a09`). Two smaller-effect cases (`a11`, `a12`) remained indeterminate and fall outside both denominators.
 
-In the separate protected timing run for `a01`, the log time-ratio slopes ranged from −0.00144 to 0.01546 and target/reference time ratios at the largest size ranged from 0.878 to 1.001. The median no-op time was 0.731 ms, and the timer includes process startup. The pair passed the operation-count criterion and remained runtime-unconfirmed. The timing receipt covers only `a01`. [Timing protocol and receipt digest](../docs/PAIRED_STUDY_RUNBOOK.md#development-result)
-
 ## Railroad Trip eliminates the episodes we would align
 
 PIE validation `p00537` pairs target `s172351000` with reference `s927361703`, two independently submitted solutions. The construction sets city count `N` and itinerary length `M` to `n`, alternates `1, n, 1, n, …` for exactly `n` visits, and gives each of the `n−1` edges the tariff `(A,B,C) = (3,1,2)`. All six sizes satisfy the official bounds `2 ≤ N,M ≤ 100,000`, `1 ≤ B < A ≤ 100,000` and `1 ≤ C ≤ 100,000`. Every visit is in range and differs from its predecessor. This gives one deterministic shape. Repeating it would give duplicate inputs. [JOI Railroad Trip statement, problem 1](https://www2.ioi-jp.org/joi/2014/2015-ho/2015-ho.pdf#page=1)

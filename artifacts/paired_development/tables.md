@@ -263,11 +263,11 @@ distinct sizes spanning eightfold.
 | wisdompeak/LeetCode | interleaved_bit_reversal | 2048 | 220829 / 20481 / 20481 / 220829 | 10.7821 | 0.2107 | — | no |
 | wisdompeak/LeetCode | seeded_permutations | 2048 | 216448 / 19892 / 19892 / 216448 | 10.8812 | 0.1992 | — | no |
 
-## Authored a01 steady-state timing
+## Authored a01 steady-state timing (exploratory; not used in the manuscript)
 
 Medians are nanoseconds per full request. The historical no-op process median
 was 731,000 ns and the startup-inclusive growth screen was unconfirmed.
-At dense size 256 the target median is 10106.66 ns. The historical control is 98.6% of the sum of those separate medians.
+At dense size 256 the target median is 10106.66 ns.
 
 | Stream | Size | Target median (ns) | Reference median (ns) | Empty median (ns) |
 |---|---:|---:|---:|---:|
