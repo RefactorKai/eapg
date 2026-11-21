@@ -242,7 +242,7 @@ Inherited summaries come from [historical-ledger.json](historical-ledger.json) a
 ## New isolated comparisons
 
 Counts are target, reference, restoration and sham. The screen concerns the first
-registered event. An empty drop-largest slope means the shorter grid lacks four
+predefined event. An empty drop-largest slope means the shorter grid lacks four
 distinct sizes spanning eightfold.
 
 | Case | Stream | Largest size | Four counts | Ratio | Slope | Drop-largest slope | Pass |
@@ -263,35 +263,6 @@ distinct sizes spanning eightfold.
 | wisdompeak/LeetCode | interleaved_bit_reversal | 2048 | 220829 / 20481 / 20481 / 220829 | 10.7821 | 0.2107 | — | no |
 | wisdompeak/LeetCode | seeded_permutations | 2048 | 216448 / 19892 / 19892 / 216448 | 10.8812 | 0.1992 | — | no |
 
-## Authored a01 steady-state timing
+## Authored a01 steady-state timing (exploratory; not used in the manuscript)
 
-Medians are nanoseconds per full request. The historical no-op process median
-was 731,000 ns and the startup-inclusive growth screen was unconfirmed.
-At dense size 256 the target median is 10106.66 ns. The historical control is 98.6% of the sum of those separate medians.
-
-| Stream | Size | Target median (ns) | Reference median (ns) | Empty median (ns) |
-|---|---:|---:|---:|---:|
-| curved | 256 | 6684.35 | 288.16 | 1.07 |
-| curved | 512 | 24086.32 | 668.27 | 1.29 |
-| curved | 1024 | 89135.50 | 1774.41 | 2.05 |
-| curved | 2048 | 337730.00 | 3626.94 | 2.73 |
-| curved | 4096 | 1320469.56 | 7168.56 | 8.12 |
-| curved | 8192 | 5248630.75 | 15158.50 | 18.88 |
-| dense | 256 | 10106.66 | 156.34 | 1.18 |
-| dense | 512 | 36944.66 | 518.47 | 1.40 |
-| dense | 1024 | 134634.76 | 693.07 | 1.86 |
-| dense | 2048 | 514401.70 | 1321.57 | 2.80 |
-| dense | 4096 | 1942756.84 | 2614.56 | 4.70 |
-| dense | 8192 | 8212676.81 | 5379.50 | 8.41 |
-| plateau | 256 | 6094.25 | 149.35 | 1.15 |
-| plateau | 512 | 20229.06 | 323.88 | 1.39 |
-| plateau | 1024 | 70721.35 | 564.93 | 1.89 |
-| plateau | 2048 | 273277.83 | 1049.15 | 2.78 |
-| plateau | 4096 | 1048342.97 | 2183.77 | 4.42 |
-| plateau | 8192 | 3981574.47 | 4223.06 | 6.72 |
-
-| Stream | Largest ratio | Slope | Drop-largest slope | Pass |
-|---|---:|---:|---:|---|
-| curved | 346.250 | 0.7843 | 0.7348 | yes |
-| dense | 1526.662 | 0.9702 | 0.9495 | yes |
-| plateau | 942.817 | 0.9296 | 0.9173 | yes |
+The a01-steady.json receipt is validated and exploratory; it is not used in the manuscript.

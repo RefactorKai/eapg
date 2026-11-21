@@ -1,6 +1,6 @@
 # Execution-Annotated Program Graphs (EAPG)
 
-Research artifact and companion manuscript (**[paper.pdf](manuscript/paper.pdf)**) for localizing growth-changing edits in C++17 programs. EAPG pairs execution hit counts with static container-operation work proxies, fits finite-range scaling models inside an isolated compiler/execution sandbox, extracts two-tier scope-isolated backward slices around growth symptoms, and ranks candidate edit sites symbolically or via 4-bit QLoRA adapters (`Qwen2.5-Coder-1.5B`).
+Research artifact and companion manuscript (**[paper.pdf](manuscript/paper.pdf)**) for localizing growth-changing edits in C++17 programs. EAPG pairs execution hit counts with static container-operation work proxies, fits finite-range scaling models using the execution paths described below, extracts two-tier scope-isolated backward slices around growth symptoms, and ranks candidate edit sites symbolically or via 4-bit QLoRA adapters (`Qwen2.5-Coder-1.5B`).
 
 ---
 
@@ -9,13 +9,15 @@ Research artifact and companion manuscript (**[paper.pdf](manuscript/paper.pdf)*
 ```mermaid
 flowchart LR
     A["Pass 0: Macro Normalization<br/>g++ -E -P + #include restore"] --> B["Pass 1: AST Canonicalization<br/>tree-sitter-cpp synthetic braces & node IDs"]
-    B --> C["Sandbox Micro-Instrumentation<br/>Bubblewrap 0.11.1 + GCC -O2 + cap B(N)"]
+    B --> C["Micro-Instrumentation<br/>GCC -O2 + cap B(N); pilot subprocess timeout"]
     C --> D["Dual-Channel Scaling Fits<br/>OLS power-law & exponential models (R² >= 0.85)"]
     D --> E["Symptom Detection & Slicing<br/>Two-tier C_inter U C_intra backward slice"]
     E --> F["Ranking & Blinded Scoring<br/>Role-priority symbolic / 4-bit NF4 QLoRA"]
 ```
 
 For architectural specifications, prompt schemas (`raw_code`, `hotspot_raw`, `static_eapg`, `abstract_hits_only`, `abstract_graph`, `full_eapg`), and ledger commitments, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+The frozen `pipeline.py` path uses subprocess execution with a timeout and, on POSIX, `setsid`, not sandbox isolation; Bubblewrap isolation is provided by `development/gate1_sandbox.py` for Part A/B and fixture runs. Do not run untrusted code through `pipeline.py`.
 
 ---
 
@@ -41,7 +43,7 @@ All numbers below replay directly from committed JSON receipts via `python -B ea
 
 3. **Bounded Prospective 10-Family Scalar Cohort (Part A — Dual-OS Verified, `primary_sized=false`)** ([`development/prospective_multiagent_results.json`](development/prospective_multiagent_results.json)):
    - Verified identically across unmodified Linux WSL2 Bubblewrap (`0.11.1`, GCC `15.2.0`, FD `199`, all four Gate 1 probes passing) and Windows 11 native (`MSYS2 GCC 15.1.0`, RTX 4060 8 GB): `80` drawn families (`322` slots, below the `60`-family confirmatory gate), `280` placeholder-quarantined slots (bridged cleanly with `0` real collisions across `101` pilot+PIE exposure rows and `0` prompt-token collisions), `42` active slots across `10` unseen scalar families (`0` overlap with `77` pilot templates), `378` oracle builds, `6,804` oracle runs, `738` profiles, byte-identical `score.json` (`ce049b32...`).
-   - Core (`20` positives): **`work_scoped` (`def_use=False`, `15/20 = 75.00%`)** (`16/20` retention, `89.38%` reduction; matching `hits_scoped` at `15/20`) beats pilot-refined `work_scoped_symbolic` (`def_use=True`, `14/20 = 70.00%`) and **`work_conventional` (`0/20 = 0.00%`)** (`20/20` retention, `64.34%` reduction; **`+75.00 pp`**, `[+60.00, +90.00]`, caused by shared ranker hoisting CFG-reachable `STATE_UPD` initializers/accumulators ahead of the symptom). False alerts: `5/10` quadratic shams, `10/10` appropriate controls.
+   - Core (`20` positives): **`work_scoped` (`def_use=False`, `15/20 = 75.00%`)** (`16/20` retention, `89.38%` reduction; matching `hits_scoped` at `15/20`) beats pilot-refined `work_scoped_symbolic` (`def_use=True`, `14/20 = 70.00%`) and **`work_conventional` (`0/20 = 0.00%`)** (`20/20` retention, `64.34%` reduction; **`+75.00 pp`**, `[+60.00, +90.00]`, caused by shared ranker hoisting CFG-reachable `STATE_UPD` initializers/accumulators ahead of the symptom). False alerts: `5/5` quadratic shams and `0/5` linear shams (`5/10` shams pooled), `10/10` appropriate controls.
    - Live 4-bit NF4 GPU inference (`20` core positives, max `2.182 GiB` VRAM): `hotspot_raw` fold-0 reaches **`13/20 (65.00%)`**, outperforming `abstract_graph` fold-0 (`11/20`, `55.00%`) and unadapted base (`12/20`, `60.00%`) (`14/21` / `11/21` / `12/21` when including duplicate `F01` `comparator_swap_positive`).
 
 4. **Bounded Blinded Three-Agent Contract & Strict OOF Contrast (Part B — `positive_transfer_evidence=false`)** ([`development/test_prospective_multiagent_study.py`](development/test_prospective_multiagent_study.py)):
@@ -71,7 +73,10 @@ python -B eapg.py verify --mode auto --verbose
 # 4. On Windows with Ubuntu WSL2: run Windows common suite (18 checks + build) + Linux AST/sandbox suite (10 checks + Gate 1 probes)
 python -B eapg.py verify --mode wsl2 --with-probes
 
-# 5. Full pytest suite (19 development test modules + Phase 2 AST/selector tests)
+# 5. Re-execute pilot Table I from its embedded sources through frozen pipeline.py
+python -B eapg.py verify --mode reexec
+
+# 6. Full pytest suite (19 development test modules + Phase 2 AST/selector tests)
 python -B -m pytest -q
 ```
 
@@ -97,6 +102,6 @@ See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for optional AST (`pip in
 
 ## Scope, Custody & Limitations
 
-- **Bounded Sample Size:** Neither Part A (`10 < 60` families: `primary_sized = false`, `away_from_symptom_evidence = false`) nor Part B (`11 < 20` groups: `positive_transfer_evidence = false`) meets its confirmatory sample-size gate; empirical contrasts are reported strictly as bounded feasibility findings alongside `5/10` sham and `10/10` appropriate-control false alerts.
+- **Bounded Sample Size:** Neither Part A (`10 < 60` families: `primary_sized = false`, `away_from_symptom_evidence = false`) nor Part B (`11 < 20` groups: `positive_transfer_evidence = false`) meets its confirmatory sample-size gate; empirical contrasts are reported strictly as bounded feasibility findings alongside `5/5` quadratic-sham and `0/5` linear-sham alerts (`5/10` shams pooled), and `10/10` appropriate-control false alerts.
 - **Pre-execution verification & blinded adjudication:** Independent verification of the 10-family scalar cohort (Part A) and blinded source adjudication of the 14+2 external contract (Part B) were executed by four role-separated isolated LLM subagents (rather than recruited human participants), with all attestations, reviews, adjudications, and ledgers cryptographically chained into [`development/prospective_multiagent_results.json`](development/prospective_multiagent_results.json).
 - **Held-out external PIE data:** Held-out PIE test submissions, adapter LoRA weights, and private `.codex/private/` bundles remain excluded in private custody (see [`.gitignore`](.gitignore) and [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md#4-private-custody-artifacts--full-prospective-re-execution)); `12/14` positive Part B pairs draw from published stress mechanisms evaluated strictly out-of-fold across folds `0..4`, alongside `p03497` (failed `< 0.50` wall-clock screen) and authored controls.

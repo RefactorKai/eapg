@@ -59,7 +59,7 @@ def counts(rows: list[dict]) -> dict[str, int]:
     }
 
 
-def render(ledger: dict) -> str:
+def render(ledger: dict, stream_designation: str = "predefined") -> str:
     rows = ledger["cases"]
     if ledger["schema"] != "eapg.paired.development-ledger.v1" or len({r["id"] for r in rows}) != 24:
         raise ValueError("Expected the fixed 24 distinct development slots.")
@@ -104,7 +104,7 @@ def render(ledger: dict) -> str:
         "The fit uses the screened event. Each pair gives the target/reference count ratio",
         "at the largest common size and the slope of the log ratio against log size.",
         "The example input can be smaller than the largest common size.",
-        "An alert requires a ratio ≥1.50× and slope ≥0.50 on every registered stream.", "",
+        f"An alert requires a ratio ≥1.50× and slope ≥0.50 on every {stream_designation} stream.", "",
         "| Case | Restoration event | Example input | Target / reference / restoration / sham | Screened event and counts when distinct | Largest ratio / slope by stream | Screen |",
         "|---|---|---|---|---|---|---|",
     ])
@@ -334,7 +334,7 @@ def render_path_b(ledger, timing):
                      + ", ".join(f"`{name}`" for name in includes) + " |")
     lines.extend(["", "## New isolated comparisons", "",
                   "Counts are target, reference, restoration and sham. The screen concerns the first",
-                  "registered event. An empty drop-largest slope means the shorter grid lacks four",
+                  "predefined event. An empty drop-largest slope means the shorter grid lacks four",
                   "distinct sizes spanning eightfold.", "",
                   "| Case | Stream | Largest size | Four counts | Ratio | Slope | Drop-largest slope | Pass |",
                   "|---|---|---:|---|---:|---:|---:|---|"])
@@ -354,24 +354,8 @@ def render_path_b(ledger, timing):
             passed = fit["slope"] >= .50 and fit["largest_ratio"] >= 1.50
             lines.append(f"| {row['case_id']} | {screen['stream']} | {size} | {values} | "
                          f"{fit['largest_ratio']:.4f} | {fit['slope']:.4f} | {drop_text} | {'yes' if passed else 'no'} |")
-    lines.extend(["", "## Authored a01 steady-state timing", "",
-                  "Medians are nanoseconds per full request. The historical no-op process median",
-                  "was 731,000 ns and the startup-inclusive growth screen was unconfirmed.",
-                  f"At dense size 256 the target median is {timing['screens']['dense']['samples'][0]['target']['median_ns']:.2f} ns. "
-                  f"The historical control is {731000 / (731000 + timing['screens']['dense']['samples'][0]['target']['median_ns']):.1%} "
-                  "of the sum of those separate medians.", "",
-                  "| Stream | Size | Target median (ns) | Reference median (ns) | Empty median (ns) |",
-                  "|---|---:|---:|---:|---:|"])
-    for stream, value in timing["screens"].items():
-        for row in value["samples"]:
-            values = " | ".join(f"{row[side]['median_ns']:.2f}" for side in ("target", "reference", "empty"))
-            lines.append(f"| {stream} | {row['size']} | {values} |")
-    lines.extend(["", "| Stream | Largest ratio | Slope | Drop-largest slope | Pass |",
-                  "|---|---:|---:|---:|---|"])
-    for stream, s in timing["screens"].items():
-        f = s["fit"]
-        lines.append(f"| {stream} | {f['largest_ratio']:.3f} | {f['slope']:.4f} | "
-                     f"{s['drop_largest']['slope']:.4f} | {'yes' if s['passes_screen'] else 'no'} |")
+    lines.extend(["", "## Authored a01 steady-state timing (exploratory; not used in the manuscript)", "",
+                  "The a01-steady.json receipt is validated and exploratory; it is not used in the manuscript."])
     return "\n".join(lines) + "\n"
 
 
@@ -408,7 +392,7 @@ def historical_index():
     for name in ("ledger.json", "tables.md"):
         if digest(HERE / f"historical-{name}") != archived["public"][PREFIX + name]:
             raise ValueError(f"Historical {name} differs from the archived manifest")
-    if render(read_json(HERE / "historical-ledger.json")).encode() != (HERE / "historical-tables.md").read_bytes():
+    if render(read_json(HERE / "historical-ledger.json"), stream_designation="registered").encode() != (HERE / "historical-tables.md").read_bytes():
         raise ValueError("Historical table rendering mismatch")
     return archived
 
@@ -430,6 +414,72 @@ def row_index(ledger):
     return evidence
 
 
+def validate_phase_a(ledger, historical):
+    archived = {(row["target"], row["reference"]): row for row in historical["cases"]}
+    dispositions = {"oracle_confirmed": "verified_historical_control",
+                    "output_mismatch": "execution_oracle_failure",
+                    "unsupported_dependencies": "historical_dependency_stop",
+                    "not_run": "historical_desk_excluded"}
+    statuses = {"desk_excluded": ("REJECTED", "REJECTED"),
+                "desk_blocked": ("BLOCKED", "BLOCKED"),
+                **{disposition: ("ELIGIBLE", disposition) for disposition in
+                   ("verified_growth_evaluation", "execution_oracle_failure", "execution_validation_failure",
+                    "support_boundary_closed", "desk_eligible_control_deferred")}}
+    matched = set()
+    for row in ledger["rows"]:
+        pair = row["target"], row["reference"]
+        phase_a, phase_b = row["phase_a"], row["phase_b"]
+        rank = row["intake_rank"]
+        if pair in archived:
+            ancestor = archived[pair]
+            matched.add(pair)
+            if (row["case_id"] != ancestor["id"] or phase_a != {
+                    "status": "HISTORICAL", "disposition": ancestor["phase_a"], "reason": ancestor["reason"],
+                    "evidence_sha256": ancestor["evidence_sha256"]} or
+                    (phase_b["status"], phase_b.get("disposition"), row["final_disposition"]) !=
+                    ("HISTORICAL", ancestor["phase_b"], dispositions[ancestor["phase_b"]])):
+                raise ValueError(f"Phase A/B content differs from the archived ledger at rank {rank}")
+        elif ("disposition" in phase_a or (phase_a["status"], phase_b["status"]) !=
+              statuses.get(row["final_disposition"])):
+            raise ValueError(f"Phase A/B status and final disposition disagree at rank {rank}")
+    if matched != set(archived):
+        raise ValueError("Path B omits archived pairs")
+
+
+def validate_sweep_summary(sweep, ledger):
+    rows = ledger["rows"]
+    distinct = {row["intake_rank"] for row in rows}
+    pie = {row["intake_rank"] for row in rows if row["corpus"] == "pie-validation"}
+    census = {row["intake_rank"] for row in rows if row["corpus"] == "cppperf-census"}
+    groups = {"distinct": distinct, "pie_validation": pie, "cppperf_distinct": distinct - pie,
+              "cppperf_census": census, "combined_census": pie | census,
+              "cppperf_significant_test": {row["intake_rank"] for row in rows if row["stratum_slot"] is not None}}
+    summary = sweep["summary"]
+    if set(summary) != set(groups):
+        raise ValueError("Precedence sweep frame inventory disagrees")
+    findings = {key: {location["intake_rank"] for location in finding["locations"]}
+                for key, finding in sweep["finding_locators"].items()}
+    additive = ("accessible_slots", "fully_accessible_slots", "fully_scanned_slots", "hit_slots_fully_scanned",
+                "eligible_file_sides", "legitimate_absent_sides", "accessible_file_sides", "parsed_file_sides",
+                "partial_parse_file_sides", "missing_file_sides", "file_sides_with_opaque_macros")
+    for total, cpp in (("distinct", "cppperf_distinct"), ("combined_census", "cppperf_census")):
+        for field in additive:
+            if summary[total][field] != summary["pie_validation"][field] + summary[cpp][field]:
+                raise ValueError(f"Precedence sweep {total}.{field} disagrees with disjoint frame subtotals")
+    for name, ranks in groups.items():
+        counts = summary[name]
+        hits = [located & ranks for located in findings.values() if located & ranks]
+        hit_ranks = set().union(*hits)
+        partial = counts["hit_slots_partial_scan"]
+        if (counts["eligible_slots"] != len(ranks) or counts["unique_expressions"] != len(hits)
+                or counts["missing_file_sides"] != sum(row["intake_rank"] in ranks for row in sweep["missing_sources"])
+                or partial != sorted(set(partial) & hit_ranks)
+                or counts["hit_slots_fully_scanned"] != len(hit_ranks) - len(partial)
+                or counts["accessible_file_sides"] != counts["parsed_file_sides"] + counts["partial_parse_file_sides"]
+                or counts["eligible_file_sides"] != counts["accessible_file_sides"] + counts["missing_file_sides"]):
+            raise ValueError(f"Precedence sweep counts disagree with public evidence for {name}")
+
+
 def verify_public(manifest, ledger, timing):
     if (manifest["schema"] != ARTIFACT_SCHEMA or manifest["ledger_schema"] != "eapg.path-b.ledger.v2"
             or manifest["held_out_used"] is not False):
@@ -440,6 +490,7 @@ def verify_public(manifest, ledger, timing):
         if not sha_format(expected) or digest(checked_path(REPO, name)) != expected:
             raise ValueError(f"Public SHA-256 mismatch: {name}")
     historical = historical_index()
+    validate_phase_a(ledger, read_json(HERE / "historical-ledger.json"))
     pins = manifest["pins"]
     intake = run_path(str(REPO / "development/paired_study/intake.py"))
     expected_pins = {"pie_split": "validation", "pie_sha256": intake["PIE_VALIDATION_SHA256"],
@@ -449,7 +500,7 @@ def verify_public(manifest, ledger, timing):
     if any(pins[key] != value for key, value in expected_pins.items()):
         raise ValueError("Manifest does not reproduce study pins")
     if pins["draft_sha256"] != "29176fea17f9f65273f4d70f2f6cbc420add1dcd1b4cfdc37d20296af7afb00d":
-        raise ValueError("Desk draft disagrees with the registered pin")
+        raise ValueError("Desk draft disagrees with the pinned digest")
     if historical["public"][PREFIX + "ledger.json"] != pins["historical_ledger_sha256"]:
         raise ValueError("Historical ledger and Path B pin disagree")
     if manifest["row_evidence"] != row_index(ledger):
@@ -491,6 +542,8 @@ def verify_public(manifest, ledger, timing):
                 or pin["sha256"] != manifest["public"][PREFIX + name] or pin["schema"] != public["schema"]
                 or entries[pin["receipt"]]["sha256"] != full_pin):
             raise ValueError(f"Sanitized result pin mismatch: {name}")
+        if name == "precedence-sweep.json":
+            validate_sweep_summary(public, ledger)
     validate_timing(timing)
     sys.path.insert(0, str(REPO))
     from development.paired_study.steady import source_inputs
@@ -626,6 +679,9 @@ def main() -> None:
                                                    "workspace_custody": args.workspace_custody})
             print(f"{count} local evidence files verified.")
         else:
+            print("Replay-only: historical/desk evidence, execution and timing receipts, and sweep summaries. "
+                  "Public sweep subtotals and locators were reconciled; file-side scans and individual ballots "
+                  "cannot be re-executed from the public index.")
             print("Custody required for " + ", ".join(sorted(roles)) + ".")
         return
     table = render(ledger).encode()
