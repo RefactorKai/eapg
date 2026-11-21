@@ -5,7 +5,10 @@
   "pipeline_sha256": "7c855651566c1a7dc003fdcb291d8edd3ff1a99c671f781eb595d72c492ae743",
   "pilot_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
   "fresh_pilot_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
-  "byte_identical": true,
+  "identical_after_crlf_normalization": true,
+  "fresh_pilot_raw_sha256": "feaff68630a3f75748b3f949df4e09616ca3bd3f929c868ee808d1df6c0c16c6",
+  "line_endings": "Linux writes LF line endings and the archived pilot is CRLF: the fresh bytes are compared with the archive after rewriting every line ending to CRLF, so line terminators are the only difference allowed",
+  "self_check": "comparison.vs_receipt in this file compares the writing run's counters with themselves and only fixes the denominators; it is not independent evidence. Normal reexec compares a later fresh run with this receipt, which is a regression check against this script's own earlier output",
   "tables_tex_sha256": "771dd380959c65f99e1025472c68e35852fd6feacc5f1e04c0cda8cef72b09ca",
   "exp_r2_gate": 0.85,
   "provenance": {
@@ -24,7 +27,7 @@
     },
     "elapsed_seconds": {
       "linear": 12.2,
-      "unit": 12.7
+      "unit": 12.9
     }
   },
   "comparison": {

@@ -54,7 +54,9 @@ class ReexecPilotTests(unittest.TestCase):
 
     def fake_runs(self, raw=None):
         run = {"raw": raw if raw is not None else reexec.PILOT.read_bytes(), "records": deepcopy(self.published),
-               "counters": deepcopy(self.receipt["pairs"]), "weights": {}}
+               "counters": deepcopy(self.receipt["pairs"]),
+               "weights": {f"{pid}/{side}": {node: "1ULL" for node in e["nodes"]}
+                           for pid, sides in self.receipt["pairs"].items() for side, e in sides.items()}}
         return run, {**run, "records": deepcopy(self.published), "raw": reexec.PILOT.read_bytes()}
 
     def test_archived_outputs_evaluate_clean(self):
@@ -65,9 +67,26 @@ class ReexecPilotTests(unittest.TestCase):
         raw[raw.index(b"  ")] = ord("\t")
         self.assertEqual(json.loads(bytes(raw)), self.published)
         report, failures, *_ = reexec.evaluate(self.published, self.receipt, *self.fake_runs(bytes(raw)))
-        self.assertFalse(report["byte_identical"])
+        self.assertFalse(report["identical_after_crlf_normalization"])
         self.assertEqual(len(failures), 1)
         self.assertIn("SHA-256", failures[0])
+
+    def test_normal_mode_runs_static_validator_on_committed_receipt(self):
+        self.assertEqual(reexec.verify_committed(self.gen, self.published, self.receipt, *self.fake_runs())[1], [])
+        for mutate in (lambda r: r["proxy_defaults"]["unit"].update(instrumented_nodes=1),
+                       lambda r: r["comparison"]["vs_published"].update(fields_compared=1),
+                       lambda r: r["provenance"].update(sandbox="gate1_sandbox")):
+            receipt = deepcopy(self.receipt)
+            mutate(receipt)
+            with self.assertRaises(AssertionError):
+                reexec.verify_committed(self.gen, self.published, receipt, *self.fake_runs())
+
+    def test_fresh_instrumented_node_count_must_match_receipt(self):
+        run, unit_run = self.fake_runs()
+        run["weights"]["PAIR_001/slow"].pop(next(iter(run["weights"]["PAIR_001/slow"])))
+        unit_run["weights"] = deepcopy(run["weights"])
+        failures = reexec.evaluate(self.published, self.receipt, run, unit_run)[1]
+        self.assertIn("instrumented node count differs from the receipt", failures)
 
     def test_tampered_comparison_denominators_fail_static_check(self):
         for section, key in (("vs_published", "fields_compared"), ("vs_published", "decisions_compared"),
@@ -79,7 +98,11 @@ class ReexecPilotTests(unittest.TestCase):
 
     def test_tampered_byte_identity_or_unit_records_fail_static_check(self):
         mutations = (
-            lambda r: r.update(byte_identical=False),
+            lambda r: r.update(identical_after_crlf_normalization=False),
+            lambda r: r.update(self_check="independent evidence"),
+            lambda r: r["provenance"].update(sandbox="gate1_sandbox"),
+            lambda r: r["proxy_defaults"]["unit"].update(instrumented_nodes=1),
+            lambda r: r["proxy_defaults"]["unit"]["weight_changed_nodes"].append("PAIR_999/slow/N1: a -> 1ULL"),
             lambda r: r["proxy_defaults"]["unit"]["records"][0].update(max_work_slow=-1.0),
             lambda r: r["proxy_defaults"]["unit"]["vs_linear"].update(fields_compared=1),
             lambda r: r["proxy_defaults"]["linear"]["table_i"]["rows"][0].__setitem__(1, "0"),

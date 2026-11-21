@@ -49,6 +49,11 @@ PROXY_DEFAULTS = {
 UNSANDBOXED = ("not sandboxed: every preprocess, compile and binary run used frozen pipeline.py's own subprocess "
                "calls on the host, outside development/gate1_sandbox.py; a sandboxed rerun is deferred to the "
                "WP-F1 container (m9)")
+CRLF_NOTE = ("Linux writes LF line endings and the archived pilot is CRLF: the fresh bytes are compared with the "
+             "archive after rewriting every line ending to CRLF, so line terminators are the only difference allowed")
+SELF_CHECK_NOTE = ("comparison.vs_receipt in this file compares the writing run's counters with themselves and only fixes "
+                   "the denominators; it is not independent evidence. Normal reexec compares a later fresh run with "
+                   "this receipt, which is a regression check against this script's own earlier output")
 STRIP_KEYS = ("slow_code", "fast_code", "template_fingerprints")
 
 
@@ -269,7 +274,9 @@ def check_receipt_static(gen, receipt, published):
     """Checks that need no compiler: pins, exact denominators, and fits/maxima recomputed from raw counters."""
     assert receipt["schema"] == SCHEMA
     assert receipt["pipeline_sha256"] == PIPELINE_SHA and receipt["pilot_sha256"] == PILOT_SHA
-    assert receipt["fresh_pilot_sha256"] == PILOT_SHA and receipt["byte_identical"] is True
+    assert receipt["fresh_pilot_sha256"] == PILOT_SHA and receipt["identical_after_crlf_normalization"] is True
+    assert receipt["line_endings"] == CRLF_NOTE and receipt["self_check"] == SELF_CHECK_NOTE
+    assert receipt["fresh_pilot_raw_sha256"] == sha256(PILOT.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     assert receipt["provenance"]["sandbox"] == UNSANDBOXED
     pairs = receipt["pairs"]
     assert receipt["comparison"] == {
@@ -307,6 +314,9 @@ def check_receipt_static(gen, receipt, published):
                                "results_sha256": PILOT_SHA, "table_i": table_i(published)}
     unit = proxy["unit"]
     assert unit["description"] == PROXY_DEFAULTS["unit"]
+    node_keys = {f"{pid}/{side}/{node}" for pid, sides in pairs.items() for side, e in sides.items() for node in e["nodes"]}
+    assert unit["instrumented_nodes"] == len(node_keys)
+    assert all(change.split(": ", 1)[0] in node_keys for change in unit["weight_changed_nodes"])
     assert unit["pipeline_source_sha256"] == load_frozen_pipeline("unit").EAPG_SOURCE_SHA256
     assert [r["pair_id"] for r in unit["records"]] == [r["pair_id"] for r in published]
     full_unit = [{**r, **{k: by_id[r["pair_id"]][k] for k in STRIP_KEYS}} for r in unit["records"]]
@@ -327,7 +337,8 @@ def evaluate(published, archived, run, unit_run):
     fresh_sha = crlf_sha256(run["raw"])
     unit = unit_section(published, unit_run["records"])
     report = {
-        "fresh_pilot_sha256": fresh_sha, "byte_identical": fresh_sha == PILOT_SHA,
+        "fresh_pilot_sha256": fresh_sha, "identical_after_crlf_normalization": fresh_sha == PILOT_SHA,
+        "fresh_pilot_raw_sha256": sha256(run["raw"]).hexdigest(),
         "vs_published": summarize(vs_published), "vs_receipt": summarize(vs_receipt),
         "table_i_matches": table_i(run["records"]) == table_i(published),
         "unit_results_sha256": crlf_sha256(unit_run["raw"]),
@@ -337,12 +348,14 @@ def evaluate(published, archived, run, unit_run):
     }
     failures = vs_published["mismatches"] + vs_published["decision_flips"] + \
         vs_receipt["mismatches"] + vs_receipt["decision_flips"]
-    if not report["byte_identical"]:
-        failures.append(f"fresh pilot SHA-256 {fresh_sha} != {PILOT_SHA}")
+    if not report["identical_after_crlf_normalization"]:
+        failures.append(f"fresh pilot SHA-256 after CRLF normalization {fresh_sha} != {PILOT_SHA}")
     if not report["table_i_matches"]:
         failures.append("Table I rows differ")
     if archived:
         archived_unit = archived["proxy_defaults"]["unit"]
+        if report["instrumented_nodes"] != archived_unit["instrumented_nodes"]:
+            failures.append("instrumented node count differs from the receipt")
         if changes != archived_unit["weight_changed_nodes"]:
             failures.append("unit-default weight changes differ from the receipt")
         if report["unit_results_sha256"] != archived_unit["results_sha256"]:
@@ -361,7 +374,9 @@ def write_receipt(path, gen, unit_gen, published, run, unit_run, results):
                        "and dual-family fits (alpha, beta, r2_poly, r2_exp) for every slow and fast program.",
         "entry_point": "pipeline.run_pilot_100_study.process_pair",
         "pipeline_sha256": PIPELINE_SHA, "pilot_sha256": PILOT_SHA,
-        "fresh_pilot_sha256": report["fresh_pilot_sha256"], "byte_identical": True,
+        "fresh_pilot_sha256": report["fresh_pilot_sha256"], "identical_after_crlf_normalization": True,
+        "fresh_pilot_raw_sha256": report["fresh_pilot_raw_sha256"], "line_endings": CRLF_NOTE,
+        "self_check": SELF_CHECK_NOTE,
         "tables_tex_sha256": run["tables_tex_sha256"],
         "exp_r2_gate": EXP_R2_GATE,
         "provenance": {**toolchain(), "elapsed_seconds": {"linear": run["elapsed_seconds"],
@@ -389,6 +404,12 @@ def write_receipt(path, gen, unit_gen, published, run, unit_run, results):
     path.write_text(text, encoding="utf-8")
 
 
+def verify_committed(gen, published, archived, run, unit_run):
+    """Normal reexec: the committed receipt must pass every static check before a fresh run is compared with it."""
+    check_receipt_static(gen, archived, published)
+    return evaluate(published, archived, run, unit_run)
+
+
 def main():
     if not __debug__:
         raise RuntimeError("Run without Python optimization so assertions remain active")
@@ -411,7 +432,8 @@ def main():
     run = reexecute(gen, embedded_corpus(gen, published))
     unit_gen = load_frozen_pipeline("unit")
     unit_run = reexecute(unit_gen, embedded_corpus(unit_gen, published))
-    results = evaluate(published, archived, run, unit_run)
+    results = (evaluate(published, None, run, unit_run) if archived is None
+               else verify_committed(gen, published, archived, run, unit_run))
     report, failures, vs_published, vs_receipt, _ = results
     print(json.dumps(report, indent=2))
     if failures:
@@ -422,8 +444,8 @@ def main():
         return 0
     print(f"Re-executed pilot Table I: 0 mismatches over {vs_published['fields_compared']} fields, "
           f"0 decision flips over {vs_published['decisions_compared']} pair and "
-          f"{vs_receipt['decisions_compared']} node decisions; byte-identical; "
-          f"unit proxy default matches its receipt.")
+          f"{vs_receipt['decisions_compared']} node decisions against this script's own receipt; "
+          f"identical to the archived pilot after CRLF normalization; unit proxy default matches its receipt.")
     return 0
 
 
