@@ -17,7 +17,7 @@ Follow `eapg-ground-rules` first. Efficiency never relaxes R1-R8.
 ## Evidence is not a summary
 - Never compress or truncate receipts, audit evidence, gate logs, manuscript data, PR evidence or review findings. R4/R5 require raw full output, exit status, skips and reasons; retain it locally before showing a short navigation summary.
 - For evidence, run plain commands into a persistent log under `$HOME/eapg-agent-logs/`; capture exit status before filtering. RTK summaries are exploration only, never gate evidence. Respect D5: private logs stay local and never enter git or external tools.
-- For exploratory build logs only: `rtk err python -B eapg.py build-paper --clean` shows errors/warnings; evidence builds remain plain.
+- For exploratory build logs only: `rtk err python -B eapg.py build-paper` filters command output. Keep `manuscript/paper.log` for overfull/undefined diagnostics; the wrapper's counts are not the full LaTeX log. Evidence builds remain plain, without `--clean`.
 
 ## Surgical work
 - Locate a local bug from its stack trace or a targeted symbol/error search first. Read only relevant ranges and direct callers/tests; no whole-repo reads or broad exploration for a local fix.

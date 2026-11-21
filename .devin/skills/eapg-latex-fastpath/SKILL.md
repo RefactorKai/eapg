@@ -15,6 +15,6 @@ Follow `eapg-ground-rules` and `eapg-paper-writing`. Never apply Caveman voice t
 
 ## Build once per final edit
 - Main paired manuscript, from `manuscript/`: `pdflatex -no-shell-escape -halt-on-error -interaction=nonstopmode paired_mechanism.tex`, `bibtex paired_mechanism`, then the same pdflatex command twice. Stop on any failure.
-- EAPG development paper: `python -B eapg.py build-paper --clean` (not the paired submission).
+- EAPG development paper: `python -B eapg.py build-paper` (not the paired submission). Omit `--clean` to retain diagnostics; check `rg -n -i 'overfull|undefined' manuscript/paper.log` for new overfull boxes and unresolved references. `paper.log` and `.blg` are gitignored build artifacts; do not commit them.
 - Capture each command's full stdout/stderr and exit status in `$HOME/eapg-agent-logs/` first. Navigate logs with `rg -n -i -A 3 '^!|error|warning|undefined|overfull' "$HOME/eapg-agent-logs/latex.log"`; no matches is not a successful-build test.
 - Keep raw logs for PR evidence; require zero undefined references and no new overfull boxes. Run final ground-rule gates; a filtered log never replaces evidence.
