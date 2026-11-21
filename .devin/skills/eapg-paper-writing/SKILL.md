@@ -16,7 +16,7 @@ Follow `eapg-ground-rules` first.
 
 ## Numbers
 - Every number is a macro from a generated receipt file (WP-A3); never type digits for results. Write rates as `k/n` with the percentage and name the CI method nearby.
-- Report the limitations that hold today: Part A is not primary-sized (`primary_sized=false`), Part B shows no positive transfer (`positive_transfer_evidence=false`), and Part A false alerts (5/5 quadratic shams, 0/5 linear shams, 10/10 appropriate controls). Check the current receipts before restating them.
+- Report the limitations that hold today: Part A is not primary-sized (`primary_sized=false`), Part B shows no positive transfer (`positive_transfer_evidence=false`), and Part A specificity (alerts on quadratic shams, linear shams and appropriate controls; alerts on appropriate controls are correct detections, alerts on shams are false alerts). Take every count from the specificity receipt (WP-S1, checklist B7) through its macros; never restate counts from memory.
 - Name the unit of every rate (pair, equal-group, macro) and never mix them unlabelled.
 - Negative, indeterminate and excluded cases appear with counts and reasons.
 
@@ -26,7 +26,7 @@ Use the ACM SIGSOFT Empirical Standards (General Standard plus the experiment or
 ## AI-use disclosure
 - AI tools are never authors (ACM and Springer Nature both hold that they cannot take responsibility for the work).
 - Disclose generative-AI use as the venue requires: ACM asks for disclosure in the acknowledgements or the body where AI generated text, tables, code or analysis; Springer Nature asks for documentation in the Methods (or a suitable section) and does not require declaring AI-assisted copy editing. Check the live policy of the chosen venue before submission.
-- LLM-agent judgments in results are secondary analyses with model, version and prompts disclosed (prompts in an appendix or artifact).
+- LLM-agent judgments in results disclose model, version and prompts (prompts in an appendix or artifact) and are secondary, except the WP-H1 model panel described under Claims above.
 
 ## Build
 - Build `manuscript/paired_mechanism.tex` with `pdflatex`/`bibtex` and `-no-shell-escape -halt-on-error` in `manuscript/`; `python -B eapg.py build-paper --clean` builds the EAPG development paper. Zero undefined references, no new overfull boxes. Switch to the venue template (EASE ACM or EMSE Springer) before the rewrite (m13).

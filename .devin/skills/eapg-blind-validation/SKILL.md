@@ -22,7 +22,7 @@ No human raters are used. Independent checking is done by model sessions that ca
 ## Rubric rules
 - Define every label and the "indeterminate" or "unsupported" option before raters see cases.
 - Ask for evidence (file, line, receipt field) with every judgment.
-- Commit per-rater label files, prompts and the input manifest when they hold no private material (D5); otherwise commit hash-pinned receipts and mark the result `replay-only`.
+- Commit per-rater label files, prompts and the input manifest when they hold no private material (D5); otherwise commit a hash-pinned receipt of the result and mark it `replay-only`. A result is `replay-only` only when that receipt itself is committed; if no receipt can be committed, the result is `private-only` and is dropped from the paper.
 
 ## Self-audit before handoff
 Before you hand on a PR, analysis or section, run steps 1-4 on its claims: two blind reviewers check that each claim matches code and receipts on disk, and an adjudicator resolves conflicts. Fix or disclose every confirmed finding. These checks are secondary and stay out of the paper unless disclosed as such.
