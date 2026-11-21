@@ -81,3 +81,13 @@ are left unchanged.
 
 See the [conclusions table](GROUPED_STATISTICS_CONCLUSIONS.md) for differences
 from the previous analyses.
+
+## Deferred manuscript edits
+
+After PRs #3 and #5 land, rebase and re-apply the deferred WP-A4 edits to
+`manuscript/paired_mechanism.tex` (primary contrasts and caption metrics,
+drop-largest sensitivity, and desk agreement interval presentation) and
+`manuscript/evaluation.tex` (secondary caption metrics, sorted bootstrap and
+leave-one-out range labels, revised interpretations and interval formatting,
+and the nearest-preceding CFG result). The statistical receipt and conclusions
+table already contain the results; their values do not depend on these edits.
