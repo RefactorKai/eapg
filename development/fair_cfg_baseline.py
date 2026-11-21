@@ -169,7 +169,7 @@ def build_receipt():
                 "extra_slot": extra[0]["slot"],
                 "extra_exact_count": str(audit_uniform - core_uniform),
                 "explanation": "The audit's 4.29/20 included the comparator-swap duplicate row in the numerator; the core 20-case figure is 4.12/20."},
-            "inputs": {str(p.relative_to(ROOT)): sha256(p.read_bytes()).hexdigest() for p in (STUDY, OEIS)},
+            "inputs": {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in (STUDY, OEIS)},
             "part_a_reported_cfg_reference_ranks": dict(sorted(ranks.items())),
             "cases": {"Part A": a, "OEIS": o, "Part B": b}, "results": results}
 
