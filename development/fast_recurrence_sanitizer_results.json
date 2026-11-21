@@ -1,0 +1,3062 @@
+{
+  "protocol": "wp-f2 fast recurrence sanitizer check",
+  "pipeline_sha256": "7c855651566c1a7dc003fdcb291d8edd3ff1a99c671f781eb595d72c492ae743",
+  "scaling_results_sha256": "d690b9eacc80509ee74084ab72a0890738690a386639858988e2bfa8a2d3a758",
+  "script_sha256": "4d64392c07fedbda6faa65ad87cd3f2184e98789092aecc489ad60cd7e1d0096",
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "compiler_flags": [
+    "-std=c++17",
+    "-O2",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all"
+  ],
+  "python": "3.14.10",
+  "sizes": [
+    16,
+    24,
+    91,
+    92,
+    256,
+    1024,
+    4096
+  ],
+  "programs": 25,
+  "corrected_runs_clean": 175,
+  "instrumented_runs_clean": 175,
+  "frozen_programs_with_finding_by_size": {
+    "16": 0,
+    "24": 0,
+    "91": 0,
+    "92": 25,
+    "256": 25,
+    "1024": 25,
+    "4096": 25
+  },
+  "records": [
+    {
+      "pair_id": "PAIR_039",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "81f77589838452d222e0f68e6761dd4dada2bdf52df3707d3abf0fcc3332b08b",
+      "corrected_fast_sha256": "3b1cfdc485fc7c949ac068c6828df9f1b8484f293ce51c28f85ba2aaba389d20",
+      "instrumented_fast_sha256": "fd9517363e3562ca5a90d259cb657a1e9fb6ab5d0b66d84d6376f6e74aaeeb2c",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_040",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "81f77589838452d222e0f68e6761dd4dada2bdf52df3707d3abf0fcc3332b08b",
+      "corrected_fast_sha256": "3b1cfdc485fc7c949ac068c6828df9f1b8484f293ce51c28f85ba2aaba389d20",
+      "instrumented_fast_sha256": "fd9517363e3562ca5a90d259cb657a1e9fb6ab5d0b66d84d6376f6e74aaeeb2c",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_041",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "7309e2c9a95d0471593a33ea3d3d4a606f3b384bec1b2516ad32e7a2f39330ba",
+      "corrected_fast_sha256": "6e9318f3ee61eab363c9a6cb82f5b6a4099e60195329f0855b5aed40d0d1de09",
+      "instrumented_fast_sha256": "9750c4d17cc8a302e95fc0074bce074f9fe4c870fba91f2b6696dd905db5ad2b",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_042",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "a06c2b8f6393cea88c6a4212d4c22d2e1c1c2c3cb13ead0e5f165a43af06d6ae",
+      "corrected_fast_sha256": "74524d0b3f25e70e890a3fb2459ac7930d638630032616083fc918c482c44a99",
+      "instrumented_fast_sha256": "92c855654aee4cb77c6afc002b5da354f2987a77122526fe4d6f2c65d585ea77",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_043",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "a06c2b8f6393cea88c6a4212d4c22d2e1c1c2c3cb13ead0e5f165a43af06d6ae",
+      "corrected_fast_sha256": "74524d0b3f25e70e890a3fb2459ac7930d638630032616083fc918c482c44a99",
+      "instrumented_fast_sha256": "92c855654aee4cb77c6afc002b5da354f2987a77122526fe4d6f2c65d585ea77",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_044",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "a2967e558cfe670d222d320620cd3759e4a14644c3b80ad549f14f720b0b7cf4",
+      "corrected_fast_sha256": "1aa9cc90caf72dd0ecd657efe40ac03d4fb08597643c8a69dabcd491db6ec884",
+      "instrumented_fast_sha256": "90b336967ed1e31f477fd544a8f5d1d4de4069df0b72004b1d0a8de50abd87cc",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_045",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "f25c1f127fec7333aa15d51cbe8a8aa98c56a5a841a8a4e973d00d3cc591be5a",
+      "corrected_fast_sha256": "221f88fbdc18a7b8b06cd07577378ae8f7644720a86a0d3a13266b98a7f80578",
+      "instrumented_fast_sha256": "5c609201b836d7081dd5db05153ddf8ff16a066e6953ef6b66372823f0964d05",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_046",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "f25c1f127fec7333aa15d51cbe8a8aa98c56a5a841a8a4e973d00d3cc591be5a",
+      "corrected_fast_sha256": "221f88fbdc18a7b8b06cd07577378ae8f7644720a86a0d3a13266b98a7f80578",
+      "instrumented_fast_sha256": "5c609201b836d7081dd5db05153ddf8ff16a066e6953ef6b66372823f0964d05",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_047",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "052275c4371dfefdbd1352892c4e0575761c9443b83e5365cac91093e6896214",
+      "corrected_fast_sha256": "deb28b9be107a630a2e560116f078c8e8424b522d14341f5db2377a00f8518a2",
+      "instrumented_fast_sha256": "c9a78512149a23c56825a78443493478ad8c826cf87138c289f09f746fae79e3",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_048",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "0b360c67b14b94e83655c22a5c5c8df33f0f5801501370bef0081654e33abdda",
+      "corrected_fast_sha256": "a0374b23d7ea5da4ce108f5e8650dbe844584d0a9516510b2ad60be7d10b59ef",
+      "instrumented_fast_sha256": "9a9edcaf19234e7dea676024f6212913efeab85e711d3208d243479ccfde57be",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_049",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "0b360c67b14b94e83655c22a5c5c8df33f0f5801501370bef0081654e33abdda",
+      "corrected_fast_sha256": "a0374b23d7ea5da4ce108f5e8650dbe844584d0a9516510b2ad60be7d10b59ef",
+      "instrumented_fast_sha256": "9a9edcaf19234e7dea676024f6212913efeab85e711d3208d243479ccfde57be",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_050",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "9c72dcdaa96eee296e8fbb9a1b8e193aea56bd0dfe90167e855efa2146934ad3",
+      "corrected_fast_sha256": "f4f551c1767fe58260badf4d90d953435dba0f3c9d4ed26f143febb1287c35f7",
+      "instrumented_fast_sha256": "54d694a92e8923872b63bee8f87e1d92d366c1706af17e4fff7150dde159e06d",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_051",
+      "mechanism": "A2.1",
+      "frozen_fast_sha256": "9c72dcdaa96eee296e8fbb9a1b8e193aea56bd0dfe90167e855efa2146934ad3",
+      "corrected_fast_sha256": "f4f551c1767fe58260badf4d90d953435dba0f3c9d4ed26f143febb1287c35f7",
+      "instrumented_fast_sha256": "54d694a92e8923872b63bee8f87e1d92d366c1706af17e4fff7150dde159e06d",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1597"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75025"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346429"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876738"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868189"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874525"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859101"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_089",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "0da23697f2da7579d523e174c9c58ea1e98db059f2d4967f608ea92ecbb9de9d",
+      "corrected_fast_sha256": "d41c3cf6e03b129ca14521b1272adaad6718f3e1e1c735afff042aa9e37e5bc5",
+      "instrumented_fast_sha256": "4fc99140ac5fba52a4b3185f4de8459178b3832cb695e1e4a103c2854cd3807e",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_090",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "cceb8f8f359a4092258899688e2b5c95b8933689fd57150eca2e0f31956581a2",
+      "corrected_fast_sha256": "41619427413cb6a6456abbe97a883c6bc98eec89eefb340287e2ce9096ea628f",
+      "instrumented_fast_sha256": "7ba8e502d1f7d616e80502549d917dc3e0772ddd8b96abce136ea0ac4f63a255",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_091",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "a8a3e13a0c4813fb9fb7bc539f0f20ea5f2e43f018426be6e2b212eb08e9fd1c",
+      "corrected_fast_sha256": "1e088fddf759e49d64e598dfc65cfcebdf0b398e2ebdf438c92d0e3834951e55",
+      "instrumented_fast_sha256": "6c0fb99388defead56bfae59132950131f3724052d161162c2f522f1ae9b43b3",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_092",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "7637323a01f9636fac1f3120100fdd74c6af3c1653d4c1e642d084461afe32fb",
+      "corrected_fast_sha256": "f03fff08714d510f0a5a58f8d8eb4846a88168a8bd7f1aed2acbec670535d9b1",
+      "instrumented_fast_sha256": "fa8b17b120fa4dd85f9b354fe5b308dacaa10d64c531aa203f160e397b02cd7b",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_093",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "612bf26286d53004271d73e99e572f2d84fc323571930b179d0c03361be55a18",
+      "corrected_fast_sha256": "9c383bb7040213bc3dd5eb01870bf9021c8fca97320046413f7c6c3e46cfa15b",
+      "instrumented_fast_sha256": "1c4d9b88285be7d9d86890ab86af0478ac7a1531752c51a597a7e12119e452a1",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_094",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "2e2163745f2cbf03208fe4ed8ae54ba8f581974c7961a24de8d0a97b497ad9d1",
+      "corrected_fast_sha256": "1a1198fd78b49bdb61be6710055f9b8818a581ee9243e933de046f2684a34464",
+      "instrumented_fast_sha256": "384b9972d7aa6a01160912429c0e65a094acb9cba6662ddd29feca6e85f2b64f",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_095",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "3e10b1bcd923297732acb24ea2ceb364100f7f8b1eada57742424f49b136c6b6",
+      "corrected_fast_sha256": "f9818baadac1e025a0dfeea80ec9c8b6b315ec0bbb366f3a36a4a1ab84e077f4",
+      "instrumented_fast_sha256": "c2390a85bdae29a477e9df1305f0a14d328bfd91d152c4f9965a46d3ac83d939",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_096",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "785b35f46d7cbc5898645223cdc73a37cee41e1dec3015e6f8e7bb2da0781adb",
+      "corrected_fast_sha256": "ba7970d69a09184f90f8971726d03e1c8a1c1210a2d70ac4f5ba6a5173e762ca",
+      "instrumented_fast_sha256": "f8d3170af19368eb7e8911914137fa9d65ea491767f185f43ed72d3ad6378c03",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_097",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "fda3ff084b836e2bd3edfec5558ab3508a1749d0d36a7d26d2d2713bbb0cca26",
+      "corrected_fast_sha256": "ebb23bc3ecd44ba49a0ccddd6bbb101c29b41f9774d9bead3b111d54f9a3926e",
+      "instrumented_fast_sha256": "0a7163d41867dd57c21a12e5529e082d44fde9035b3cee4b5dc276b36f86b553",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1601"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75029"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346433"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876742"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868193"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874529"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859105"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_098",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "2814013d93815e80359dfa35eb981ed67a87bf1ae337881a4cef6bf8424b4826",
+      "corrected_fast_sha256": "a39876af4b2ec938654474fbb7d62d0652a076e96e9b625cab0e2c19af968dd7",
+      "instrumented_fast_sha256": "6f06be5b5af8b89491b9353dfdf9e3e69195220af83a6663c713b516aa1471e5",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1602"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75030"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346434"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876743"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868194"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874530"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859106"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_099",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "ad60afb2165d7046ec96c7c2ee7add13447016d230ec5e2bc979c8c350a0deda",
+      "corrected_fast_sha256": "c6ba972e1c6aed037196d817555e8c4b7525ef086a0e49c477e5304ab578f6b1",
+      "instrumented_fast_sha256": "f79d49379a1bb4d9e59544d25e4c87e28fbe647f92dbf47d97a57f10182de73d",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1603"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75031"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346435"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876744"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868195"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874531"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859107"
+          }
+        }
+      }
+    },
+    {
+      "pair_id": "PAIR_100",
+      "mechanism": "B.3",
+      "frozen_fast_sha256": "37257369930bfd55cfe4f652f598c36161f6edbde67bc2c59ed619aa62423d64",
+      "corrected_fast_sha256": "e15cde9eb82e3d7772a769c6f7e653b9064e30a3a35e39aab078540314c5964f",
+      "instrumented_fast_sha256": "63fb2433356c92b585b07bb23d760d5ebec294eb3cc672dc032f9943c65243b9",
+      "sizes": {
+        "16": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "1604"
+          }
+        },
+        "24": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "75032"
+          }
+        },
+        "91": {
+          "frozen": {
+            "exit_code": 0,
+            "finding": null
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "7540113804746346436"
+          }
+        },
+        "92": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "12200160415121876745"
+          }
+        },
+        "256": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "616433998583868196"
+          }
+        },
+        "1024": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "3319292459396874532"
+          }
+        },
+        "4096": {
+          "frozen": {
+            "exit_code": 1,
+            "finding": "runtime error: signed integer overflow: 7540113804746346429 + 4660046610375530309 cannot be represented in type 'long long int'"
+          },
+          "corrected": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          },
+          "instrumented": {
+            "exit_code": 0,
+            "finding": null,
+            "stdout": "13929102147213859108"
+          }
+        }
+      }
+    }
+  ]
+}

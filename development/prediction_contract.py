@@ -2,6 +2,8 @@
 
 from math import isfinite
 
+from canonical_ranking import rank_canonical
+
 
 def prepare_prediction(pipeline, pair_id, normalized_sha256, nodes, fits, tokenizer):
     if (not isinstance(pair_id, str) or not pair_id or not isinstance(normalized_sha256, str)
@@ -26,7 +28,7 @@ def prepare_prediction(pipeline, pair_id, normalized_sha256, nodes, fits, tokeni
     dynamics.update(c_slice=candidates, r_search=1 - len(candidates) / len(nodes))
     record = {"skeleton": pipeline.format_eapg_skeleton(nodes, fits, dynamics),
               "slicing": tiers, "pilot_revision": pipeline.PILOT_REVISION, "scope_protocol": "main_scope"}
-    symbolic = pipeline.rank_candidates_by_role_priority(record, use_loop_def_use=True, macro_nodes=nodes)
+    symbolic = rank_canonical(pipeline, record, nodes, use_loop_def_use=True)
     if len(symbolic) != len(candidates) or set(symbolic) != set(candidates):
         raise ValueError("Symbolic ranking changed the emitted candidate set")
     row["symbolic"] = symbolic[:2]

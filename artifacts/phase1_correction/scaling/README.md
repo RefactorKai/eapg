@@ -13,10 +13,16 @@ All 200 fast outputs matched the Python recurrence oracle. The fit uses 125 clea
 
 ## Reproduction
 
-Run from the repository root with Python 3.14.2, tree-sitter 0.26.0, tree-sitter-cpp 0.23.4, and g++ 15.1.0 (MSYS2 UCRT64) on PATH. The runner creates temporary binaries and replaces the separate corrected JSON only after the checks pass.
+Run from the repository root with Python 3.14.2, tree-sitter 0.26.0, tree-sitter-cpp 0.23.4, and any g++ with C++17 support on PATH (the recorded run used g++ 15.1.0). The runner creates temporary binaries and replaces the separate corrected JSON only after the checks pass.
 
-~~~powershell
+~~~sh
 python -B artifacts/phase1_correction/scaling/check_fast_recurrences.py
+~~~
+
+The development sanitizer check recompiles the 25 frozen, corrected and instrumented fast programs with `-fsanitize=undefined -fno-sanitize-recover=all` at sizes 16 through 4096. Every corrected and instrumented run is clean, including N = 92, and every frozen program reports signed overflow from N = 92. The receipt is [`development/fast_recurrence_sanitizer_results.json`](../../../development/fast_recurrence_sanitizer_results.json).
+
+~~~sh
+python -B development/check_fast_recurrence_sanitizer.py
 ~~~
 
 This fast-side rerun supplies the two corrected work-exponent cells. The frozen slow profiles and node-localization evaluation serve as the original Phase 1 evidence.

@@ -51,7 +51,7 @@ def trusted_preprocess(source):
 
 
 def attach_trusted_cpp_runner(pipeline):
-    """Attach local MSYS2 g++ callbacks strictly for trusted development-only static checks."""
+    """Attach local g++ callbacks strictly for trusted development-only static checks."""
     def local_pass_zero(source):
         lines = source.splitlines(keepends=True)
         includes = [ln for ln in lines if ln.lstrip().startswith("#include")]
