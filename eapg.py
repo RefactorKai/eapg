@@ -248,7 +248,7 @@ def cmd_build_paper(args: argparse.Namespace) -> int:
         for ext in (".aux", ".bbl", ".blg", ".log", ".out"):
             (manuscript_dir / f"paper{ext}").unlink(missing_ok=True)
     print(f"Built {manuscript_dir / 'paper.pdf'} ({len(overfull)} overfull hboxes, {len(undef)} undefined warnings).")
-    return 0
+    return 1 if (overfull or undef) and not args.allow_warnings else 0
 
 
 def cmd_status(_args: argparse.Namespace) -> int:
@@ -301,6 +301,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_pdf = sub.add_parser("build-paper", help="Compile manuscript/paper.pdf with pdflatex + bibtex.")
     p_pdf.add_argument("--clean", action="store_true", help="Remove intermediate LaTeX build files after compiling.")
+    p_pdf.add_argument("--allow-warnings", action="store_true", help="Exit 0 even if overfull hboxes or undefined references remain.")
     p_pdf.set_defaults(func=cmd_build_paper)
 
     p_stat = sub.add_parser("status", help="Inspect SHA256SUMS integrity, artifacts, and installed toolchain.")
