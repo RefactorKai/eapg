@@ -82,13 +82,29 @@ def test_fair_cfg_baselines_are_recomputed_from_public_candidate_sets(computed):
     )
 
 
+def test_specificity_counts_appropriate_alerts_as_false_alerts(computed):
+    for seed in ("42", "43", "44"):
+        cell = computed["part_a_specificity_by_seed"][seed]["appropriate_superlinear"]
+        assert cell["false_alerts"] == replay.rate(10, 10)
+        assert cell["correct_rejections"] == replay.rate(0, 10)
+    sweeps = replay.read_json(replay.SPECIFICITY)
+    sweeps["part_a"]["seed_table"]["42"]["alerts"]["appropriate_superlinear"]["k"] = 9
+    with pytest.raises(ValueError, match="WP-S1 disagrees"):
+        replay.specificity_statistics(sweeps, computed["part_a"], computed["paired_qualification"])
+
+
 def test_verifier_checks_saved_statistics(computed, tmp_path, monkeypatch):
     monkeypatch.setattr(replay, "RECEIPT", tmp_path / "receipt.json")
+    monkeypatch.setattr(replay, "MACROS", tmp_path / "macros.tex")
     monkeypatch.setattr(replay, "recompute", lambda: computed)
     monkeypatch.setattr(sys, "argv", ["replay_grouped_statistics.py", "--write"])
     replay.main()
     monkeypatch.setattr(sys, "argv", ["replay_grouped_statistics.py"])
     replay.main()
+    macros = replay.MACROS.read_text(encoding="utf-8")
+    replay.MACROS.write_text(macros.replace("10/10 = 100.0", "9/10 = 90.0"), encoding="utf-8")
+    with pytest.raises(ValueError, match="macros differ"):
+        replay.main()
     replay.RECEIPT.write_text('{"schema": "eapg-grouped-statistics-v1"}', encoding="utf-8")
     with pytest.raises(ValueError, match="receipt differs"):
         replay.main()

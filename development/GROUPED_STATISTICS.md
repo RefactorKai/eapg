@@ -71,23 +71,21 @@ an inadmissible or unavailable reduced ladder is not a negative verdict.
   bootstrap replicates still requires private vote vectors. Subset and
   protocol comparisons without released paired outcomes do not get a
   synthetic test.
+- Part A specificity is replay-only. Nominal per-seed strata come from
+  WP-S1's verified receipt. Alerts on same-growth shams or appropriate
+  superlinear controls are false alerts; only non-alerts are correct
+  rejections. The grouped replay checks the seed-42 totals against the
+  per-case Part A outcomes and checks the fitted alert and admitted
+  drop-largest case sets against the paired ledger.
 
 From the checkout, `python -B development/replay_grouped_statistics.py --write`
-regenerates [the JSON receipt](grouped_statistics.json). The same command
-without `--write` compares the saved receipt to a fresh recomputation and
-fails on drift; `python -B eapg.py verify --mode linux` runs that comparison.
+regenerates [the JSON receipt](grouped_statistics.json) and its
+[WP-A4 manuscript macros](../manuscript/grouped_statistics_macros.tex). The
+receipt pins input and script SHA-256s. The same command without `--write`
+compares both outputs to a fresh recomputation and fails on drift;
+`python -B eapg.py verify --mode linux` runs that comparison.
 Archived releases, source programs, and full-precision historical receipts
 are left unchanged.
 
 See the [conclusions table](GROUPED_STATISTICS_CONCLUSIONS.md) for differences
 from the previous analyses.
-
-## Deferred manuscript edits
-
-After PRs #3 and #5 land, rebase and re-apply the deferred WP-A4 edits to
-`manuscript/paired_mechanism.tex` (primary contrasts and caption metrics,
-drop-largest sensitivity, and desk agreement interval presentation) and
-`manuscript/evaluation.tex` (secondary caption metrics, sorted bootstrap and
-leave-one-out range labels, revised interpretations and interval formatting,
-and the nearest-preceding CFG result). The statistical receipt and conclusions
-table already contain the results; their values do not depend on these edits.

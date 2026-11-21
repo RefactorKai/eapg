@@ -27,6 +27,7 @@
 \author{\IEEEauthorblockN{Anonymous authors}}
 \hypersetup{pdfauthor={Anonymous authors},pdftitle={From Performance Pairs to Growth Evidence}}
 
+\input{grouped_statistics_macros}
 \begin{document}
 \maketitle
 
@@ -104,7 +105,8 @@ CppPerf tree\\
 \ifdefined\Description
 \Description{Four boxes connected from left to right by arrows. The boxes are Pin pairs, Check feasibility, Test four variants, and Fit and report.}
 \fi
-\caption{Each selected pair enters once. A failure or deferral is recorded at
+\caption{Primary metric: final qualification disposition per selected pair.
+Each selected pair enters once. A failure or deferral is recorded at
 the first relevant step. Shared CppPerf patches retain both frame memberships.}
 \label{fig:pipeline}
 \end{widepanel}
@@ -172,7 +174,7 @@ Desk judgments were agent judgments without human adjudication.
 
 \begin{widepanel}{table}
 \centering
-\caption{Each pair has one final disposition. Six CppPerf patches belong to
+\caption{Primary metric: final disposition per selected pair. Six CppPerf patches belong to
 both the combined census and the significant-test stratum. Indented rows
 detail the preceding stage total. Alert counts are conditional on fitted
 cases and comprise three robust alerts and one range-limited alert.
@@ -263,7 +265,8 @@ has the independently observed output mismatch above.
 
 \begin{widepanel}{table}
 \centering
-\caption{Largest work ratios and log-ratio slopes for all 13 fits
+\caption{Primary metric: all-stream scoped alert verdict per fitted pair.
+Largest work ratios and log-ratio slopes for all 13 fits
 (five new fits and eight inherited controls). Entries
 span the minimum to maximum across the three streams. Historical control fits
 are inherited from the earlier protocol and selected for prior validity.
@@ -311,6 +314,14 @@ fmtlib/fmt & Hist.\ shared & UTF-8 code-point callback visits
 
 \subsection{Logical-work fits}
 
+The declared primary tests compare desk stops with reached execution over the
+distinct intake and all-stream alerts with non-alerts among fitted pairs. They
+use exact whole-problem/project sign flips and Holm adjustment across the
+declared contrasts. The desk-stop contrast survives adjustment; the fitted
+alert contrast does not. The replay-only grouped statistics receipt records
+the denominators, adjusted tests, and Clopper--Pearson reference intervals for
+pair rates.
+
 Table~\ref{tab:fits} includes all five new comparisons and all eight inherited
 controls. The three robust alerts concern calendar day updates
 (\caseid{p00256}), stored range-query contributions (\caseid{p02346}), and
@@ -353,14 +364,16 @@ Of the 24 rows with three sealed judgments, auditors used identical status
 strings on one row (4.2\%). Mapping the labels to exclusion, blocked and
 diagnostic families yields unanimity on 18 rows (75.0\%), 59 of 72 agreeing
 judgment pairs, and Fleiss's \(\kappa=0.700\) with a 95\% project-cluster
-bootstrap interval of \([0.469,0.837]\). The increase shows how strongly the
+bootstrap interval of \(\GroupedDeskExistingCI\) points on the \(100\kappa\) scale.
+The increase shows how strongly the
 observed agreement depends on the status vocabulary. The archived judgments
 cover a selected subset of the significant-test stratum from nine projects.
 
 The prospective draw shares four pairs with that panel. The three agents
 agree unanimously on 17 of 24 exclusions (70.8\%) and on 58 of 72 judgment
 pairs (80.6\%). Fleiss's \(\kappa=0.698\), with a descriptive 95\% interval
-of \([0.530,0.849]\) from whole-vector resampling within allocation cells.
+of \(\GroupedDeskReauditCI\) points on the \(100\kappa\) scale from whole-vector
+resampling within allocation cells.
 The unweighted estimates describe the sampled exclusions. The intervals
 condition on singleton cells and repeated projects may induce dependence.
 

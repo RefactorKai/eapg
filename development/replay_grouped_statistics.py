@@ -4,6 +4,7 @@ import argparse
 from collections import Counter, defaultdict
 from fractions import Fraction
 from functools import lru_cache
+from hashlib import sha256
 import json
 from math import comb, lcm
 from runpy import run_path
@@ -14,6 +15,8 @@ from verify_weighted_panel import replay as replay_weighted_panel
 
 
 RECEIPT = ROOT / "development/grouped_statistics.json"
+MACROS = ROOT / "manuscript/grouped_statistics_macros.tex"
+SPECIFICITY = ROOT / "development/specificity_sweeps.json"
 PAIRED = ROOT / "artifacts/paired_development"
 RESPLIT = ROOT / "artifacts/pilot_resplit"
 PRIMARY = ("desk_stop_minus_execution", "all_stream_alert_minus_no_alert")
@@ -26,6 +29,10 @@ REPRESENTATION_PAIRS = (
 
 def read_json(path):
     return json.loads(path.read_bytes())
+
+
+def file_digest(path):
+    return sha256(path.read_bytes()).hexdigest()
 
 
 def holm(p_values):
@@ -379,12 +386,49 @@ def oeis_statistics(receipt):
     }
 
 
+def specificity_statistics(sweeps, part_a, qualification):
+    def counts(row):
+        return row["k"], row["n"]
+
+    nominal = sweeps["paired"]["nominal"]
+    robust = sweeps["paired"]["nominal_with_drop_largest"]
+    fitted = qualification["frame_rates"]["147 distinct"]["all_stream_alerts_per_fit"]
+    if (counts(nominal["alerts"]) != (fitted["count"], fitted["total"])
+            or set(robust["cases"]) != set(qualification["all_stream_alerts_with_admitted_sensitivity"])
+            or set(nominal["cases"]) - set(robust["cases"]) !=
+            set(qualification["all_stream_alerts_without_admitted_sensitivity"])):
+        raise ValueError("WP-S1 paired sensitivity disagrees with qualification replay")
+    seed_table = sweeps["part_a"]["seed_table"]
+    for primary_name, category in (("same_growth_sham", "sham_all"),
+                                   ("appropriate_superlinear", "appropriate_superlinear"),
+                                   ("comparator_swap_sham", "swap_sham")):
+        expected = part_a["alert_rates"][primary_name]
+        if counts(seed_table["42"]["alerts"][category]) != (expected["count"], expected["total"]):
+            raise ValueError(f"WP-S1 disagrees with Part A seed-42 alerts for {category}")
+    return {seed: {category: {
+        "false_alerts": rate(*counts(row["alerts"][category])),
+        "correct_rejections": rate(*counts(rejections)),
+    } for category, rejections in row["correct_rejections"].items()} for seed, row in seed_table.items()}
+
+
 def recompute():
-    development = read_json(ROOT / "development/prospective_multiagent_results.json")
+    prospective = ROOT / "development/prospective_multiagent_results.json"
+    oeis = ROOT / "development/scalar_intake_feasibility.json"
+    development = read_json(prospective)
     panel = ROOT / "artifacts/weighted_panel"
     library, checks = replay_weighted_panel(panel / "lock.json", panel / "results.json")
+    inputs = (prospective, oeis, SPECIFICITY, ROOT / "pipeline.py", panel / "lock.json", panel / "results.json",
+              PILOT / "pilot100_results.json", PILOT / "node_only_ablation/evaluation_results.json",
+              RESPLIT / "ablation_results.json", RESPLIT / "results.json", PAIRED / "ledger.json",
+              PAIRED / "manifest.json", PAIRED / "a01-steady.json", PAIRED / "desk-agreement-existing.json",
+              PAIRED / "desk-agreement-reaudit.json", PAIRED / "replay.py")
+    paired_results = qualification()
+    part_a = part_a_statistics(development["part_a_prospective_scalar"])
     return {
         "schema": "eapg-grouped-statistics-v1",
+        "input_sha256": {path.relative_to(ROOT).as_posix(): file_digest(path) for path in inputs},
+        "script_sha256": file_digest(ROOT / "development/replay_grouped_statistics.py"),
+        "evidence_class": "replay-only",
         "methods": {
             "rate_intervals": "two-sided 95% Clopper-Pearson (binomial reference; no cluster adjustment)",
             "contrast_test": "exact two-sided sign flips of whole-cluster mean paired differences",
@@ -393,12 +437,13 @@ def recompute():
             "bootstrap_draws": DRAWS, "bootstrap_seed": SEED,
             "primary_multiplicity": "Holm; only the two declared paired qualification contrasts",
         },
-        "paired_qualification": qualification(),
+        "paired_qualification": paired_results,
         "secondary_desk_agreement": desk_agreement_statistics(),
         "frozen_pilot": pilot_statistics(),
-        "part_a": part_a_statistics(development["part_a_prospective_scalar"]),
+        "part_a": part_a,
+        "part_a_specificity_by_seed": specificity_statistics(read_json(SPECIFICITY), part_a, paired_results),
         "part_b": part_b_statistics(development["part_b_blinded_adjudication"]),
-        "oeis_development": oeis_statistics(read_json(ROOT / "development/scalar_intake_feasibility.json")),
+        "oeis_development": oeis_statistics(read_json(oeis)),
         "library_calibration": {
             "checks": checks,
             "growth_class_agreement": {
@@ -409,15 +454,67 @@ def recompute():
     }
 
 
+def render_macros(receipt):
+    def limits(values, signed=False):
+        return "[" + ", ".join(f"{v:+.1f}" if signed and v else f"{v:.1f}" for v in values) + "]"
+
+    boot = "group_bootstrap_95pct_delta_pp"
+    pilot = receipt["frozen_pilot"]
+    old = pilot["frozen_23_group_ranking"]
+    strict = pilot["strict_13_group_ablations"]
+    multi = strict["multi_candidate"]["adapted_constrained"]
+    full = "abstract_graph_minus_full_eapg"
+    part_a = receipt["part_a"]["scoped_minus_cfg_top1"]
+    part_b = receipt["part_b"]["contrasts"]["adjudicated_positives"]
+    desk = receipt["secondary_desk_agreement"]
+    nearest = receipt["oeis_development"]["nearest_preceding_cfg_minus_scoped_top1"]["left"]
+    specificity = receipt["part_a_specificity_by_seed"]["42"]
+    values = {
+        "GroupedFrozenAllCI": limits(old["all"][boot]),
+        "GroupedFrozenMultiCI": limits(old["multi_candidate"][boot]),
+        "GroupedHitsOnlyCI": limits(multi["abstract_graph_minus_abstract_hits_only"][boot], signed=True),
+        "GroupedFullAllCI": limits(strict["all"]["adapted_constrained"][full][boot], signed=True),
+        "GroupedFullMultiCI": limits(multi[full][boot], signed=True),
+        "GroupedRefinedCI": limits(pilot["strict_13_group_symbolic_comparisons"]["multi_candidate"]
+                                   ["abstract_graph_minus_symbolic_refined"][boot], signed=True),
+        "GroupedPartACoreCI": limits(part_a["core"][boot], signed=True),
+        "GroupedPartACoreRange": limits(part_a["core"]["leave_one_group_out_range_delta_pp"], signed=True),
+        "GroupedPartAOffSiteCI": limits(part_a["off_site"][boot], signed=True),
+        "GroupedPartBUnbiasedCI": limits(part_b["symbolic_unbiased"][boot], signed=True),
+        "GroupedPartBRefinedCI": limits(part_b["symbolic"][boot], signed=True),
+        "GroupedDeskExistingCI": limits(desk["existing"]["coarse"]["kappa_bootstrap_95pct_points"]),
+        "GroupedDeskReauditCI": limits(desk["reaudit"]["kappa_bootstrap_95pct_points"]),
+        "GroupedNearestCFG": f"{nearest['count']}/{nearest['total']}",
+        "GroupedBootstrapDraws": f"{DRAWS:,}",
+        "GroupedBootstrapSeed": str(SEED),
+    }
+    for label, category, outcome in (
+        ("QuadraticFalse", "sham_quadratic", "false_alerts"),
+        ("LinearFalse", "sham_linear", "false_alerts"),
+        ("SameGrowthFalse", "sham_all", "false_alerts"),
+        ("AppropriateFalse", "appropriate_superlinear", "false_alerts"),
+        ("AppropriateCorrect", "appropriate_superlinear", "correct_rejections"),
+        ("SwapFalse", "swap_sham", "false_alerts"),
+    ):
+        cell = specificity[category][outcome]
+        values[f"Grouped{label}"] = f"{cell['count']}/{cell['total']} = {cell['percent']:.1f}\\%"
+    return "% Generated by development/replay_grouped_statistics.py\n" + "".join(
+        f"\\newcommand{{\\{key}}}{{{value}}}\n" for key, value in sorted(values.items()))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true", help="Regenerate the grouped statistics receipt.")
     args = parser.parse_args()
     computed = recompute()
+    macros = render_macros(computed)
     if args.write:
         RECEIPT.write_text(json.dumps(computed, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        MACROS.write_bytes(macros.encode("utf-8"))
     elif computed != read_json(RECEIPT):
         raise ValueError("Grouped statistics receipt differs; regenerate with --write and inspect the changes.")
+    elif macros.encode("utf-8") != MACROS.read_bytes():
+        raise ValueError("Grouped statistics manuscript macros differ from the recomputed receipt.")
     else:
         print("Verified grouped statistics against public receipts (Holm family: 2 qualification contrasts).")
 

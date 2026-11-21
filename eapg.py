@@ -34,12 +34,12 @@ VERIFY_SKIPPED_STATUS = 2
 COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "verify_release.py"),
     ("-B", "development/replay_pilot_contrast.py"),
-    ("-B", "development/replay_grouped_statistics.py"),
     ("-B", "development/replay_pilot_resplit.py"),
     ("-B", "-S", "development/replay_resplit_ablation.py", "--verify-manuscript-table", "--quiet"),
     ("-B", "development/verify_weighted_panel.py"),
     ("-B", "-S", "development/verify_manuscript_pilot.py"),
     ("-B", "-S", "artifacts/paired_development/replay.py"),
+    ("-B", "development/replay_grouped_statistics.py"),
     ("-B", "-S", "development/test_prospective_multiagent_study.py"),
     ("-B", "development/test_assemble_pilot_resplit.py"),
     ("-B", "-S", "development/test_resplit_ablation.py"),
@@ -55,7 +55,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "development/specificity_sweeps.py", "--check"),
 )
 
-FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:8]
+FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:9]
 
 REPLAY_TARGETS: dict[str, tuple[str, ...]] = {
     "release": ("-B", "verify_release.py"),
