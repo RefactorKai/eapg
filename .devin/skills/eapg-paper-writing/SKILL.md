@@ -16,7 +16,7 @@ Follow `eapg-ground-rules` first.
 
 ## Numbers
 - Every number is a macro from a generated receipt file (WP-A3); never type digits for results. Write rates as `k/n` with the percentage and name the CI method nearby.
-- Report the limitations that hold today: Part A is not primary-sized (`primary_sized=false`), Part B shows no positive transfer (`positive_transfer_evidence=false`), and Part A specificity (alerts on quadratic shams, linear shams and appropriate controls; alerts on appropriate controls are correct detections, alerts on shams are false alerts). Take every count from the specificity receipt (WP-S1, checklist B7) through its macros; never restate counts from memory.
+- Report the limitations that hold today: Part A is not primary-sized (`primary_sized=false`), Part B shows no positive transfer (`positive_transfer_evidence=false`), and Part A specificity (alerts on quadratic shams, linear shams and appropriate controls; the protocol expects no alert on same-growth shams or appropriate superlinear controls, so every alert on either is a false alert and only a non-alert is a correct rejection). Take every count from the specificity receipt (WP-S1, checklist B7) through its macros; never restate counts from memory.
 - Name the unit of every rate (pair, equal-group, macro) and never mix them unlabelled.
 - Negative, indeterminate and excluded cases appear with counts and reasons.
 
