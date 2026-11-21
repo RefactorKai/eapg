@@ -20,6 +20,29 @@ All manuscript tables and empirical claims replay deterministically from committ
 
 > **Linux Host Sandbox Note:** [`development/gate1_sandbox.py`](../development/gate1_sandbox.py) requires an unprivileged Linux user with user-level `systemd` cgroup v2 (`memory.swap.max = 0`), `bwrap` with user namespaces, `prlimit`, and x86_64 `/usr/lib64`; `eapg.py --mode wsl2` expects AST deps under `$HOME/.local/share/eapg-phase2/deps` unless installed globally.
 
+For LaTeX, install `IEEEtran.cls` from Ubuntu's `texlive-publishers` package:
+`sudo apt-get install -y texlive-publishers poppler-utils`.
+
+Gate 1 host prerequisites (observed on a host, not receipted in this repository):
+stock Ubuntu 22.04 was observed to be insufficient (systemd 249 rejects
+`OOMPolicy=continue` on scopes, CPU delegation to `user@.service` is absent,
+Bubblewrap 0.6.1 lacks `--disable-userns`, and a session bus may be absent).
+Use the tested Bubblewrap 0.11.1 and GCC 15.2.0 toolchain (Python 3.14 is
+recorded for the Windows execution), a `user@.service` drop-in with
+`Delegate=cpu cpuset io memory pids`, and a `systemd-run` shim that drops
+`OOMPolicy`. Enable lingering with
+`loginctl enable-linger "$USER"` and set `XDG_RUNTIME_DIR=/run/user/$(id -u)`
+with a working user session bus. These tested versions and the Linux kernel
+6.6.87.2-microsoft-standard-WSL2 are recorded in
+`development/prospective_multiagent_results.json`
+(`execution_environment.primary_sandbox` and `cross_os_sandbox`);
+no systemd version is recorded there.
+
+The stale paired-study Markdown draft has been removed; use
+[`paired_mechanism.tex`](../manuscript/paired_mechanism.tex). Its old pathname in
+`artifacts/paired_development/historical-manifest.json` is a sealed historical
+inventory entry, not a link to a current manuscript.
+
 ---
 
 ## 2. Optional Environment Setup
