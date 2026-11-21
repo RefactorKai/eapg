@@ -19,6 +19,7 @@ RUN python3.14 -m venv /opt/eapg \
     && rm /tmp/requirements-ast.txt \
     && useradd --create-home --shell /bin/bash eapg \
     && install -d -o eapg -g eapg /workspace \
+    && systemctl mask systemd-sysctl.service \
     && install -d /etc/systemd/system/user@.service.d \
     && printf '[Service]\nDelegate=cpu cpuset io memory pids\n' >/etc/systemd/system/user@.service.d/delegate.conf
 
