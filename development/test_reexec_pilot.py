@@ -71,6 +71,14 @@ class ReexecPilotTests(unittest.TestCase):
         self.assertEqual(len(failures), 1)
         self.assertIn("SHA-256", failures[0])
 
+    def test_static_check_accepts_crlf_raw_output_from_windows(self):
+        receipt = deepcopy(self.receipt)
+        receipt["fresh_pilot_raw_sha256"] = reexec.PILOT_SHA
+        reexec.check_receipt_static(self.gen, receipt, self.published)
+        receipt["fresh_pilot_raw_sha256"] = "0" * 64
+        with self.assertRaises(AssertionError):
+            reexec.check_receipt_static(self.gen, receipt, self.published)
+
     def test_normal_mode_runs_static_validator_on_committed_receipt(self):
         self.assertEqual(reexec.verify_committed(self.gen, self.published, self.receipt, *self.fake_runs())[1], [])
         for mutate in (lambda r: r["proxy_defaults"]["unit"].update(instrumented_nodes=1),

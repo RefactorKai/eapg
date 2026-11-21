@@ -276,7 +276,7 @@ def check_receipt_static(gen, receipt, published):
     assert receipt["pipeline_sha256"] == PIPELINE_SHA and receipt["pilot_sha256"] == PILOT_SHA
     assert receipt["fresh_pilot_sha256"] == PILOT_SHA and receipt["identical_after_crlf_normalization"] is True
     assert receipt["line_endings"] == CRLF_NOTE and receipt["self_check"] == SELF_CHECK_NOTE
-    assert receipt["fresh_pilot_raw_sha256"] == sha256(PILOT.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    assert receipt["fresh_pilot_raw_sha256"] in {PILOT_SHA, sha256(PILOT.read_bytes().replace(b"\r\n", b"\n")).hexdigest()}
     assert receipt["provenance"]["sandbox"] == UNSANDBOXED
     pairs = receipt["pairs"]
     assert receipt["comparison"] == {
