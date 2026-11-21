@@ -19,7 +19,7 @@ Run from the repository root with Python 3.14.2, tree-sitter 0.26.0, tree-sitter
 python -B artifacts/phase1_correction/scaling/check_fast_recurrences.py
 ~~~
 
-The development sanitizer check recompiles the 25 frozen, corrected and instrumented fast programs with `-fsanitize=undefined -fno-sanitize-recover=all` at sizes 16 through 4096. Every corrected and instrumented run is clean, including N = 92, and every frozen program reports signed overflow from N = 92. The receipt is [`development/fast_recurrence_sanitizer_results.json`](../../../development/fast_recurrence_sanitizer_results.json).
+The development sanitizer check recompiles the 25 frozen, corrected and instrumented fast programs with `-fsanitize=undefined -fno-sanitize-recover=all` at N = 16, 24, 91, 92, 256, 1024 and 4096. Every corrected and instrumented run is clean, including N = 92, and every frozen program reports signed overflow from N = 92. The receipt is [`development/fast_recurrence_sanitizer_results.json`](../../../development/fast_recurrence_sanitizer_results.json).
 
 ~~~sh
 python -B development/check_fast_recurrence_sanitizer.py

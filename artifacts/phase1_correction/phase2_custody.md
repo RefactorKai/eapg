@@ -1,8 +1,8 @@
 # Phase 2 custody runner and local verification
 
-From the repository root, run the custody fixtures with Python and the installed tree-sitter packages. The full suite additionally requires Windows and MSYS2 GCC with signed-overflow trap support. It compiles and runs only built-in fixtures.
+From the repository root, run the custody fixtures with Python and the installed tree-sitter packages. The full suite additionally requires any g++ with C++17 support and signed-overflow trap support on PATH, and a Windows host because its quota fixtures use Job Objects; other hosts run `--static-only`. It compiles and runs only built-in fixtures.
 
-```powershell
+```sh
 python -X utf8 artifacts/phase1_correction/phase2_custody_and_probes.py --static-only
 python -X utf8 artifacts/phase1_correction/phase2_custody_and_probes.py
 ```

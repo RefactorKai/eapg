@@ -6,7 +6,7 @@ Technical reference for the Execution-Annotated Program Graphs pipeline, slicing
 
 ## 1. Normalization and Canonical AST Extraction
 
-1. **Pass 0 (`g++ -E -P` Preprocessing):** Extracts literal `#include` directives, runs `g++ -E -P -x c++ -` (normalizing `\r\n -> \n` on Windows MSYS2 so normalized SHA-256 digests match Linux GCC `15.2.0` byte-for-byte), and restores the original `#include` header lines.
+1. **Pass 0 (`g++ -E -P` Preprocessing):** Extracts literal `#include` directives, runs `g++ -E -P -x c++ -` (normalizing `\r\n -> \n` on Windows hosts — host provenance: the recorded Windows run used MSYS2 g++ — so normalized SHA-256 digests match Linux GCC `15.2.0` byte-for-byte), and restores the original `#include` header lines.
 2. **Pass 1 (`tree-sitter-cpp` Bracing):** Inserts `{ ... }` around single-statement `for`, `while`, `do`, and `if/else` bodies in strict reverse-byte order (`right-to-left`), then validates syntax via `g++ -std=c++17 -fsyntax-only`.
 3. **Canonical Macro-Nodes:** Pre-order traversal assigns IDs `N1`, `N2`, ... over function entries, loops, branches, calls, and state updates, partitioned by `MAIN_SCOPE`. Approximated `defs(u)` / `uses(u)` track reads and writes; prospective candidate [`2c95df0e`](../development/build_candidate.py) scopes container receiver bindings lexically and restricts inferred caller edges to visible free functions. Note that `for`-loop update expressions place all parsed identifiers into both `defs` and `uses` (`pipeline.py:312-314`).
 
