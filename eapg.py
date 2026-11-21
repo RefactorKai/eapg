@@ -32,6 +32,7 @@ RESULTS_MULTIAGENT = ROOT / "development/prospective_multiagent_results.json"
 COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "verify_release.py"),
     ("-B", "development/replay_pilot_contrast.py"),
+    ("-B", "development/replay_grouped_statistics.py"),
     ("-B", "development/replay_pilot_resplit.py"),
     ("-B", "-S", "development/replay_resplit_ablation.py", "--verify-manuscript-table", "--quiet"),
     ("-B", "development/verify_weighted_panel.py"),
@@ -50,7 +51,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "development/test_synthetic_study_score.py"),
 )
 
-FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:7]
+FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:8]
 
 REPLAY_TARGETS: dict[str, tuple[str, ...]] = {
     "release": ("-B", "verify_release.py"),
