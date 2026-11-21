@@ -18,7 +18,7 @@ From the canonical repository root, prepare each of the five selected slots with
 python -B -m development.paired_study.path_b_run prepare RANK NEW_DIRECTORY
 ```
 
-Use ranks 17, 60, 62, 71 and 137. Preparation prints the identifier for the prepared bundle. From the same directory in Ubuntu WSL2, use the registered isolated runner for all C++ builds and executions.
+Use ranks 17, 60, 62, 71 and 137. Preparation prints the identifier for the prepared bundle. From the same directory in Ubuntu WSL2, use the designated isolated runner for all C++ builds and executions.
 
 ```bash
 python3 -B development/probe_gate1.py --probes-only
@@ -53,6 +53,6 @@ Use Windows Python with the pinned `tree-sitter` and `tree-sitter-cpp` dependenc
 
 Preparation uses fresh output directories. When a driver fixes its preparation path, use a fresh copy with the same directory depth or reuse the existing hash-verified preparation. `p00464` uses the archived case directory under `.codex/private/p00464-milestone-2026-11-19/`. To rerun it, prepare and run `prepare.py` and `run.py` with Windows and Ubuntu Python, respectively, in a fresh sibling copy with the same depth. Its historic receipt includes intentionally volatile cgroup details. Compare output hashes, count rows, and screen evidence. The initial plan includes that receipt rather than re-executing the completed control.
 
-Each supported case isolates target, reference, restoration, and sham, checks plain and UBSan outputs against an independent oracle, and validates exact logical counts at O0/O2/O3. Blind inputs contain the original target and reference observations. The paired predictor checks its registered trace and source-map digests. At B.3, the `p03788` diagnostic records a disagreement between the previously accepted reference and the independent oracle, so the case has no fitted screen. HiGHS and OpenTelemetry stopped at B.3 during dependency-only preprocessing under the current Gate 1 single-translation-unit runner. The checks require the full solver or SDK runtime. The artifact records preprocessing diagnostics for these cases.
+Each supported case isolates target, reference, restoration, and sham, checks plain and UBSan outputs against an independent oracle, and validates exact logical counts at O0/O2/O3. Blind inputs contain the original target and reference observations. The paired predictor checks its pinned trace and source-map digests. At B.3, the `p03788` diagnostic records a disagreement between the previously accepted reference and the independent oracle, so the case has no fitted screen. HiGHS and OpenTelemetry stopped at B.3 during dependency-only preprocessing under the current Gate 1 single-translation-unit runner. The checks require the full solver or SDK runtime. The artifact records preprocessing diagnostics for these cases.
 
 The scopes in `tables.md` describe source-level operations. The artifact makes no runtime, held-out transfer, or natural ranking claim.
