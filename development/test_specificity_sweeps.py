@@ -21,9 +21,14 @@ class SpecificitySweepsTest(unittest.TestCase):
 
     def test_nominal_counts_have_denominators(self):
         seed42 = self.receipt["part_a"]["seed_table"]["42"]
-        self.assertEqual({k: (v["k"], v["n"]) for k, v in seed42.items() if k.startswith(("positive", "sham", "appr"))},
+        pairs = lambda table: {k: (v["k"], v["n"]) for k, v in table.items()}
+        self.assertEqual(pairs(seed42["alerts"]),
                          {"positive": (20, 20), "sham_quadratic": (5, 5), "sham_linear": (0, 5),
-                          "sham_all": (5, 10), "appropriate_superlinear": (10, 10)})
+                          "sham_all": (5, 10), "appropriate_superlinear": (10, 10),
+                          "swap_positive": (1, 1), "swap_sham": (1, 1)})
+        self.assertEqual(pairs(seed42["correct_rejections"]),
+                         {"sham_quadratic": (0, 5), "sham_linear": (5, 5), "sham_all": (5, 10),
+                          "appropriate_superlinear": (0, 10), "swap_sham": (0, 1)})
         paired = self.receipt["paired"]
         self.assertEqual((paired["nominal"]["alerts"]["k"], paired["nominal"]["alerts"]["n"]), (4, 13))
         self.assertEqual(paired["nominal_with_drop_largest"]["cases"], ["p00256", "p02346", "p03048"])

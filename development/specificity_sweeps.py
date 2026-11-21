@@ -3,11 +3,15 @@
 `--regenerate` re-profiles the 42 active Part A cases with a direct, unsandboxed
 runner (the programs are the repository's own synthetic families) and writes
 `specificity_sweeps_profiles.json`. Every other mode works offline: it refits
-those counters with the frozen release fitter, requires the nominal 0.70 result
+those counters with the prospective candidate (frozen `pipeline.py` plus the committed
+phase-2 patches, built by `build_candidate.py`), requires the nominal 0.70 result
 to reproduce the committed seed-42 alerts, symptoms and scoped slices in
 `prospective_multiagent_results.json`, sweeps the hidden-work gap threshold, and
 sweeps the paired slope and ratio thresholds over `artifacts/paired_development/ledger.json`.
 `--check` fails unless the committed receipt and plot match a fresh rebuild.
+
+Part A counts are reported two ways, kept apart: `alerts` (cases that alerted) and
+`correct_rejections` (shams and appropriate superlinear controls that did not alert).
 """
 
 import argparse
@@ -17,6 +21,7 @@ import ast
 import importlib.util
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -52,6 +57,7 @@ CATEGORIES = (
     ("swap_positive", lambda c: c["slot"] == "comparator_swap_positive"),
     ("swap_sham", lambda c: c["slot"] == "comparator_swap_sham"),
 )
+NEGATIVES = ("sham_quadratic", "sham_linear", "sham_all", "appropriate_superlinear", "swap_sham")
 
 
 def canonical(value):
@@ -123,6 +129,9 @@ def direct_execute(binary, data=b"", *, timeout=12, counter_scale=None):
 
 
 def regenerate(pipeline):
+    if os.name != "posix":
+        raise SystemExit("--regenerate runs the profiled binaries directly and needs a POSIX host; "
+                         "--check works offline on any OS.")
     m = study()
     m.install_windows_sandbox_adapter()
     import run_phase2_development as r2d
@@ -237,11 +246,8 @@ def part_a(pipeline, fitted):
     table = {}
     for seed in SEEDS:
         counts, _ = part_a_counts(fitted, tier_evaluator(pipeline, NOMINAL_GAP, NOMINAL_GAP), seed)
-        table[str(seed)] = {**counts, "specificity_shams": rate(counts["sham_all"]["n"] - counts["sham_all"]["k"],
-                                                               counts["sham_all"]["n"]),
-                            "specificity_appropriate": rate(counts["appropriate_superlinear"]["n"]
-                                                            - counts["appropriate_superlinear"]["k"],
-                                                            counts["appropriate_superlinear"]["n"])}
+        table[str(seed)] = {"alerts": counts, "correct_rejections": {
+            name: rate(counts[name]["n"] - counts[name]["k"], counts[name]["n"]) for name in NEGATIVES}}
     sweeps = {}
     for mode, pair in (("gap_only", lambda t: (t, NOMINAL_GAP)), ("gap_and_work_jump", lambda t: (t, t))):
         rows = []

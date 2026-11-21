@@ -3817,144 +3817,201 @@
  "part_a": {
   "seed_table": {
    "42": {
-    "appropriate_superlinear": {
-     "k": 10,
-     "n": 10,
-     "rate": 1.0
+    "alerts": {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     }
     },
-    "positive": {
-     "k": 20,
-     "n": 20,
-     "rate": 1.0
-    },
-    "sham_all": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "sham_linear": {
-     "k": 0,
-     "n": 5,
-     "rate": 0.0
-    },
-    "sham_quadratic": {
-     "k": 5,
-     "n": 5,
-     "rate": 1.0
-    },
-    "specificity_appropriate": {
-     "k": 0,
-     "n": 10,
-     "rate": 0.0
-    },
-    "specificity_shams": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "swap_positive": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
-    },
-    "swap_sham": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
+    "correct_rejections": {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     }
     }
    },
    "43": {
-    "appropriate_superlinear": {
-     "k": 10,
-     "n": 10,
-     "rate": 1.0
+    "alerts": {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     }
     },
-    "positive": {
-     "k": 20,
-     "n": 20,
-     "rate": 1.0
-    },
-    "sham_all": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "sham_linear": {
-     "k": 0,
-     "n": 5,
-     "rate": 0.0
-    },
-    "sham_quadratic": {
-     "k": 5,
-     "n": 5,
-     "rate": 1.0
-    },
-    "specificity_appropriate": {
-     "k": 0,
-     "n": 10,
-     "rate": 0.0
-    },
-    "specificity_shams": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "swap_positive": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
-    },
-    "swap_sham": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
+    "correct_rejections": {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     }
     }
    },
    "44": {
-    "appropriate_superlinear": {
-     "k": 10,
-     "n": 10,
-     "rate": 1.0
+    "alerts": {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     }
     },
-    "positive": {
-     "k": 20,
-     "n": 20,
-     "rate": 1.0
-    },
-    "sham_all": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "sham_linear": {
-     "k": 0,
-     "n": 5,
-     "rate": 0.0
-    },
-    "sham_quadratic": {
-     "k": 5,
-     "n": 5,
-     "rate": 1.0
-    },
-    "specificity_appropriate": {
-     "k": 0,
-     "n": 10,
-     "rate": 0.0
-    },
-    "specificity_shams": {
-     "k": 5,
-     "n": 10,
-     "rate": 0.5
-    },
-    "swap_positive": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
-    },
-    "swap_sham": {
-     "k": 1,
-     "n": 1,
-     "rate": 1.0
+    "correct_rejections": {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     }
     }
    }
   },
