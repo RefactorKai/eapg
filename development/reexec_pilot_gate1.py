@@ -29,7 +29,7 @@ class Gate1Subprocess:
             if not text or not capture_output:
                 raise ValueError("Expected captured text subprocess output")
             return self._run(command, input.encode("utf-8"), timeout, env)
-        except (RuntimeError, ValueError) as error:
+        except Exception as error:
             # The frozen preprocessing and execution paths catch Exception and fall back.
             raise SystemExit(f"Gate 1 failed for {command}: {error}") from error
 

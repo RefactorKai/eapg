@@ -1,5 +1,6 @@
 """Check the frozen pilot's Gate 1 subprocess and receipt contracts."""
 
+import subprocess
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -44,6 +45,20 @@ def test_failed_preprocessing_cannot_use_frozen_host_fallback(stages):
     gen.subprocess = reexec.Gate1Subprocess()
     with pytest.raises(SystemExit, match="Sandbox stage failed: exit=1"):
         gen.preprocess_pass_zero("int main() {}")
+
+
+@pytest.mark.parametrize("error", [
+    subprocess.TimeoutExpired(["systemctl"], 5),
+    subprocess.CalledProcessError(1, ["systemctl"]),
+    FileNotFoundError("bubblewrap missing"),
+])
+def test_supervision_errors_cannot_use_frozen_host_fallback(stages, error):
+    stages.invoke.side_effect = error
+    gen = reexec.pilot.load_frozen_pipeline()
+    gen.subprocess = reexec.Gate1Subprocess()
+    with pytest.raises(SystemExit, match="Gate 1 failed") as raised:
+        gen.preprocess_pass_zero("int main() {}")
+    assert raised.value.__cause__ is error
 
 
 def test_unrecognized_command_fails_without_running(stages):
