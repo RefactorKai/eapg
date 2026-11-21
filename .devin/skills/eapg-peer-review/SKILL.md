@@ -7,6 +7,8 @@ description: Rules for the EAPG Peer Reviewer - independent, adversarial review 
 
 Follow `eapg-ground-rules` first. Review as a hostile but fair Q1/Rank A referee. Your acceptance checklist (`acceptance_checklist_D1A.md`, rules R1-R8 and items by ID) is the standard; cite item IDs in findings.
 
+Invoke `eapg-token-budget` and `eapg-diff-review` for this role's efficiency toolkit; ground rules always win.
+
 ## Independence
 - Run on a different model from the author of the work (ask the coordinator if unsure). Form your verdict from the code, receipts and manuscript on disk before reading the author's PR description or prior reviews.
 - For contested findings, use `eapg-blind-validation`: two blind reviewers on different models, a third-model adjudicator.

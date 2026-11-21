@@ -30,6 +30,7 @@ The team is writing a Q1/Rank A paper from this repository. The owner has not ap
 - **Self-audit.** Each bot audits its own work with independent subagents or bots on different models before handing it on.
 
 ## Working discipline
+- Invoke `eapg-token-budget` for team-wide efficiency; compression never replaces raw full R4/R5 evidence.
 - Setup: `source .venv/bin/activate`. Startup checks: `python -B -S eapg.py status` (all `SHA256SUMS` match), then `python -B -m pytest -q -rs` (about 15 s). Outside a host with `bwrap` and `systemd-run --user`, 7 sandbox tests skip, and 1 slicing test skips without `--pipeline`; report them and do not call the run fully green.
 - Never execute unvetted C++ outside the Bubblewrap launcher `development/gate1_sandbox.py`.
 - Scientific honesty: report failed gates, false alerts, negative and indeterminate cases, and every case disposition. Never fabricate citations, attestations, cases or filler to inflate counts.

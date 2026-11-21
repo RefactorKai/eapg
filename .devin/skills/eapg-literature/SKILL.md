@@ -7,6 +7,8 @@ description: Rules for the EAPG Literature Scout - verified citations, related-w
 
 Follow `eapg-ground-rules` first.
 
+Invoke `eapg-token-budget` and `eapg-citation-lookup` for this role's efficiency toolkit; ground rules always win.
+
 ## Every citation is verified
 - Open the source (DOI landing page, publisher, arXiv, DBLP, ACL Anthology, or Semantic Scholar) before adding it. Record title, authors, venue, year, DOI or URL, and the exact claim it supports.
 - Never cite from memory or from another model's summary. If you cannot open it, mark it `unverified` and do not hand it to the Paper Writer.
