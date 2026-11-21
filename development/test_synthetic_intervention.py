@@ -23,10 +23,14 @@ def _has_gate1_sandbox() -> bool:
         return False
     if not all(shutil.which(cmd) for cmd in ("systemd-run", "systemctl", "bwrap")):
         return False
-    return subprocess.run(["systemctl", "--user", "show-environment"], capture_output=True).returncode == 0
+    if subprocess.run(["systemctl", "--user", "show-environment"], capture_output=True).returncode:
+        return False
+    return subprocess.run(["bwrap", "--unshare-user", "--ro-bind", "/", "/", "true"],
+                          capture_output=True).returncode == 0
 
 
 HAS_GATE1_SANDBOX = _has_gate1_sandbox()
+GATE1_SKIP_REASON = "Requires Linux user systemd and Bubblewrap with working user namespaces"
 
 
 def intervention(original, removed, inserted, *, at=None, alternatives=()):
@@ -61,7 +65,7 @@ class InterventionTest(unittest.TestCase):
             cls._tempdir.cleanup()
             cls._tempdir = None
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_changed_byte_resolves_inside_braceless_statement(self):
         source = r'''#include <cstdio>
 int main() {
@@ -103,14 +107,14 @@ int main() {
         with self.assertRaisesRegex(ValueError, "source digest mismatch"):
             verify_splice(record)
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_rejects_two_sibling_statements_in_one_splice(self):
         source = "int main() { int x = 1; x = 10; x += 11; return x; }"
         record = intervention(source, "10; x += 11", "15; x += 16")
         with self.assertRaisesRegex(ValueError, "one expression or statement"):
             resolve_intervention(self.pipeline, record)
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_rejects_equivalent_span_of_a_different_token(self):
         record = intervention("int main() { int x = 10; return x + 25; }", "10", "15")
         start = record["edited"].encode().index(b"25")
@@ -118,7 +122,7 @@ int main() {
         with self.assertRaisesRegex(ValueError, "different tokens"):
             resolve_intervention(self.pipeline, record)
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_macro_directive_retains_nodes_for_unresolved_reference(self):
         source = "#define NUMBER 10\nint main() { int x = NUMBER; return x; }"
         record = intervention(source, "NUMBER", "NUMBER + 5", at=source.encode().rindex(b"NUMBER"))
@@ -128,14 +132,14 @@ int main() {
         self.assertTrue(result["canonical_nodes"])
         self.assertTrue(result["normalized_source_sha256"])
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_directive_change_is_not_a_single_code_statement_edit(self):
         source = "#define NUMBER 10\nint main() { int x = NUMBER; return x; }"
         record = intervention(source, "10", "15")
         with self.assertRaisesRegex(ValueError, "one expression or statement"):
             resolve_intervention(self.pipeline, record)
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_builtin_expansion_yields_nonconserving_origin(self):
         source = "int main() { int x = 10; return x + __LINE__; }"
         record = intervention(source, "10", "15")
@@ -143,7 +147,7 @@ int main() {
         self.assertEqual(result["reference_reason"], "pass_zero_changed_token_stream")
         self.assertEqual(result["accepted_node_ids"], [])
 
-    @unittest.skipUnless(HAS_GATE1_SANDBOX, "Requires Linux systemd --user + Bubblewrap Gate 1 sandbox")
+    @unittest.skipUnless(HAS_GATE1_SANDBOX, GATE1_SKIP_REASON)
     def test_equal_canonical_owners_remain_unresolved(self):
         source = "int main() { int x = 0; x = 10; return x; }"
         record = intervention(source, "10", "15")
