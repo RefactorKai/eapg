@@ -22,5 +22,6 @@ fork PRs. The container has networking disabled and no host mounts; only the
 tracked tree at `HEAD` is copied in. Output files are discarded with the
 container; copy out only intentional artifacts when adapting it for experiments.
 
-For another trusted experiment, pass its command to the same launcher. CI
-also uses it to re-execute pilot Table I with `eapg.py verify --mode reexec`.
+For another trusted experiment, pass its command to the same launcher. The
+Gate 1 job has a hook for WP-A1 once its C++ executions use the sandbox; the
+current `verify --mode reexec` uses the frozen pipeline's direct subprocesses.

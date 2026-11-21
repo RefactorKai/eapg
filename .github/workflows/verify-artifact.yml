@@ -46,5 +46,5 @@ jobs:
           python --version
           kpsewhich IEEEtran.cls
           python -B development/check_gate1_ci.py
-          python -B eapg.py verify --mode reexec
+          # Add WP-A1 re-execution here once it runs C++ through Gate 1.
           CI
