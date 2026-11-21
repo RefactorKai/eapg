@@ -46,6 +46,9 @@ PROXY_DEFAULTS = {
     "linear": "archived pilot (frozen pipeline.py): member calls on undeclared or non-container receivers weigh size()",
     "unit": "prospective default for undeclared receivers: member calls on receivers not declared as containers weigh 1; all else as archived",
 }
+UNSANDBOXED = ("not sandboxed: every preprocess, compile and binary run used frozen pipeline.py's own subprocess "
+               "calls on the host, outside development/gate1_sandbox.py; a sandboxed rerun is deferred to the "
+               "WP-F1 container (m9)")
 STRIP_KEYS = ("slow_code", "fast_code", "template_fingerprints")
 
 
@@ -107,7 +110,7 @@ def toolchain():
             return None
     gxx = subprocess.run(["g++", "-dumpfullversion"], capture_output=True, text=True, check=True).stdout.strip()
     return {"compiler": f"g++ {gxx}", "flags": ["-std=c++17", "-O2"], "python": platform.python_version(),
-            "platform": sys.platform, "kernel": platform.release(),
+            "platform": sys.platform, "kernel": platform.release(), "sandbox": UNSANDBOXED,
             "parser": {name: pkg(name) for name in ("tree-sitter", "tree-sitter-cpp")}}
 
 
@@ -267,6 +270,7 @@ def check_receipt_static(gen, receipt, published):
     assert receipt["schema"] == SCHEMA
     assert receipt["pipeline_sha256"] == PIPELINE_SHA and receipt["pilot_sha256"] == PILOT_SHA
     assert receipt["fresh_pilot_sha256"] == PILOT_SHA and receipt["byte_identical"] is True
+    assert receipt["provenance"]["sandbox"] == UNSANDBOXED
     pairs = receipt["pairs"]
     assert receipt["comparison"] == {
         "vs_published": summarize(compare_records(published, published)),

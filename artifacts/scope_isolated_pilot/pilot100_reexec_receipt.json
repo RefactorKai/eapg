@@ -17,13 +17,14 @@
     "python": "3.14.10",
     "platform": "linux",
     "kernel": "6.8.0-1060-aws",
+    "sandbox": "not sandboxed: every preprocess, compile and binary run used frozen pipeline.py's own subprocess calls on the host, outside development/gate1_sandbox.py; a sandboxed rerun is deferred to the WP-F1 container (m9)",
     "parser": {
       "tree-sitter": "0.26.0",
       "tree-sitter-cpp": "0.23.4"
     },
     "elapsed_seconds": {
-      "linear": 12.5,
-      "unit": 12.1
+      "linear": 12.2,
+      "unit": 12.7
     }
   },
   "comparison": {
