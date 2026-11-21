@@ -141,6 +141,7 @@ def test_ordinary_verify_rejects_repinned_mutations(public_checkout, monkeypatch
             assert ledger["rows"][0]["phase_a"]["disposition"] == "eligible"
             ledger["rows"][0]["phase_a"]["disposition"] = "excluded"
         else:
+            assert ledger["totals"]["verified_growth_evaluation"] == 5
             ledger["totals"]["verified_growth_evaluation"] -= 1
         ledger_sha = changed[prefix + ledger_path.name] = write_receipt(ledger_path, ledger)
         for name, pin in manifest["pins"]["results"].items():
