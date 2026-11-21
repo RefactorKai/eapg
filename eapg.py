@@ -93,7 +93,9 @@ def _run_verify_check(args: tuple[str, ...], *, verbose: bool) -> str | None:
     script_index = next(i for i, arg in enumerate(args) if not arg.startswith("-"))
     script = args[script_index]
     tests = Path(script).name.startswith("test_")
-    reexec = tests or script in {"development/build_candidate.py", "development/probe_gate1.py"}
+    reexec = (tests and script != "development/test_prospective_multiagent_study.py") or script in {
+        "development/audit_pilot_baseline_domain.py", "development/build_candidate.py", "development/probe_gate1.py",
+    }
     print(f"{'Re-executed' if reexec else 'Replay-only'}: {script}", flush=True)
     if tests:
         args = (*args[:script_index], "development/verify_unittest.py", *args[script_index:])
@@ -139,7 +141,7 @@ def _run_linux_checks(*, with_probes: bool, verbose: bool) -> list[str]:
         return [script for cmd in linux_cmds if (script := _run_verify_check(cmd, verbose=verbose))]
 
 
-def cmd_verify(args: argparse.Namespace) -> int:
+def cmd_verify(args: argparse.Namespace, *, summarize_success: bool = True) -> int:
     mode = args.mode
     if mode == "auto":
         mode = "linux" if sys.platform.startswith("linux") else "common"
@@ -160,23 +162,26 @@ def cmd_verify(args: argparse.Namespace) -> int:
             "set -e",
             'export PYTHONPATH="$HOME/.local/share/eapg-phase2/deps"',
             f'cd "{wsl_root}"',
-            "python3 -B eapg.py verify --mode linux" + (" --with-probes" if args.with_probes else "")
-            + (" --allow-skips" if args.allow_skips else "") + (" --verbose" if args.verbose else ""),
+            "python3 -B -c 'import eapg; raise SystemExit(eapg.cmd_verify("
+            "eapg.build_parser().parse_args(), summarize_success=False))' verify --mode linux"
+            + (" --with-probes" if args.with_probes else "") + (" --verbose" if args.verbose else ""),
             "",
         ])
         cmd = ["wsl", "-d", args.wsl_distro, "--", "bash", "-s"]
         status = subprocess.run(cmd, input=script.encode("utf-8")).returncode
         if status not in (0, VERIFY_SKIPPED_STATUS):
             raise subprocess.CalledProcessError(status, cmd)
-        if not skipped:
-            return status
+        if status == VERIFY_SKIPPED_STATUS:
+            skipped.append("the WSL Linux suite (see above)")
+        ran += " + wsl2_linux"
     else:
         print(f"Not selected in {mode} mode: Linux/WSL2 checks, including paired intervention sandbox tests.")
 
     if skipped:
         print(f"SKIPPED: tests in {', '.join(skipped)} ({mode}; all non-skipped checks passed).")
         return 0 if args.allow_skips else VERIFY_SKIPPED_STATUS
-    print(f"Verified selected EAPG artifact checks ({mode}: {ran}).")
+    if summarize_success:
+        print(f"Verified selected EAPG artifact checks ({mode}: {ran}).")
     return 0
 
 
