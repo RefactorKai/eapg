@@ -1,0 +1,6785 @@
+{
+ "inputs": {
+  "committed_part_a_sha256": "2016611a8d142b0068b5e5c03ed9f685a0196c6159510b808ca2135c7928cf81",
+  "paired_ledger_sha256": "e9b5b65c26727538b887047fd16b863850619783e111957a95dcec2ed2c05345",
+  "pipeline_sha256": "2c95df0e5676e8b19464457adfb34cdf85a8a10cc0dca8b70557a1d587ced383",
+  "profiles_sha256": "6568e7a6b14a67195998f843b07f703830a599701ceca757dc642efe5ef2ac91"
+ },
+ "nominal": {
+  "gap": 0.7,
+  "ratio": 1.5,
+  "slope": 0.5
+ },
+ "paired": {
+  "fits": [
+   {
+    "case_id": "p02316",
+    "intake_rank": 1,
+    "min_drop_largest_slope": null,
+    "min_ratio": 1972.853515625,
+    "min_slope": -1.0,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "p00464",
+    "intake_rank": 3,
+    "min_drop_largest_slope": null,
+    "min_ratio": 5.748084942319984,
+    "min_slope": -1.9474393945226374,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "p00502",
+    "intake_rank": 6,
+    "min_drop_largest_slope": null,
+    "min_ratio": 65.6640625,
+    "min_slope": -1.0000000000000002,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "p03592",
+    "intake_rank": 8,
+    "min_drop_largest_slope": null,
+    "min_ratio": 1.0038909914428586,
+    "min_slope": -0.028881929419456946,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "p02994",
+    "intake_rank": 11,
+    "min_drop_largest_slope": null,
+    "min_ratio": 1.0,
+    "min_slope": 0.0,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "p00256",
+    "intake_rank": 17,
+    "min_drop_largest_slope": 0.9221693673524215,
+    "min_ratio": 119.15384615384616,
+    "min_slope": 0.9373833941104595,
+    "nominal_alert": true,
+    "origin": "new"
+   },
+   {
+    "case_id": "p02346",
+    "intake_rank": 60,
+    "min_drop_largest_slope": 0.726329646209402,
+    "min_ratio": 18.828125,
+    "min_slope": 0.6415024578378375,
+    "nominal_alert": true,
+    "origin": "new"
+   },
+   {
+    "case_id": "p03048",
+    "intake_rank": 62,
+    "min_drop_largest_slope": 1.9800197057325248,
+    "min_ratio": 116736.11111111111,
+    "min_slope": 1.9840462443816114,
+    "nominal_alert": true,
+    "origin": "new"
+   },
+   {
+    "case_id": "p03999",
+    "intake_rank": 71,
+    "min_drop_largest_slope": null,
+    "min_ratio": 22.0,
+    "min_slope": 1.3456060140429777,
+    "nominal_alert": true,
+    "origin": "new"
+   },
+   {
+    "case_id": "rbock/sqlpp11",
+    "intake_rank": 78,
+    "min_drop_largest_slope": null,
+    "min_ratio": 1.5,
+    "min_slope": 0.0,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "wisdompeak/LeetCode",
+    "intake_rank": 79,
+    "min_drop_largest_slope": null,
+    "min_ratio": 1.0015202381706467,
+    "min_slope": -0.010324461136534976,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "fmtlib/fmt",
+    "intake_rank": 86,
+    "min_drop_largest_slope": null,
+    "min_ratio": 2.0,
+    "min_slope": 0.0,
+    "nominal_alert": false,
+    "origin": "historical_control"
+   },
+   {
+    "case_id": "wisdompeak/LeetCode",
+    "intake_rank": 137,
+    "min_drop_largest_slope": null,
+    "min_ratio": 7.780221462468745,
+    "min_slope": 0.1299755165309723,
+    "nominal_alert": false,
+    "origin": "new"
+   }
+  ],
+  "nominal": {
+   "alerts": {
+    "k": 4,
+    "n": 13,
+    "rate": 0.3077
+   },
+   "cases": [
+    "p00256",
+    "p02346",
+    "p03048",
+    "p03999"
+   ],
+   "historical_control_alerts": {
+    "k": 0,
+    "n": 8,
+    "rate": 0.0
+   }
+  },
+  "nominal_with_drop_largest": {
+   "alerts": {
+    "k": 3,
+    "n": 13,
+    "rate": 0.2308
+   },
+   "cases": [
+    "p00256",
+    "p02346",
+    "p03048"
+   ],
+   "historical_control_alerts": {
+    "k": 0,
+    "n": 8,
+    "rate": 0.0
+   }
+  },
+  "ratio_sweep": [
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.0
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.122
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.2589
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.4125
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.5
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.5849
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.7783
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1.9953
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.2387
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.5119
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.8184
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.1623
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.5481
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.9811
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 4.4668
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5.0119
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5.6234
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 6.3096
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7.0795
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7.9433
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 8.9125
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 10.0
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 11.2202
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 12.5893
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 14.1254
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 15.8489
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 17.7828
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 19.9526
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 22.3872
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 25.1189
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 28.1838
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 31.6228
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 35.4813
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 39.8107
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 44.6684
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 50.1187
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 56.2341
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 63.0957
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 70.7946
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 79.4328
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 89.1251
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 100.0
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 112.2018
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 125.8925
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 141.2538
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 158.4893
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 177.8279
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 199.5262
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 223.8721
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 251.1886
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 281.8383
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 316.2278
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 354.8134
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 398.1072
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 446.6836
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 501.1872
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 562.3413
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 630.9573
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 707.9458
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 794.3282
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 891.2509
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1000.0
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1122.0185
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1258.9254
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1412.5375
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1584.8932
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1778.2794
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1995.2623
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2238.7211
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2511.8864
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2818.3829
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3162.2777
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3548.1339
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3981.0717
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 4466.8359
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5011.8723
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5623.4133
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 6309.5734
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7079.4578
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7943.2823
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 8912.5094
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 10000.0
+   }
+  ],
+  "ratio_sweep_slope_0": [
+   {
+    "alerts": {
+     "k": 8,
+     "n": 13,
+     "rate": 0.6154
+    },
+    "cases": [
+     "p02994",
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 3,
+     "n": 8,
+     "rate": 0.375
+    },
+    "ratio": 1.0
+   },
+   {
+    "alerts": {
+     "k": 7,
+     "n": 13,
+     "rate": 0.5385
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 2,
+     "n": 8,
+     "rate": 0.25
+    },
+    "ratio": 1.122
+   },
+   {
+    "alerts": {
+     "k": 7,
+     "n": 13,
+     "rate": 0.5385
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 2,
+     "n": 8,
+     "rate": 0.25
+    },
+    "ratio": 1.2589
+   },
+   {
+    "alerts": {
+     "k": 7,
+     "n": 13,
+     "rate": 0.5385
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 2,
+     "n": 8,
+     "rate": 0.25
+    },
+    "ratio": 1.4125
+   },
+   {
+    "alerts": {
+     "k": 7,
+     "n": 13,
+     "rate": 0.5385
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 2,
+     "n": 8,
+     "rate": 0.25
+    },
+    "ratio": 1.5
+   },
+   {
+    "alerts": {
+     "k": 6,
+     "n": 13,
+     "rate": 0.4615
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 1,
+     "n": 8,
+     "rate": 0.125
+    },
+    "ratio": 1.5849
+   },
+   {
+    "alerts": {
+     "k": 6,
+     "n": 13,
+     "rate": 0.4615
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 1,
+     "n": 8,
+     "rate": 0.125
+    },
+    "ratio": 1.7783
+   },
+   {
+    "alerts": {
+     "k": 6,
+     "n": 13,
+     "rate": 0.4615
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 1,
+     "n": 8,
+     "rate": 0.125
+    },
+    "ratio": 1.9953
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.2387
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.5119
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2.8184
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.1623
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.5481
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3.9811
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 4.4668
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5.0119
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5.6234
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 6.3096
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7.0795
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7.9433
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 8.9125
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 10.0
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 11.2202
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 12.5893
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 14.1254
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 15.8489
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 17.7828
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 19.9526
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 22.3872
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 25.1189
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 28.1838
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 31.6228
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 35.4813
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 39.8107
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 44.6684
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 50.1187
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 56.2341
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 63.0957
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 70.7946
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 79.4328
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 89.1251
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 100.0
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p00256",
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 112.2018
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 125.8925
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 141.2538
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 158.4893
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 177.8279
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 199.5262
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 223.8721
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 251.1886
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 281.8383
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 316.2278
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 354.8134
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 398.1072
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 446.6836
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 501.1872
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 562.3413
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 630.9573
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 707.9458
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 794.3282
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 891.2509
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1000.0
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1122.0185
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1258.9254
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1412.5375
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1584.8932
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1778.2794
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 1995.2623
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2238.7211
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2511.8864
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 2818.3829
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3162.2777
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3548.1339
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 3981.0717
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 4466.8359
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5011.8723
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 5623.4133
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 6309.5734
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7079.4578
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 7943.2823
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 8912.5094
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "ratio": 10000.0
+   }
+  ],
+  "sensitivity": {
+   "p03999": {
+    "alerts_at_nominal": true,
+    "alerts_when_drop_largest_required": false,
+    "min_drop_largest_slope": null,
+    "min_ratio": 22.0,
+    "min_slope": 1.3456060140429777
+   },
+   "sqlpp11": {
+    "alerts_at_slope_0_ratio_1_50": true,
+    "alerts_at_slope_0_ratio_1_55": false,
+    "min_ratio": 1.5,
+    "min_slope": 0.0
+   }
+  },
+  "slope_sweep": [
+   {
+    "alerts": {
+     "k": 7,
+     "n": 13,
+     "rate": 0.5385
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "rbock/sqlpp11",
+     "fmtlib/fmt",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 2,
+     "n": 8,
+     "rate": 0.25
+    },
+    "slope": 0.0
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.05
+   },
+   {
+    "alerts": {
+     "k": 5,
+     "n": 13,
+     "rate": 0.3846
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999",
+     "wisdompeak/LeetCode"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.1
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.15
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.2
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.25
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.3
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.35
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.4
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.45
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.5
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.55
+   },
+   {
+    "alerts": {
+     "k": 4,
+     "n": 13,
+     "rate": 0.3077
+    },
+    "cases": [
+     "p00256",
+     "p02346",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.6
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.65
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.7
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.75
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.8
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.85
+   },
+   {
+    "alerts": {
+     "k": 3,
+     "n": 13,
+     "rate": 0.2308
+    },
+    "cases": [
+     "p00256",
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.9
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 0.95
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.0
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.05
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.1
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.15
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.2
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.25
+   },
+   {
+    "alerts": {
+     "k": 2,
+     "n": 13,
+     "rate": 0.1538
+    },
+    "cases": [
+     "p03048",
+     "p03999"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.3
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.35
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.4
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.45
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.5
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.55
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.6
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.65
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.7
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.75
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.8
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.85
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.9
+   },
+   {
+    "alerts": {
+     "k": 1,
+     "n": 13,
+     "rate": 0.0769
+    },
+    "cases": [
+     "p03048"
+    ],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 1.95
+   },
+   {
+    "alerts": {
+     "k": 0,
+     "n": 13,
+     "rate": 0.0
+    },
+    "cases": [],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 2.0
+   },
+   {
+    "alerts": {
+     "k": 0,
+     "n": 13,
+     "rate": 0.0
+    },
+    "cases": [],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 2.05
+   },
+   {
+    "alerts": {
+     "k": 0,
+     "n": 13,
+     "rate": 0.0
+    },
+    "cases": [],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 2.1
+   },
+   {
+    "alerts": {
+     "k": 0,
+     "n": 13,
+     "rate": 0.0
+    },
+    "cases": [],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 2.15
+   },
+   {
+    "alerts": {
+     "k": 0,
+     "n": 13,
+     "rate": 0.0
+    },
+    "cases": [],
+    "historical_control_alerts": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0
+    },
+    "slope": 2.2
+   }
+  ]
+ },
+ "part_a": {
+  "seed_table": {
+   "42": {
+    "appropriate_superlinear": {
+     "k": 10,
+     "n": 10,
+     "rate": 1.0
+    },
+    "positive": {
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "sham_all": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "sham_linear": {
+     "k": 0,
+     "n": 5,
+     "rate": 0.0
+    },
+    "sham_quadratic": {
+     "k": 5,
+     "n": 5,
+     "rate": 1.0
+    },
+    "specificity_appropriate": {
+     "k": 0,
+     "n": 10,
+     "rate": 0.0
+    },
+    "specificity_shams": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "swap_positive": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    },
+    "swap_sham": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    }
+   },
+   "43": {
+    "appropriate_superlinear": {
+     "k": 10,
+     "n": 10,
+     "rate": 1.0
+    },
+    "positive": {
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "sham_all": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "sham_linear": {
+     "k": 0,
+     "n": 5,
+     "rate": 0.0
+    },
+    "sham_quadratic": {
+     "k": 5,
+     "n": 5,
+     "rate": 1.0
+    },
+    "specificity_appropriate": {
+     "k": 0,
+     "n": 10,
+     "rate": 0.0
+    },
+    "specificity_shams": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "swap_positive": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    },
+    "swap_sham": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    }
+   },
+   "44": {
+    "appropriate_superlinear": {
+     "k": 10,
+     "n": 10,
+     "rate": 1.0
+    },
+    "positive": {
+     "k": 20,
+     "n": 20,
+     "rate": 1.0
+    },
+    "sham_all": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "sham_linear": {
+     "k": 0,
+     "n": 5,
+     "rate": 0.0
+    },
+    "sham_quadratic": {
+     "k": 5,
+     "n": 5,
+     "rate": 1.0
+    },
+    "specificity_appropriate": {
+     "k": 0,
+     "n": 10,
+     "rate": 0.0
+    },
+    "specificity_shams": {
+     "k": 5,
+     "n": 10,
+     "rate": 0.5
+    },
+    "swap_positive": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    },
+    "swap_sham": {
+     "k": 1,
+     "n": 1,
+     "rate": 1.0
+    }
+   }
+  },
+  "sweeps_seed42": {
+   "gap_and_work_jump": [
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.2
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.25
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.3
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.35
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.4
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.45
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.5
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.55
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.6
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.65
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.7
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.75
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.8
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.85
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.9
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.95
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 7,
+      "n": 10,
+      "rate": 0.7
+     },
+     "positive": {
+      "k": 8,
+      "n": 20,
+      "rate": 0.4
+     },
+     "sham_all": {
+      "k": 1,
+      "n": 10,
+      "rate": 0.1
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 1,
+      "n": 5,
+      "rate": 0.2
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.0
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.05
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.1
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.15
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.2
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.25
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.3
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.35
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.4
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.45
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.5
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.55
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.6
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.65
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.7
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.75
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.8
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.85
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.9
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 1.95
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "positive": {
+      "k": 0,
+      "n": 20,
+      "rate": 0.0
+     },
+     "sham_all": {
+      "k": 0,
+      "n": 10,
+      "rate": 0.0
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "swap_positive": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "swap_sham": {
+      "k": 0,
+      "n": 1,
+      "rate": 0.0
+     },
+     "threshold": 2.0
+    }
+   ],
+   "gap_only": [
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.2
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.25
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.3
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.35
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.4
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.45
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.5
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.55
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.6
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.65
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.7
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.75
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.8
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.85
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.9
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 0.95
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.0
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.05
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.1
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.15
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.2
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.25
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.3
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.35
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.4
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.45
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.5
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.55
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.6
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.65
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.7
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.75
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.8
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.85
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.9
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 1.95
+    },
+    {
+     "appropriate_superlinear": {
+      "k": 10,
+      "n": 10,
+      "rate": 1.0
+     },
+     "positive": {
+      "k": 20,
+      "n": 20,
+      "rate": 1.0
+     },
+     "sham_all": {
+      "k": 5,
+      "n": 10,
+      "rate": 0.5
+     },
+     "sham_linear": {
+      "k": 0,
+      "n": 5,
+      "rate": 0.0
+     },
+     "sham_quadratic": {
+      "k": 5,
+      "n": 5,
+      "rate": 1.0
+     },
+     "swap_positive": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "swap_sham": {
+      "k": 1,
+      "n": 1,
+      "rate": 1.0
+     },
+     "threshold": 2.0
+    }
+   ]
+  }
+ },
+ "part_a_binding": {
+  "active_cases": 42,
+  "seed42_alert_symptom_slice_reproduced": 42
+ },
+ "schema": "eapg-wp-s1-specificity-sweeps-v1"
+}

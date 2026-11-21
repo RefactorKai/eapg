@@ -51,6 +51,7 @@ COMMON_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("-B", "development/test_synthetic_trace.py"),
     ("-B", "development/test_synthetic_study_predict.py"),
     ("-B", "development/test_synthetic_study_score.py"),
+    ("-B", "development/specificity_sweeps.py", "--check"),
 )
 
 FAST_VERIFY_COMMANDS: tuple[tuple[str, ...], ...] = COMMON_VERIFY_COMMANDS[:8]
