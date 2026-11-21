@@ -1,0 +1,402 @@
+[
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03073/s944527466/s057094994"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03854/s854485541/s466230115"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03557/s545845908/s500886096"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02621/s839859842/s121300514"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03219/s223831948/s720327342"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02821/s535893549/s120175636"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03709/s500527563/s164397358"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03041/s767125207/s990297271"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03048/s420717038/s145983606"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00641/s116075191/s727442162"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02982/s317088022/s989257321"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03358/s429108955/s285498912"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02992/s207437732/s167757015"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02608/s535632421/s604715759"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02621/s371151512/s036336652"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02931/s070395504/s008515639"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03151/s027769035/s753883047"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02744/s651452380/s502716837"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00450/s622452694/s563103329"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03044/s057820809/s473499896"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p01137/s139530318/s749399859"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02786/s600177984/s389248017"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02698/s211479344/s403619204"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03671/s583594414/s928176966"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03913/s201284595/s021151063"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02831/s463711677/s495349570"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03056/s576675140/s260614127"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02626/s054469875/s343427298"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02889/s467581515/s915029828"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03940/s885903497/s147115486"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03857/s479535820/s725433967"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02346/s319767126/s646185124"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00276/s211333661/s903758156"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02753/s703954011/s294562994"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03386/s127110233/s017276027"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03000/s202825096/s510626675"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03971/s169416362/s969518873"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03634/s132373129/s204912219"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03999/s574549949/s442009562"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03291/s478196031/s937000400"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02687/s815769521/s876809775"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03165/s686051125/s547014890"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02346/s224020912/s975686013"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02958/s904379265/s111884522"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02842/s783941658/s661200410"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03947/s153128956/s332497841"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01003/s931685917/s895368188"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02753/s145503082/s246234492"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02317/s596150803/s484732110"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02851/s851706560/s132646934"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03640/s596279591/s206057535"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03720/s291853304/s778701785"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02343/s360352128/s617563246"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03967/s317761449/s013382445"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02468/s188013336/s432535689"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03425/s706170487/s495916081"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03823/s708505675/s905961492"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03291/s015429635/s385193246"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p04046/s092969443/s604334796"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02687/s541164893/s478299631"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03277/s132363719/s710697060"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03857/s165346485/s187922999"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02744/s303977592/s575162399"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03048/s420717038/s972719363"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02915/s964593269/s562950671"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03709/s449145242/s382873088"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03343/s175035538/s553297150"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03425/s791500868/s200995798"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02776/s611053190/s352587433"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03189/s588522197/s984314980"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03073/s638768291/s491859364"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03816/s998003134/s708768623"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02346/s227050228/s116464003"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03017/s914254975/s031649517"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03415/s424542483/s261296138"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02942/s330211182/s317482825"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03947/s820703564/s053507347"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03709/s147601285/s541058496"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02889/s227116662/s560302168"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02889/s739286812/s414536267"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03709/s104911911/s745826610"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03019/s207142357/s377354978"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03779/s641520160/s410275149"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03971/s699674600/s338689147"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00653/s220015807/s718091445"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02795/s617372167/s368602813"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03333/s841318328/s806230457"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03700/s998476348/s450968526"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02744/s639903422/s124825274"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00502/s330432383/s311268541"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03415/s241610581/s756407033"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p02608/s204899295/s337381529"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02920/s004532079/s144566875"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03593/s986310184/s207919771"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03455/s099209893/s183516016"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03788/s569329415/s847404729"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00537/s941224540/s078018822"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03017/s344947590/s031649517"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03947/s714208955/s053507347"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03034/s412101907/s346480885"
+  }
+]
