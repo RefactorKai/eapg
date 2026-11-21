@@ -32,7 +32,7 @@ jobs:
     # Noble's AppArmor policy blocks Bubblewrap's nested network setup even
     # with a privileged outer container. Jammy avoids changing host policy.
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -46,5 +46,5 @@ jobs:
           python --version
           kpsewhich IEEEtran.cls
           python -B development/check_gate1_ci.py
-          # Add WP-A1 re-execution here once it runs C++ through Gate 1.
+          python -B eapg.py verify --mode reexec-gate1
           CI
