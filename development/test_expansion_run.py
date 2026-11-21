@@ -1,5 +1,6 @@
 import base64
 from io import BytesIO, StringIO
+import json
 from types import SimpleNamespace
 
 import pytest
@@ -116,6 +117,29 @@ def test_held_requires_exact_list_and_explicit_amendment(inputs):
     assert row["terminal"] == run.HELD_LABEL
     assert header["held_list_sha256"] == held["sha256"]
     assert run.summarize(entries, [row])["by_source"]["CodeNet"]["not_desk_rateable"] == 1
+
+
+def test_cli_check_never_starts_gate1(inputs, monkeypatch, capsys, tmp_path):
+    manifest, bundle, key = inputs
+    bundle["desk"][key] = {"status": "desk_blocked", "bucket": "route", "reason": "missing_pinned_dependency",
+                           "evidence": "Synthetic desk stop"}
+    bundle["fixtures"].clear()
+    header, entries, desk, fixtures = load(inputs)
+    path = tmp_path / "checkpoint.jsonl"
+    path.write_bytes(line(header) + line(run.checkpoint(key, entries[key], desk, fixtures, [])))
+    manifest_raw, bundle_raw = line(manifest), line(bundle)
+    load_inputs = run.load_inputs
+    monkeypatch.setattr(run, "load_inputs", lambda stream, pin, **kwargs: load_inputs(
+        stream, pin, manifest_pin=run.digest(manifest_raw), **kwargs))
+    monkeypatch.setattr(run.sys, "stdin", SimpleNamespace(buffer=BytesIO(manifest_raw + bundle_raw)))
+    monkeypatch.setattr(run.sys, "argv", [
+        "expansion_run", "--bundle-sha256", run.digest(bundle_raw), "--check", str(path),
+    ])
+    monkeypatch.setattr(run.gate, "invoke", lambda *a, **kw: pytest.fail("Gate 1 must not run"))
+    run.main()
+    out = capsys.readouterr()
+    assert not out.err
+    assert json.loads(out.out)["complete"] is True
 
 
 def result(stdout=b"", *, rc=0, counter=b"", stderr=b"", timed_out=False):
