@@ -73,7 +73,7 @@ python -B eapg.py verify --mode auto --verbose
 # 4. On Windows with Ubuntu WSL2: run Windows common suite (18 checks + build) + Linux AST/sandbox suite (10 checks + Gate 1 probes)
 python -B eapg.py verify --mode wsl2 --with-probes
 
-# 5. Re-execute pilot Table I from its embedded sources through frozen pipeline.py (g++, ~15 s)
+# 5. Re-execute pilot Table I from its embedded sources through frozen pipeline.py
 python -B eapg.py verify --mode reexec
 
 # 6. Full pytest suite (19 development test modules + Phase 2 AST/selector tests)

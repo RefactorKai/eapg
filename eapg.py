@@ -270,7 +270,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_ver = sub.add_parser("verify", help="Run archived release checks, table verifiers, and unit tests.")
     p_ver.add_argument("--mode", choices=("auto", "fast", "common", "linux", "wsl2", "reexec"), default="auto",
-                       help="reexec: recompile and re-profile pilot Table I from its embedded sources (g++, ~15 s).")
+                       help="reexec: recompile and re-profile pilot Table I from its embedded sources (requires g++).")
     p_ver.add_argument("--with-probes", action="store_true", help="Include Bubblewrap Gate 1 isolation probes on Linux/WSL2.")
     p_ver.add_argument("--allow-skips", action="store_true", help="Allow a zero exit status when tests are skipped.")
     p_ver.add_argument("--wsl-distro", default="Ubuntu", help="WSL distro name for --mode wsl2.")

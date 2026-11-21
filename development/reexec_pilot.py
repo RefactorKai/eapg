@@ -36,13 +36,46 @@ TABLE_I_LABELS = dict(zip(TIERS, ("Hit symptom", "Work symptom", "Inter-scope sl
 EXP_R2_GATE = 0.85
 
 
-def load_frozen_pipeline():
+UNIT_RECEIVER_PATCH = (
+    ('c_type = var_types.get(container_name, "seq_container")',
+     'c_type = var_types.get(container_name, "unknown")'),
+    ('else:\r\n                                    weight_expr = f"(unsigned long long)({container_name}.size())"',
+     'elif c_type == "seq_container":\r\n                                    weight_expr = f"(unsigned long long)({container_name}.size())"'),
+)
+PROXY_DEFAULTS = {
+    "linear": "archived pilot (frozen pipeline.py): member calls on undeclared or non-container receivers weigh size()",
+    "unit": "prospective default for undeclared receivers: member calls on receivers not declared as containers weigh 1; all else as archived",
+}
+STRIP_KEYS = ("slow_code", "fast_code", "template_fingerprints")
+
+
+def load_frozen_pipeline(proxy_default="linear"):
+    """Hash-pinned pipeline.py; proxy_default="unit" applies UNIT_RECEIVER_PATCH in memory only."""
     source = (ROOT / "pipeline.py").read_bytes()
     if sha256(source).hexdigest() != PIPELINE_SHA:
         raise ValueError("Frozen pipeline.py hash mismatch")
-    module = module_from_spec(spec_from_file_location("frozen_pilot_pipeline", ROOT / "pipeline.py"))
+    if proxy_default == "unit":
+        text = source.decode("utf-8")
+        for old, new in UNIT_RECEIVER_PATCH:
+            if text.count(old) != 1:
+                raise ValueError(f"Unit-receiver patch anchor is not unique: {old!r}")
+            text = text.replace(old, new)
+        source = text.encode("utf-8")
+    elif proxy_default != "linear":
+        raise ValueError(f"Unknown proxy default: {proxy_default}")
+    module = module_from_spec(spec_from_file_location(f"frozen_pilot_pipeline_{proxy_default}", ROOT / "pipeline.py"))
     exec(compile(source, str(ROOT / "pipeline.py"), "exec"), module.__dict__)
+    module.EAPG_SOURCE_SHA256 = sha256(source).hexdigest()
     return module
+
+
+def crlf_sha256(raw):
+    # The archived pilot was written on Windows; its pinned bytes are CRLF (.gitattributes: -text).
+    return sha256(raw.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")).hexdigest()
+
+
+def stripped(records):
+    return [{k: v for k, v in r.items() if k not in STRIP_KEYS} for r in records]
 
 
 def load_published():
@@ -81,7 +114,7 @@ def toolchain():
 def reexecute(gen, corpus):
     """Run the frozen study with the embedded corpus; capture every ladder run and per-node fit."""
     lock = threading.Lock()
-    runs, ladders = {}, {}
+    runs, ladders, weights = {}, {}, {}
     run_instrumented, ladder = gen.run_instrumented_binary, gen.execute_scaling_with_micro_ladder
 
     def side_key(binary_path):
@@ -99,6 +132,7 @@ def reexecute(gen, corpus):
         result = ladder(binary_path, input_generator, macro_nodes, *args, **kwargs)
         with lock:
             ladders[side_key(binary_path)] = ([n["id"] for n in macro_nodes], result)
+            weights[side_key(binary_path)] = {n["id"]: n["weight_expr"] for n in macro_nodes}
         return result
 
     gen.generate_pilot_100_corpus = lambda: corpus
@@ -113,7 +147,8 @@ def reexecute(gen, corpus):
         raw = (Path(td) / "out/pilot100_results.json").read_bytes()
         tables_sha = sha256((Path(td) / "out/pilot100_tables.tex").read_bytes()).hexdigest()
     return {"raw": raw, "records": json.loads(raw), "tables_tex_sha256": tables_sha,
-            "elapsed_seconds": round(elapsed, 1), "counters": counters(runs, ladders)}
+            "elapsed_seconds": round(elapsed, 1), "counters": counters(runs, ladders),
+            "weights": {f"{pid}/{side}": w for (pid, side), w in sorted(weights.items())}}
 
 
 def counters(runs, ladders):
@@ -215,16 +250,29 @@ def table_i(records):
             "work_symptoms": sum(bool(r["slicing"]["c_naive_work"]) for r in records)}
 
 
+def weight_changes(linear, unit):
+    assert linear.keys() == unit.keys() and all(linear[k].keys() == unit[k].keys() for k in linear)
+    return [f"{side}/{node}: {linear[side][node]} -> {unit[side][node]}"
+            for side in linear for node in linear[side] if linear[side][node] != unit[side][node]]
+
+
+def unit_section(published, unit_records):
+    vs_linear = compare_records(published, unit_records)
+    return {"table_i": table_i(unit_records), "vs_linear": summarize(vs_linear),
+            "changed_fields": vs_linear["mismatches"], "flipped_decisions": vs_linear["decision_flips"]}
+
+
 def check_receipt_static(gen, receipt, published):
-    """Checks that need no compiler: pins, recorded zeros, and fits/maxima recomputed from raw counters."""
+    """Checks that need no compiler: pins, exact denominators, and fits/maxima recomputed from raw counters."""
     assert receipt["schema"] == SCHEMA
     assert receipt["pipeline_sha256"] == PIPELINE_SHA and receipt["pilot_sha256"] == PILOT_SHA
     assert receipt["fresh_pilot_sha256"] == PILOT_SHA and receipt["byte_identical"] is True
-    for key in ("vs_published", "vs_receipt"):
-        result = receipt["comparison"][key]
-        assert result["mismatches"] == 0 and result["decision_flips"] == 0, key
-    assert receipt["table_i"] == table_i(published)
     pairs = receipt["pairs"]
+    assert receipt["comparison"] == {
+        "vs_published": summarize(compare_records(published, published)),
+        "vs_receipt": summarize(compare_counters(pairs, pairs)),
+    }
+    assert receipt["table_i"] == table_i(published)
     assert sorted(pairs) == sorted(r["pair_id"] for r in published)
     by_id = {r["pair_id"]: r for r in published}
     for pid, sides in pairs.items():
@@ -235,7 +283,9 @@ def check_receipt_static(gen, receipt, published):
         assert len(sides["fast"]["nodes"]) == record["v_fast"]
         for entry in sides.values():
             scales = entry["uncapped_scales"]
+            assert scales == sorted(s for s, status in entry["ladder"] if status == "CLEAN_COMPLETION")
             for node in entry["nodes"].values():
+                assert len(node["hits"]) == len(node["work"]) == len(scales)
                 assert node["fit_hits"] == gen.fit_dual_family_scaling(scales, node["hits"])
                 assert node["fit_work"] == gen.fit_dual_family_scaling(scales, node["work"])
 
@@ -246,13 +296,93 @@ def check_receipt_static(gen, receipt, published):
         assert worst("slow", "fit_work") == record["max_work_slow"], pid
         assert worst("fast", "fit_work") == record["max_work_fast"], pid
         assert any(n["fit_work"]["growth"] == "EXP" for n in sides["slow"]["nodes"].values()) == record["is_exp_slow"]
-    nodes = sum(len(e["nodes"]) for s in pairs.values() for e in s.values())
-    return nodes
+
+    proxy = receipt["proxy_defaults"]
+    assert sorted(proxy) == sorted(PROXY_DEFAULTS)
+    assert proxy["linear"] == {"description": PROXY_DEFAULTS["linear"], "pipeline_source_sha256": PIPELINE_SHA,
+                               "results_sha256": PILOT_SHA, "table_i": table_i(published)}
+    unit = proxy["unit"]
+    assert unit["description"] == PROXY_DEFAULTS["unit"]
+    assert unit["pipeline_source_sha256"] == load_frozen_pipeline("unit").EAPG_SOURCE_SHA256
+    assert [r["pair_id"] for r in unit["records"]] == [r["pair_id"] for r in published]
+    full_unit = [{**r, **{k: by_id[r["pair_id"]][k] for k in STRIP_KEYS}} for r in unit["records"]]
+    assert {k: v for k, v in unit.items() if k in ("table_i", "vs_linear", "changed_fields", "flipped_decisions")} \
+        == unit_section(published, full_unit)
+    return sum(len(e["nodes"]) for s in pairs.values() for e in s.values())
 
 
 def summarize(result):
     return {"mismatches": len(result["mismatches"]), "decision_flips": len(result["decision_flips"]),
             **{k: v for k, v in result.items() if k not in ("mismatches", "decision_flips")}}
+
+
+def evaluate(published, archived, run, unit_run):
+    """Every difference from the archive; an empty failure list is the only success."""
+    vs_published = compare_records(published, run["records"])
+    vs_receipt = compare_counters(archived["pairs"] if archived else run["counters"], run["counters"])
+    fresh_sha = crlf_sha256(run["raw"])
+    unit = unit_section(published, unit_run["records"])
+    report = {
+        "fresh_pilot_sha256": fresh_sha, "byte_identical": fresh_sha == PILOT_SHA,
+        "vs_published": summarize(vs_published), "vs_receipt": summarize(vs_receipt),
+        "table_i_matches": table_i(run["records"]) == table_i(published),
+        "unit_results_sha256": crlf_sha256(unit_run["raw"]),
+        "unit_vs_linear": unit["vs_linear"],
+        "weight_changed_nodes": len(changes := weight_changes(run["weights"], unit_run["weights"])),
+        "instrumented_nodes": sum(len(w) for w in run["weights"].values()),
+    }
+    failures = vs_published["mismatches"] + vs_published["decision_flips"] + \
+        vs_receipt["mismatches"] + vs_receipt["decision_flips"]
+    if not report["byte_identical"]:
+        failures.append(f"fresh pilot SHA-256 {fresh_sha} != {PILOT_SHA}")
+    if not report["table_i_matches"]:
+        failures.append("Table I rows differ")
+    if archived:
+        archived_unit = archived["proxy_defaults"]["unit"]
+        if changes != archived_unit["weight_changed_nodes"]:
+            failures.append("unit-default weight changes differ from the receipt")
+        if report["unit_results_sha256"] != archived_unit["results_sha256"]:
+            failures.append("unit-default results SHA-256 differs from the receipt")
+        failures += [f"unit:{f}" for f in diff_fields({"records": archived_unit["records"]},
+                                                       {"records": stripped(unit_run["records"])})]
+    return report, failures, vs_published, vs_receipt, unit
+
+
+def write_receipt(path, gen, unit_gen, published, run, unit_run, results):
+    report, _, vs_published, vs_receipt, unit = results
+    receipt = {
+        "schema": SCHEMA,
+        "description": "Fresh re-execution of pilot Table I: frozen pipeline.run_pilot_100_study.process_pair "
+                       "over the sources embedded in pilot100_results.json. Per-node raw hit/work counters "
+                       "and dual-family fits (alpha, beta, r2_poly, r2_exp) for every slow and fast program.",
+        "entry_point": "pipeline.run_pilot_100_study.process_pair",
+        "pipeline_sha256": PIPELINE_SHA, "pilot_sha256": PILOT_SHA,
+        "fresh_pilot_sha256": report["fresh_pilot_sha256"], "byte_identical": True,
+        "tables_tex_sha256": run["tables_tex_sha256"],
+        "exp_r2_gate": EXP_R2_GATE,
+        "provenance": {**toolchain(), "elapsed_seconds": {"linear": run["elapsed_seconds"],
+                                                          "unit": unit_run["elapsed_seconds"]}},
+        "comparison": {"vs_published": summarize(vs_published), "vs_receipt": summarize(vs_receipt)},
+        "table_i": table_i(run["records"]),
+        "proxy_defaults": {
+            "linear": {"description": PROXY_DEFAULTS["linear"], "pipeline_source_sha256": PIPELINE_SHA,
+                       "results_sha256": PILOT_SHA, "table_i": table_i(published)},
+            "unit": {"description": PROXY_DEFAULTS["unit"], "pipeline_source_sha256": unit_gen.EAPG_SOURCE_SHA256,
+                     "patch": [list(pair) for pair in UNIT_RECEIVER_PATCH],
+                     "results_sha256": report["unit_results_sha256"],
+                     "instrumented_nodes": report["instrumented_nodes"],
+                     "weight_changed_nodes": weight_changes(run["weights"], unit_run["weights"]), **unit,
+                     "records": stripped(unit_run["records"])},
+        },
+        "pairs": run["counters"],
+    }
+    text = json.dumps({k: v for k, v in receipt.items() if k != "pairs"}, indent=2)[:-2]
+    lines = [f'    {json.dumps(pid)}: {json.dumps(sides, sort_keys=True, separators=(",", ":"))}'
+             for pid, sides in receipt["pairs"].items()]
+    text += ',\n  "pairs": {\n' + ",\n".join(lines) + "\n  }\n}\n"
+    assert json.loads(text) == receipt
+    check_receipt_static(gen, receipt, published)
+    path.write_text(text, encoding="utf-8")
 
 
 def main():
@@ -270,62 +400,26 @@ def main():
         nodes = check_receipt_static(gen, json.loads(RECEIPT.read_text(encoding="utf-8")), published)
         print(f"Verified pilot re-execution receipt statically ({nodes} node fits recomputed from raw counters).")
         return 0
-
     if args.write_receipt is not None and args.write_receipt.exists():
         cli.error(f"{args.write_receipt} exists; pass a new path")
+
     archived = None if args.write_receipt else json.loads(RECEIPT.read_text(encoding="utf-8"))
     run = reexecute(gen, embedded_corpus(gen, published))
-    vs_published = compare_records(published, run["records"])
-    vs_receipt = compare_counters(archived["pairs"], run["counters"]) if archived else \
-        compare_counters(run["counters"], run["counters"])
-    # The archived pilot was written on Windows; the receipt pins its CRLF bytes (.gitattributes: -text).
-    fresh_sha = sha256(run["raw"].replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")).hexdigest()
-    fresh_table = table_i(run["records"])
-    report = {
-        "fresh_pilot_sha256": fresh_sha, "byte_identical": fresh_sha == PILOT_SHA,
-        "elapsed_seconds": run["elapsed_seconds"],
-        "vs_published": summarize(vs_published), "vs_receipt": summarize(vs_receipt),
-        "table_i_matches": fresh_table == table_i(published),
-    }
-    failures = vs_published["mismatches"] + vs_published["decision_flips"] + \
-        vs_receipt["mismatches"] + vs_receipt["decision_flips"]
+    unit_gen = load_frozen_pipeline("unit")
+    unit_run = reexecute(unit_gen, embedded_corpus(unit_gen, published))
+    results = evaluate(published, archived, run, unit_run)
+    report, failures, vs_published, vs_receipt, _ = results
+    print(json.dumps(report, indent=2))
+    if failures:
+        raise SystemExit(f"Pilot re-execution diverged ({len(failures)} differences): {failures[:20]}")
     if args.write_receipt is not None:
-        if failures or not report["byte_identical"]:
-            raise SystemExit(f"Refusing to write a receipt for a divergent rerun: {failures[:20]}")
-        receipt = {
-            "schema": SCHEMA,
-            "description": "Fresh re-execution of pilot Table I: frozen pipeline.run_pilot_100_study.process_pair "
-                           "over the sources embedded in pilot100_results.json. Per-node raw hit/work counters "
-                           "and dual-family fits (alpha, beta, r2_poly, r2_exp) for every slow and fast program.",
-            "entry_point": "pipeline.run_pilot_100_study.process_pair",
-            "pipeline_sha256": PIPELINE_SHA, "pilot_sha256": PILOT_SHA,
-            "fresh_pilot_sha256": fresh_sha, "byte_identical": True,
-            "tables_tex_sha256": run["tables_tex_sha256"],
-            "exp_r2_gate": EXP_R2_GATE,
-            "provenance": {**toolchain(), "elapsed_seconds": run["elapsed_seconds"]},
-            "comparison": {"vs_published": summarize(vs_published),
-                           "vs_receipt": {"mismatches": 0, "decision_flips": 0,
-                                          "decisions_compared": vs_receipt["decisions_compared"]}},
-            "table_i": fresh_table,
-            "pairs": run["counters"],
-        }
-        text = json.dumps({k: v for k, v in receipt.items() if k != "pairs"}, indent=2)[:-2]
-        lines = [f'    {json.dumps(pid)}: {json.dumps(sides, sort_keys=True, separators=(",", ":"))}'
-                 for pid, sides in receipt["pairs"].items()]
-        text += ',\n  "pairs": {\n' + ",\n".join(lines) + "\n  }\n}\n"
-        assert json.loads(text) == receipt
-        args.write_receipt.write_text(text, encoding="utf-8")
-        check_receipt_static(gen, receipt, published)
-        print(json.dumps(report, indent=2))
+        write_receipt(args.write_receipt, gen, unit_gen, published, run, unit_run, results)
         print(f"Wrote {args.write_receipt}")
         return 0
-
-    print(json.dumps(report, indent=2))
-    if failures or not report["table_i_matches"]:
-        raise SystemExit(f"Pilot re-execution diverged ({len(failures)} differences): {failures[:20]}")
     print(f"Re-executed pilot Table I: 0 mismatches over {vs_published['fields_compared']} fields, "
           f"0 decision flips over {vs_published['decisions_compared']} pair and "
-          f"{vs_receipt['decisions_compared']} node decisions ({run['elapsed_seconds']} s).")
+          f"{vs_receipt['decisions_compared']} node decisions; byte-identical; "
+          f"unit proxy default matches its receipt.")
     return 0
 
 
