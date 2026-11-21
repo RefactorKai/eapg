@@ -26,6 +26,8 @@ class Gate1Subprocess:
 
     def run(self, command, *, input, timeout, text, capture_output, env=None, preexec_fn=None):
         try:
+            if not text or not capture_output:
+                raise ValueError("Expected captured text subprocess output")
             return self._run(command, input.encode("utf-8"), timeout, env)
         except (RuntimeError, ValueError) as error:
             # The frozen preprocessing and execution paths catch Exception and fall back.
@@ -78,6 +80,8 @@ def reexecute():
         print(f"Re-executing {mode} pilot through Gate 1 (GCC {compiler})", flush=True)
         runs[mode] = pilot.reexecute(gen, pilot.embedded_corpus(gen, published))
     report, differences, *_ = pilot.evaluate(published, archived, runs["linear"], runs["unit"])
+    if runs["linear"]["tables_tex_sha256"] != archived["tables_tex_sha256"]:
+        differences.append("Generated LaTeX tables differ from the archived receipt")
     return {
         "schema": "eapg.pilot100_gate1/v1",
         "compiler": f"g++ {compiler}",
@@ -113,6 +117,8 @@ def main():
     mode.add_argument("--write-receipt", type=Path, help="Write a receipt to a new path.")
     args = cli.parse_args()
     expected = json.loads(RECEIPT.read_bytes()) if args.check else None
+    if args.check and not isinstance(expected, dict):
+        cli.error("Expected an object in the committed Gate 1 receipt.")
     fresh = reexecute()
     report = json.dumps(fresh, indent=2) + "\n"
     print(report, end="", flush=True)
