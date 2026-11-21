@@ -382,10 +382,11 @@ def checkpoint(key, row, desk, fixtures, raw):
 
 
 def replay(stream, header, entries, desk, fixtures):
-    require(json.loads(stream.readline()) == header, "checkpoint does not match inputs or runner")
+    lines = iter(stream)
+    require(json.loads(next(lines, "")) == header, "checkpoint does not match inputs or runner")
     saved = []
     keys = iter(entries)
-    for line in stream:
+    for line in lines:
         require(line.endswith("\n"), "truncated checkpoint record")
         row = json.loads(line)
         key = next(keys, None)
@@ -396,7 +397,7 @@ def replay(stream, header, entries, desk, fixtures):
                 "checkpoint order or measurements disagree")
         saved.append(row)
         if row["terminal"] is None:
-            require(not stream.readline(), "checkpoint continued after unresolved disposition")
+            require(next(lines, None) is None, "checkpoint continued after unresolved disposition")
             break
     return saved
 

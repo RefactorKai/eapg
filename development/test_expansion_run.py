@@ -146,6 +146,33 @@ def test_cli_check_never_starts_gate1(inputs, monkeypatch, capsys, tmp_path):
     assert json.loads(out.out)["complete"] is True
 
 
+def test_cli_resume_replays_stdin_checkpoint_and_continues(inputs, monkeypatch, capsys):
+    manifest, bundle, key = inputs
+    bundle["desk"][key] = {"status": "desk_blocked", "bucket": "route", "reason": "missing_pinned_dependency",
+                           "evidence": "Synthetic desk stop"}
+    bundle["fixtures"].clear()
+    manifest["pairs"].append({**manifest["pairs"][0], "id": "other", "intake_stop": "intake_unretrievable"})
+    manifest_raw = line(manifest)
+    bundle["manifest_sha256"] = run.digest(manifest_raw)
+    bundle_raw = line(bundle)
+    header, entries, desk, fixtures = load(inputs)
+    rows = [run.checkpoint(item, entry, desk, fixtures, []) for item, entry in entries.items()]
+    load_inputs = run.load_inputs
+    monkeypatch.setattr(run, "load_inputs", lambda stream, pin, **kwargs: load_inputs(
+        stream, pin, manifest_pin=run.digest(manifest_raw), **kwargs))
+    monkeypatch.setattr(run.sys, "stdin", SimpleNamespace(buffer=BytesIO(
+        manifest_raw + bundle_raw + line(header) + line(rows[0]))))
+    monkeypatch.setattr(run.sys, "argv", ["expansion_run", "--bundle-sha256", run.digest(bundle_raw), "--resume"])
+    monkeypatch.setenv("container", "docker")
+    monkeypatch.setattr(run.Path, "is_file", lambda path: str(path) == "/.dockerenv")
+    monkeypatch.setattr(run.gate, "invoke", lambda command: result(b"15.2.0\n")
+                        if command == ["g++", "-dumpfullversion"] else pytest.fail("unexpected sandbox execution"))
+    run.main()
+    out = capsys.readouterr()
+    assert not out.err
+    assert [json.loads(record) for record in out.out.splitlines()] == [header, *rows]
+
+
 def result(stdout=b"", *, rc=0, counter=b"", stderr=b"", timed_out=False):
     return SimpleNamespace(stdout=stdout, returncode=rc, counter_wire=counter,
                            stderr=stderr, timed_out=timed_out, events={})
