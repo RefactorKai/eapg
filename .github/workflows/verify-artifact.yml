@@ -25,11 +25,24 @@ jobs:
           python -m pip install -r requirements-ast.txt pytest
           python -B eapg.py verify --mode linux --verbose --allow-skips
           python -B -m pytest -q
-      - name: Run Gate 1 Bubblewrap probes when userns and user systemd are available
-        if: runner.os == 'Linux'
+
+  gate1:
+    # The container runs privileged. Only exercise same-repository code on a disposable hosted VM.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Run Gate 1 probes and sandbox tests in the pinned image
         run: |
-          if command -v bwrap >/dev/null && command -v systemd-run >/dev/null && systemctl --user show-environment >/dev/null 2>&1 && bwrap --unshare-user --ro-bind / / true >/dev/null 2>&1; then
-            python -B development/probe_gate1.py --probes-only
-          else
-            echo "Skipping Gate 1 Bubblewrap probes: hosted runner lacks user systemd or unprivileged userns"
-          fi
+          bash development/run_sandbox_container.sh bash -es <<'CI'
+          g++ -dumpfullversion
+          bwrap --version
+          systemd --version
+          python --version
+          kpsewhich IEEEtran.cls
+          python -B development/check_gate1_ci.py
+          # WP-A1: add the public re-execution verify command here when it lands.
+          CI
