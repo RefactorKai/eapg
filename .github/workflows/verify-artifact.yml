@@ -40,7 +40,7 @@ jobs:
           bash development/run_sandbox_container.sh bash -es <<'CI'
           g++ -dumpfullversion
           bwrap --version
-          systemd --version
+          systemctl --version
           python --version
           kpsewhich IEEEtran.cls
           python -B development/check_gate1_ci.py

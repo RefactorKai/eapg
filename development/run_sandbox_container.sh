@@ -15,7 +15,7 @@ fi
 docker build --platform linux/amd64 --file docker/gate1.Dockerfile --tag eapg-gate1 . >&2
 # systemd is PID 1 and owns a writable, private cgroup v2 subtree.
 container=$(docker run --rm --detach --privileged --cgroupns private --network none \
-    --tmpfs /run --tmpfs /tmp:mode=1777 eapg-gate1)
+    --tmpfs /run --tmpfs /tmp:mode=1777,exec eapg-gate1)
 trap 'docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
 user_id=$(docker exec "$container" id -u eapg)
 runtime_dir="/run/user/$user_id"
@@ -27,8 +27,9 @@ run_as_eapg() {
 
 ready=false
 for _ in {1..45}; do
-    if docker exec "$container" systemctl start "user@$user_id.service" &&
-        run_as_eapg "$container" systemctl --user show-environment >/dev/null; then
+    if docker exec "$container" systemctl is-active --quiet multi-user.target &&
+        docker exec "$container" systemctl start "user@$user_id.service" &&
+        run_as_eapg "$container" systemctl --user is-active --quiet default.target; then
         ready=true
         break
     fi

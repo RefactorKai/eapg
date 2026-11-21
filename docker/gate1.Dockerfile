@@ -8,7 +8,7 @@ RUN sed -i -E 's#http://(archive|security)\.ubuntu\.com/ubuntu/#https://snapshot
     && DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::https::CaInfo=/tmp/bootstrap-ca.crt \
        -o Acquire::Retries=3 install -y --no-install-recommends \
        bubblewrap ca-certificates dbus-user-session g++-15 git libc6-dev libpam-systemd \
-       poppler-utils python3 python3.14-venv systemd-sysv texlive-latex-extra texlive-publishers \
+       poppler-utils python3 python3.14-venv systemd-sysv texlive-fonts-recommended texlive-publishers \
     && rm -rf /var/lib/apt/lists/* /tmp/bootstrap-ca.crt \
     && ln -s gcc-15 /usr/bin/gcc && ln -s g++-15 /usr/bin/g++ \
     && test "$(g++ -dumpfullversion)" = 15.2.0
