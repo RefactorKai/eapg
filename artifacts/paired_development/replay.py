@@ -414,6 +414,72 @@ def row_index(ledger):
     return evidence
 
 
+def validate_phase_a(ledger, historical):
+    archived = {(row["target"], row["reference"]): row for row in historical["cases"]}
+    dispositions = {"oracle_confirmed": "verified_historical_control",
+                    "output_mismatch": "execution_oracle_failure",
+                    "unsupported_dependencies": "historical_dependency_stop",
+                    "not_run": "historical_desk_excluded"}
+    statuses = {"desk_excluded": ("REJECTED", "REJECTED"),
+                "desk_blocked": ("BLOCKED", "BLOCKED"),
+                **{disposition: ("ELIGIBLE", disposition) for disposition in
+                   ("verified_growth_evaluation", "execution_oracle_failure", "execution_validation_failure",
+                    "support_boundary_closed", "desk_eligible_control_deferred")}}
+    matched = set()
+    for row in ledger["rows"]:
+        pair = row["target"], row["reference"]
+        phase_a, phase_b = row["phase_a"], row["phase_b"]
+        rank = row["intake_rank"]
+        if pair in archived:
+            ancestor = archived[pair]
+            matched.add(pair)
+            if (row["case_id"] != ancestor["id"] or phase_a != {
+                    "status": "HISTORICAL", "disposition": ancestor["phase_a"], "reason": ancestor["reason"],
+                    "evidence_sha256": ancestor["evidence_sha256"]} or
+                    (phase_b["status"], phase_b.get("disposition"), row["final_disposition"]) !=
+                    ("HISTORICAL", ancestor["phase_b"], dispositions[ancestor["phase_b"]])):
+                raise ValueError(f"Phase A/B content differs from the archived ledger at rank {rank}")
+        elif ("disposition" in phase_a or (phase_a["status"], phase_b["status"]) !=
+              statuses.get(row["final_disposition"])):
+            raise ValueError(f"Phase A/B status and final disposition disagree at rank {rank}")
+    if matched != set(archived):
+        raise ValueError("Path B omits archived pairs")
+
+
+def validate_sweep_summary(sweep, ledger):
+    rows = ledger["rows"]
+    distinct = {row["intake_rank"] for row in rows}
+    pie = {row["intake_rank"] for row in rows if row["corpus"] == "pie-validation"}
+    census = {row["intake_rank"] for row in rows if row["corpus"] == "cppperf-census"}
+    groups = {"distinct": distinct, "pie_validation": pie, "cppperf_distinct": distinct - pie,
+              "cppperf_census": census, "combined_census": pie | census,
+              "cppperf_significant_test": {row["intake_rank"] for row in rows if row["stratum_slot"] is not None}}
+    summary = sweep["summary"]
+    if set(summary) != set(groups):
+        raise ValueError("Precedence sweep frame inventory disagrees")
+    findings = {key: {location["intake_rank"] for location in finding["locations"]}
+                for key, finding in sweep["finding_locators"].items()}
+    additive = ("accessible_slots", "fully_accessible_slots", "fully_scanned_slots", "hit_slots_fully_scanned",
+                "eligible_file_sides", "legitimate_absent_sides", "accessible_file_sides", "parsed_file_sides",
+                "partial_parse_file_sides", "missing_file_sides", "file_sides_with_opaque_macros")
+    for total, cpp in (("distinct", "cppperf_distinct"), ("combined_census", "cppperf_census")):
+        for field in additive:
+            if summary[total][field] != summary["pie_validation"][field] + summary[cpp][field]:
+                raise ValueError(f"Precedence sweep {total}.{field} disagrees with disjoint frame subtotals")
+    for name, ranks in groups.items():
+        counts = summary[name]
+        hits = [located & ranks for located in findings.values() if located & ranks]
+        hit_ranks = set().union(*hits)
+        partial = counts["hit_slots_partial_scan"]
+        if (counts["eligible_slots"] != len(ranks) or counts["unique_expressions"] != len(hits)
+                or counts["missing_file_sides"] != sum(row["intake_rank"] in ranks for row in sweep["missing_sources"])
+                or partial != sorted(set(partial) & hit_ranks)
+                or counts["hit_slots_fully_scanned"] != len(hit_ranks) - len(partial)
+                or counts["accessible_file_sides"] != counts["parsed_file_sides"] + counts["partial_parse_file_sides"]
+                or counts["eligible_file_sides"] != counts["accessible_file_sides"] + counts["missing_file_sides"]):
+            raise ValueError(f"Precedence sweep counts disagree with public evidence for {name}")
+
+
 def verify_public(manifest, ledger, timing):
     if (manifest["schema"] != ARTIFACT_SCHEMA or manifest["ledger_schema"] != "eapg.path-b.ledger.v2"
             or manifest["held_out_used"] is not False):
@@ -424,6 +490,7 @@ def verify_public(manifest, ledger, timing):
         if not sha_format(expected) or digest(checked_path(REPO, name)) != expected:
             raise ValueError(f"Public SHA-256 mismatch: {name}")
     historical = historical_index()
+    validate_phase_a(ledger, read_json(HERE / "historical-ledger.json"))
     pins = manifest["pins"]
     intake = run_path(str(REPO / "development/paired_study/intake.py"))
     expected_pins = {"pie_split": "validation", "pie_sha256": intake["PIE_VALIDATION_SHA256"],
@@ -475,6 +542,8 @@ def verify_public(manifest, ledger, timing):
                 or pin["sha256"] != manifest["public"][PREFIX + name] or pin["schema"] != public["schema"]
                 or entries[pin["receipt"]]["sha256"] != full_pin):
             raise ValueError(f"Sanitized result pin mismatch: {name}")
+        if name == "precedence-sweep.json":
+            validate_sweep_summary(public, ledger)
     validate_timing(timing)
     sys.path.insert(0, str(REPO))
     from development.paired_study.steady import source_inputs
@@ -610,6 +679,9 @@ def main() -> None:
                                                    "workspace_custody": args.workspace_custody})
             print(f"{count} local evidence files verified.")
         else:
+            print("Replay-only: historical/desk evidence, execution and timing receipts, and sweep summaries. "
+                  "Public sweep subtotals and locators were reconciled; file-side scans and individual ballots "
+                  "cannot be re-executed from the public index.")
             print("Custody required for " + ", ".join(sorted(roles)) + ".")
         return
     table = render(ledger).encode()
