@@ -3,7 +3,7 @@ and blinded reference adjudication + live QLoRA contract study (Part B).
 
 Preserves all hash-pinned repository modules untouched; adapts C++ preprocessing,
 compilation, UBSan-trap checks, and file-backed counter capture in-memory for
-Windows MSYS2 g++ 15.1.0 execution before running custodian, predictor, scorer,
+Windows g++ (recorded with MSYS2 g++ 15.1.0) execution before running custodian, predictor, scorer,
 and 4-bit NF4 Qwen2.5-Coder-1.5B adapters on RTX 4060.
 """
 
@@ -92,7 +92,9 @@ def install_windows_sandbox_adapter():
                 exe = Path(td) / "prog.exe"
                 exe.write_bytes(binary)
                 gxx_bin = shutil.which("g++")
-                cc_dir = str(Path(gxx_bin).parent) if gxx_bin else r"C:\msys64\ucrt64\bin"
+                if gxx_bin is None:
+                    raise RuntimeError("g++ must be on PATH to run Windows sandbox binaries")
+                cc_dir = str(Path(gxx_bin).parent)
                 win_sys = os.environ.get("SystemRoot", r"C:\WINDOWS") + r"\system32"
                 env = {"PATH": f"{cc_dir};{win_sys}"}
                 wire_path = Path(td) / "eapg_counter.wire"
