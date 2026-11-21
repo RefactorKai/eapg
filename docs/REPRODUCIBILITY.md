@@ -23,7 +23,8 @@ All manuscript tables and empirical claims replay deterministically from committ
 For LaTeX, install `IEEEtran.cls` from Ubuntu's `texlive-publishers` package:
 `sudo apt-get install -y texlive-publishers poppler-utils`.
 
-Gate 1 host prerequisites: stock Ubuntu 22.04 is insufficient (systemd 249 rejects
+Gate 1 host prerequisites (observed on a host, not receipted in this repository):
+stock Ubuntu 22.04 was observed to be insufficient (systemd 249 rejects
 `OOMPolicy=continue` on scopes, CPU delegation to `user@.service` is absent,
 Bubblewrap 0.6.1 lacks `--disable-userns`, and a session bus may be absent).
 Use the tested Bubblewrap 0.11.1 and GCC 15.2.0 toolchain (Python 3.14 is
