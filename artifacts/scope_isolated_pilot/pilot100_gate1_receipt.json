@@ -1,0 +1,51 @@
+{
+  "schema": "eapg.pilot100_gate1/v1",
+  "compiler": "g++ 15.2.0",
+  "compiler_flags": [
+    "-std=c++17",
+    "-O2"
+  ],
+  "python": "3.14.4",
+  "sandbox": "development/gate1_sandbox.py",
+  "sandbox_sha256": "7f9bf00a3489bb97cb256b342b0cad4f5a7c5fa11d44181973b93b3e82c4d963",
+  "pipeline_sha256": "7c855651566c1a7dc003fdcb291d8edd3ff1a99c671f781eb595d72c492ae743",
+  "published_pilot_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
+  "archived_receipt_sha256": "a3e38e8b4b256453811c9cc69d2bc2a56f4b0e6571fcfe4f64120c73627a91f8",
+  "counters_sha256": {
+    "linear": "c3851b357e95b1fbffe629f0c91bdd92f440b9199a9301c595bbb049951387d2",
+    "unit": "c3851b357e95b1fbffe629f0c91bdd92f440b9199a9301c595bbb049951387d2"
+  },
+  "tables_tex_sha256": {
+    "linear": "771dd380959c65f99e1025472c68e35852fd6feacc5f1e04c0cda8cef72b09ca",
+    "unit": "771dd380959c65f99e1025472c68e35852fd6feacc5f1e04c0cda8cef72b09ca"
+  },
+  "comparison": {
+    "fresh_pilot_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
+    "identical_after_crlf_normalization": true,
+    "fresh_pilot_raw_sha256": "feaff68630a3f75748b3f949df4e09616ca3bd3f929c868ee808d1df6c0c16c6",
+    "vs_published": {
+      "mismatches": 0,
+      "decision_flips": 0,
+      "pairs": 100,
+      "fields_compared": 3000,
+      "decisions_compared": 1800
+    },
+    "vs_receipt": {
+      "mismatches": 0,
+      "decision_flips": 0,
+      "decisions_compared": 21588
+    },
+    "table_i_matches": true,
+    "unit_results_sha256": "4a3b563cdd54c471f39df95e7d40ec3ae5433259795cadcde80272955ea44cb5",
+    "unit_vs_linear": {
+      "mismatches": 0,
+      "decision_flips": 0,
+      "pairs": 100,
+      "fields_compared": 3000,
+      "decisions_compared": 1800
+    },
+    "weight_changed_nodes": 0,
+    "instrumented_nodes": 3598
+  },
+  "differences": []
+}

@@ -152,6 +152,9 @@ def cmd_verify(args: argparse.Namespace, *, summarize_success: bool = True) -> i
         _run_py(("-B", "development/reexec_pilot.py"), verbose=args.verbose)
         print("Verified EAPG artifact checks cleanly (reexec: pilot Table I re-executed through frozen pipeline.py).")
         return 0
+    if mode == "reexec-gate1":
+        _run_py(("-B", "development/reexec_pilot_gate1.py", "--check"), verbose=True)
+        return 0
 
     commands = FAST_VERIFY_COMMANDS if mode == "fast" else COMMON_VERIFY_COMMANDS
     skipped = [script for cmd in commands if (script := _run_verify_check(cmd, verbose=args.verbose))]
@@ -272,8 +275,8 @@ def build_parser() -> argparse.ArgumentParser:
     sub = cli.add_subparsers(dest="command", required=True)
 
     p_ver = sub.add_parser("verify", help="Run archived release checks, table verifiers, and unit tests.")
-    p_ver.add_argument("--mode", choices=("auto", "fast", "common", "linux", "wsl2", "reexec"), default="auto",
-                       help="reexec: recompile and re-profile pilot Table I from its embedded sources (requires g++).")
+    p_ver.add_argument("--mode", choices=("auto", "fast", "common", "linux", "wsl2", "reexec", "reexec-gate1"),
+                       default="auto", help="reexec-gate1: recompile and re-profile pilot Table I in Gate 1 (GCC 15.2).")
     p_ver.add_argument("--with-probes", action="store_true", help="Include Bubblewrap Gate 1 isolation probes on Linux/WSL2.")
     p_ver.add_argument("--allow-skips", action="store_true", help="Allow a zero exit status when tests are skipped.")
     p_ver.add_argument("--wsl-distro", default="Ubuntu", help="WSL distro name for --mode wsl2.")
