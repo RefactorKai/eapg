@@ -1,0 +1,667 @@
+[
+  {
+    "corpus": "codenet",
+    "pair_id": "p00143/s742117349/s593052307",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00495/s413005881/s005164116",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00498/s177862817/s067175654",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00520/s529610420/s823159089",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00521/s789797643/s002300069",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00594/s084656405/s130322541",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00618/s930821319/s531139087",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00626/s470791273/s167204287",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00712/s643300758/s533718256",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00762/s561952985/s114193436",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00854/s780357975/s784560271",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00890/s898768449/s483801701",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p00952/s871711182/s025188501",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01318/s474501656/s516250819",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01437/s086833502/s228873898",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01609/s273295412/s636459861",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01768/s058207714/s172728543",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01771/s177072210/s874282053",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p01924/s475728615/s434439087",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02271/s323159027/s310070489",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02328/s225531948/s760359739",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02665/s863874922/s292010060",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02930/s531784208/s914083787",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p02977/s853088670/s632431907",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03142/s244751599/s336619623",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03181/s118425867/s033868940",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03361/s487140526/s555856370",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03484/s605301463/s701741644",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03508/s530061909/s291223828",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03521/s160578363/s454610535",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03630/s447751540/s334856889",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03689/s158152822/s927762541",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03754/s986085259/s724207631",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03797/s345891146/s662134641",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03822/s540686618/s470182878",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03939/s531244583/s905709524",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03944/s255033785/s447987841",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03969/s885566292/s723305462",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p03990/s777334307/s569553478",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "codenet",
+    "pair_id": "p04047/s160075093/s270337356",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "apache/arrow/59f30f089879196910c4eca0f0530ec1d039cc71",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "baldurk/renderdoc/e5bb692caf7e76f3fb1d08df3d0cff12f7471185",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "brucedevices/firmware/89f46d3f1af738ba6f4ff87ca017d3ad0d8ac000",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "catboost/catboost/77dac37063afaff92f1ef279b4936edd5d6bf6e9",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "cppcheck-opensource/cppcheck/d80f2fb46fda06841daf7d9fb7965bdc25086933",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "duckdb/duckdb/5866dbc0e1e936a44d9b8b2be9c63d1394615459",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "facebookresearch/faiss/061b68b43a9eb53866b8890dd88904b08de50f08",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "freecad/freecad/c07c7c9fc91dcb69165a37abadc0729968a5f154",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "ggml-org/whisper.cpp/3fec2119e6b52d1381b02a0fbf281b1b34728c25",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "godotengine/godot/8634a8e2342dff4fba9c12452e947a59f3e0715e",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "google/or-tools/8f5bfbc252f115c896a5050e72c0672ed0ce4169",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "google/perfetto/7be0e83c084337838adc9e1771d11e4b5c40abe3",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "google/skia/52f813294794fa93b6ac88c9edebf7d457bce45d",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "grpc/grpc/03c049b14f1a674b8223648c3ee027e9904ea03f",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "lynx-family/lynx/ae98116a14ee41c19e74f07022edaa79aa4e69dc",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "mawww/kakoune/43e8aadcaad0036b6910d1a730e4f6c4c1ebd72c",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "meta/redex/d7cb1f6f0050afc363280be769e7fca8b5f87e92",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "meta/rocksdb/d5a46c40e58a62b94d46c6739bcd44d3d459ef44",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "nixos/nix/25c889baacd6a8b9b66ce4776ec729a40e39cf77",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "oceanbase/oceanbase/c6439a604db43655ef5b57a3de776ef1a8cc60c2",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "openvinotoolkit/openvino/3fcff15166c05463185b6ca7ab24cdf84592a9c1",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "pcsx2/pcsx2/319ec1f77460d4d4f720866e15c5f8ccb5b82350",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "project-osrm/osrm-backend/8fd8d0c24a10240c5dd494daac9ecd56d8df1eb3",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "prusa3d/prusaslicer/d499c367f88345332b8a6ed6a6be5b521c831343",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "qgis/qgis/a66784465a9dd8e9d344e37dbd0f304325ac1f6e",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "redot-engine/redot-engine/7934e73d78c111e5f9cfbbda4f74723733482a4e",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "rpcs3/rpcs3/36149fd9867f9e7af2a1c10fe3a96fb8b205db1b",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "taichi-dev/taichi/1ecca41e8b4a03af5b3da2d068b8cb6d79395524",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "tencent/hippy/eb77c15fdbcb1d7077784072ad55d5170dbfcb87",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "tstack/lnav/b2abf94c2e76972d7089c7d299496d284fe18aa2",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "typesense/typesense/fe377b88729c20f9c52afa1b9bdc390dbea00174",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "vcmi/vcmi/31c9d6e28d2f063c50f9bf4e435410d20337cee1",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "github-performance-fix",
+    "pair_id": "yhirose/cpp-httplib/7fc8682a0a3eb0530314495005067dce8148a1aa",
+    "reason": "no_independent_repository_spec"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00142/s531756063/s056920177",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00232/s736868066/s257767852",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00258/s926286234/s962685800",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00281/s151058159/s480023055",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00296/s764111918/s547413916",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00442/s682601188/s333528916",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00453/s662299560/s149359559",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00503/s879992765/s030513805",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00523/s412146974/s284950373",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00652/s229687339/s485753868",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00728/s737240576/s540900301",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00752/s273899845/s702375699",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00775/s453674285/s659112174",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00802/s165026639/s377094848",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00821/s869638376/s332576214",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00871/s637120045/s297346736",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p00912/s127718162/s569210749",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01089/s464509595/s383741487",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01096/s390228687/s877694331",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01099/s762535722/s723398953",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01126/s486473102/s815794250",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01140/s520369950/s970666389",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01220/s730952276/s191226212",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01229/s579624786/s448166297",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01537/s736007261/s278170237",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p01626/s542936557/s919854241",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02273/s433057389/s379499908",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02279/s253350896/s670387356",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02283/s643337530/s170566577",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02370/s129787446/s157170967",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02604/s172300045/s362320077",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p02739/s244384357/s098678701",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03145/s914768254/s459451886",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03166/s834583208/s368152405",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03167/s380321460/s071550330",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03256/s256338143/s036548183",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03383/s581771527/s226965531",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03515/s743943296/s518102278",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03566/s797071012/s740971840",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03575/s317596724/s332290831",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03800/s901615042/s889809971",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03995/s553279830/s996671905",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p03996/s459341813/s031088870",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p04007/s991279570/s262643045",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p04027/s427821443/s146543519",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-train",
+    "pair_id": "p04049/s188872628/s706333730",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00212/s125970509/s941891961",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p00464/s192485401/s699976880",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p01239/s624420972/s209851138",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03460/s167129751/s304509730",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03460/s524650554/s304509730",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s049756697/s043108815",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s153199133/s043108815",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s414762855/s718539268",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s588506083/s718539268",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s713159368/s043108815",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s869339899/s718539268",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s903866808/s718539268",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s909620458/s718539268",
+    "reason": "unbundled_statement_images"
+  },
+  {
+    "corpus": "pie-validation",
+    "pair_id": "p03635/s915479235/s767357743",
+    "reason": "unbundled_statement_images"
+  }
+]
