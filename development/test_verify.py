@@ -195,16 +195,19 @@ def test_ordinary_verify_reports_an_injected_skip(public_checkout, monkeypatch, 
     assert "Verified" not in result.stdout
 
 
-@pytest.mark.parametrize(("source", "macro", "wrong_literal", "error"), [
+@pytest.mark.parametrize(("source", "macro", "wrong_value", "error"), [
     ("evaluation.tex", r"\GroupedNearestCFG{}", "5/5", "OEIS nearest-preceding CFG must use its generated macro"),
     ("paper.tex", r"\GroupedFullMultiCI", "[+6.32,+62.12]", "Grouped statistics macro references differ in abstract"),
+    ("evaluation.tex", r"\GroupedPartBRetentionPairPercent\% by pair; \GroupedPartBRetentionGroupPercent\% equal-group",
+     r"\GroupedPartBRetentionGroupPercent\% by pair; \GroupedPartBRetentionPairPercent\% equal-group",
+     "Part B retention percentages must use their labelled pair and equal-group macros"),
 ])
 def test_fast_verify_rejects_manuscript_macro_substitutions(public_checkout, monkeypatch,
-                                                            source, macro, wrong_literal, error):
+                                                            source, macro, wrong_value, error):
     manuscript = public_checkout / "manuscript" / source
     content = manuscript.read_text(encoding="utf-8")
     assert content.count(macro) == 1
-    manuscript.write_text(content.replace(macro, wrong_literal), encoding="utf-8")
+    manuscript.write_text(content.replace(macro, wrong_value), encoding="utf-8")
     monkeypatch.delenv("EAPG_REPO_ROOT", raising=False)
     result = subprocess.run([sys.executable, "-B", "-S", "eapg.py", "verify", "--mode", "fast"],
                             cwd=public_checkout, capture_output=True, text=True, encoding="utf-8")

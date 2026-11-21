@@ -568,9 +568,16 @@ def verify_macro_references():
         ("paired_mechanism.tex", (manuscript / "paired_mechanism.tex").read_text(encoding="utf-8"),
          "DeskExistingCI DeskReauditCI DeskEligibleVotes DeskEligibleVoteCI"),
     ):
-        actual = Counter(re.findall(r"\\Grouped([A-Za-z]+)\b", re.sub(r"(?<!\\)%[^\n]*", "", source)))
+        source = re.sub(r"(?<!\\)%[^\n]*", "", source)
+        actual = Counter(re.findall(r"\\Grouped([A-Za-z]+)\b", source))
         if actual != Counter(expected.split()):
             raise ValueError(f"Grouped statistics macro references differ in {name}")
+        if name == "evaluation.tex":
+            retention = (r"\GroupedPartBPositiveRetention{} pairs "
+                         r"(\GroupedPartBRetentionPairPercent\% by pair; "
+                         r"\GroupedPartBRetentionGroupPercent\% equal-group)")
+            if retention not in " ".join(source.split()):
+                raise ValueError("Part B retention percentages must use their labelled pair and equal-group macros")
     for name in ("paper.tex", "paired_mechanism.tex"):
         if r"\input{grouped_statistics_macros}" not in (manuscript / name).read_text(encoding="utf-8"):
             raise ValueError(f"Missing grouped statistics macro input in {name}")
