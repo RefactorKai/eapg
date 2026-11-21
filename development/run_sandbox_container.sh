@@ -17,15 +17,17 @@ docker build --platform linux/amd64 --file docker/gate1.Dockerfile --tag eapg-ga
 container=$(docker run --rm --detach --privileged --cgroupns private --network none \
     --tmpfs /run --tmpfs /tmp:mode=1777 eapg-gate1)
 trap 'docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
+user_id=$(docker exec "$container" id -u eapg)
+runtime_dir="/run/user/$user_id"
 
 run_as_eapg() {
-    docker exec --user eapg --env HOME=/home/eapg --env XDG_RUNTIME_DIR=/run/user/1000 \
-        --env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus "$@"
+    docker exec --user eapg --env HOME=/home/eapg --env XDG_RUNTIME_DIR="$runtime_dir" \
+        --env DBUS_SESSION_BUS_ADDRESS="unix:path=$runtime_dir/bus" "$@"
 }
 
 ready=false
 for _ in {1..45}; do
-    if docker exec "$container" systemctl start user@1000.service &&
+    if docker exec "$container" systemctl start "user@$user_id.service" &&
         run_as_eapg "$container" systemctl --user show-environment >/dev/null; then
         ready=true
         break

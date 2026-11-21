@@ -17,7 +17,7 @@ COPY requirements-ast.txt /tmp/requirements-ast.txt
 RUN python3.14 -m venv /opt/eapg \
     && /opt/eapg/bin/python -m pip install --no-cache-dir -r /tmp/requirements-ast.txt pytest==9.0.2 \
     && rm /tmp/requirements-ast.txt \
-    && useradd --uid 1000 --create-home --shell /bin/bash eapg \
+    && useradd --create-home --shell /bin/bash eapg \
     && install -d -o eapg -g eapg /workspace \
     && install -d /etc/systemd/system/user@.service.d \
     && printf '[Service]\nDelegate=cpu cpuset io memory pids\n' >/etc/systemd/system/user@.service.d/delegate.conf
