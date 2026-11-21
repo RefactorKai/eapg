@@ -1,0 +1,80 @@
+% Fixed design values: frozen expansion manifest and protocol
+% (protocol SHA-256 8a9692457cdba6d9b2860717b8bc254dae47dc48eebe7baacabb17a82007953e).
+\newcommand{\BenchPairs}{1{,}000}
+\newcommand{\BenchPIE}{728}
+\newcommand{\BenchVal}{500}
+\newcommand{\BenchTrain}{228}
+\newcommand{\BenchCodeNet}{228}
+\newcommand{\BenchGitHub}{44}
+\newcommand{\BenchContestPairs}{956}
+\newcommand{\BenchGCC}{15.2.0}
+\newcommand{\BenchMinClusters}{200}
+\newcommand{\BenchMinFits}{30}
+\newcommand{\BenchMinSizes}{4}
+\newcommand{\BenchMinSpan}{8}
+\newcommand{\BenchMinSlope}{0.50}
+\newcommand{\BenchMinRatio}{1.50}
+\newcommand{\BenchRecovery}{80\%}
+\newcommand{\BenchAuthorSample}{50}
+
+% Unset values render as visibly empty fields. Populate from audited
+% receipts only; a missing value is not zero. Rates include k/n and CI.
+\newcommand{\BenchSlot}[1]{\textnormal{[\emph{#1}:~\rule{1.3em}{0.35pt}]}}
+\newcommand{\BenchCell}{\textnormal{[\rule{1.3em}{0.35pt}]}}
+\newcommand{\BenchExecRate}{\BenchSlot{P1 execution yield}}
+\newcommand{\BenchDeskContrast}{\BenchSlot{P2 desk--execution contrast}}
+\newcommand{\BenchFitAlertRate}{\BenchSlot{P3 fitted alert rate}}
+\newcommand{\BenchIntakeAlertRate}{\BenchSlot{intake-to-alert yield}}
+% Direction-neutral: retain an inconclusive option in all three places.
+% Do not include a directional claim for a result below its size gate.
+\newcommand{\BenchAbstractTakeaway}{\BenchSlot{abstract interpretation}}
+\newcommand{\BenchIntroTakeaway}{\BenchSlot{principal finding}}
+\newcommand{\BenchConclusionTakeaway}{\BenchSlot{conclusion interpretation}}
+% Pending a dated amendment and executed methods record. Proposed:
+% one low-tier model labels all 977 S0-pass pairs; a second model rates a random 100
+% blind for agreement. Do not report this as implemented until verified.
+\newcommand{\BenchDeskMethods}{\BenchSlot{final S1 rater methods}}
+\newcommand{\BenchModelAgreement}{\BenchSlot{model agreement}}
+\newcommand{\BenchAuthorCheck}{\BenchSlot{one-author blind check}}
+\newcommand{\BenchIntakeStops}{\BenchSlot{intake stop breakdown}}
+\newcommand{\BenchOverlap}{\BenchSlot{development exposure and overlap}}
+\newcommand{\BenchDeskReasons}{\BenchSlot{desk stop reasons}}
+\newcommand{\BenchRunStops}{\BenchSlot{run stop reasons}}
+\newcommand{\BenchGates}{\BenchSlot{cluster counts and size gates}}
+\newcommand{\BenchTests}{\BenchSlot{primary tests}}
+\newcommand{\BenchFrames}{\BenchSlot{frame-specific estimates}}
+\newcommand{\BenchFitSensitivity}{\BenchSlot{fit sensitivity}}
+\newcommand{\BenchVariantChecks}{\BenchSlot{censoring and variant checks}}
+\newcommand{\BenchPairSensitivity}{\BenchSlot{denominator sensitivity}}
+\newcommand{\BenchExposedResults}{\BenchSlot{development-exposed outcomes}}
+\newcommand{\BenchBuildDecision}{\BenchSlot{native-build decision}}
+\newcommand{\BenchAvailability}{\BenchSlot{artifact links and evidence classes}}
+
+% Pair counts: Contest (C), Repository (R), distinct union (U).
+\newcommand{\BenchFlowIntakeC}{\BenchCell}
+\newcommand{\BenchFlowIntakeR}{\BenchCell}
+\newcommand{\BenchFlowIntakeU}{\BenchCell}
+\newcommand{\BenchFlowDeskC}{\BenchCell}
+\newcommand{\BenchFlowDeskR}{\BenchCell}
+\newcommand{\BenchFlowDeskU}{\BenchCell}
+\newcommand{\BenchFlowPrepC}{\BenchCell}
+\newcommand{\BenchFlowPrepR}{\BenchCell}
+\newcommand{\BenchFlowPrepU}{\BenchCell}
+\newcommand{\BenchFlowInfraC}{\BenchCell}
+\newcommand{\BenchFlowInfraR}{\BenchCell}
+\newcommand{\BenchFlowInfraU}{\BenchCell}
+\newcommand{\BenchFlowUnrunC}{\BenchCell}
+\newcommand{\BenchFlowUnrunR}{\BenchCell}
+\newcommand{\BenchFlowUnrunU}{\BenchCell}
+\newcommand{\BenchFlowOracleC}{\BenchCell}
+\newcommand{\BenchFlowOracleR}{\BenchCell}
+\newcommand{\BenchFlowOracleU}{\BenchCell}
+\newcommand{\BenchFlowNoFitC}{\BenchCell}
+\newcommand{\BenchFlowNoFitR}{\BenchCell}
+\newcommand{\BenchFlowNoFitU}{\BenchCell}
+\newcommand{\BenchFlowNoAlertC}{\BenchCell}
+\newcommand{\BenchFlowNoAlertR}{\BenchCell}
+\newcommand{\BenchFlowNoAlertU}{\BenchCell}
+\newcommand{\BenchFlowAlertC}{\BenchCell}
+\newcommand{\BenchFlowAlertR}{\BenchCell}
+\newcommand{\BenchFlowAlertU}{\BenchCell}

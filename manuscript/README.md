@@ -1,4 +1,25 @@
-# Localizing Growth-Changing Edits in C++17 with Execution-Annotated Program Graphs
+# Manuscripts
+
+## C++ benchmark qualification study
+
+The [benchmark study draft](paired_mechanism.pdf) asks when a frozen public C++
+performance pair can support a finite-range growth claim. Unfilled fields
+in [the slot definitions](benchmark_slots.tex) are not results or zeros.
+Fill them from checked receipts and the final S1 methods record.
+
+Build the benchmark draft from this directory:
+
+~~~sh
+pdflatex -no-shell-escape -halt-on-error -interaction=nonstopmode paired_mechanism.tex
+bibtex paired_mechanism
+pdflatex -no-shell-escape -halt-on-error -interaction=nonstopmode paired_mechanism.tex
+pdflatex -no-shell-escape -halt-on-error -interaction=nonstopmode paired_mechanism.tex
+~~~
+
+Check the final LaTeX log and BibTeX log for warnings before distributing
+the draft.
+
+## Archived development paper
 
 The [paper](paper.pdf) reports the frozen synthetic pilot, 13-group six-representation ablation, domain/intake audits, and executed bounded multi-agent prospective scalar (Part A) and blinded contract (Part B) studies. See [Reproducibility](../docs/REPRODUCIBILITY.md) and [Independent Audit](../docs/INDEPENDENT_AUDIT.md) for verification tiers, gate dispositions, and private custody boundaries.
 
