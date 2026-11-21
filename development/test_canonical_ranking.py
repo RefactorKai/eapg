@@ -59,6 +59,8 @@ class CanonicalRankingTests(unittest.TestCase):
             with self.subTest(use_loop_def_use=def_use):
                 ranked = rank_canonical(pipeline, record, nodes, use_loop_def_use=def_use)
                 self.assertEqual(sorted(ranked), record["slicing"]["c_pruned"])
+                label_blind = {k: v for k, v in record.items() if k != "slow_code"}
+                self.assertEqual(rank_canonical(pipeline, label_blind, nodes, use_loop_def_use=def_use), ranked)
 
     def test_candidate_ranker_receives_macro_nodes(self):
         seen = {}

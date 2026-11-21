@@ -29,4 +29,5 @@ def rank_canonical(pipeline, record, macro_nodes, *, use_loop_def_use=False):
     canonical_rank = FunctionType(rank.__code__, dict(rank.__globals__, loop_bound_aliases=canonical_aliases),
                                   rank.__name__, rank.__defaults__, rank.__closure__)
     canonical_rank.__kwdefaults__ = rank.__kwdefaults__
-    return canonical_rank(record, use_loop_def_use=use_loop_def_use)
+    # The frozen alias pass reads rec["slow_code"] before its (replaced) reparse; the value is unused.
+    return canonical_rank({"slow_code": "", **record}, use_loop_def_use=use_loop_def_use)
