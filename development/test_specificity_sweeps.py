@@ -1,12 +1,14 @@
 """WP-S1 receipt checks. Run with python -B development/test_specificity_sweeps.py."""
 
 from copy import deepcopy
+import importlib.util
 import json
 import unittest
 
 import specificity_sweeps as s1
 
 
+@unittest.skipIf(importlib.util.find_spec("tree_sitter") is None, "tree_sitter is not installed")
 class SpecificitySweepsTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

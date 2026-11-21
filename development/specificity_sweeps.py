@@ -14,6 +14,7 @@ import argparse
 from collections import Counter
 from hashlib import sha256
 import ast
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -383,6 +384,9 @@ def main(argv=None):
     parser.add_argument("--regenerate", action="store_true", help="re-profile the 42 active Part A cases")
     parser.add_argument("--check", action="store_true", help="fail unless committed outputs match a rebuild")
     args = parser.parse_args(argv)
+    if args.check and importlib.util.find_spec("tree_sitter") is None:
+        print("WP-S1 specificity sweeps: SKIPPED (tree_sitter is not installed)")
+        return 0
     pipeline = load_pipeline()
     if args.regenerate:
         write(PROFILES, canonical(regenerate(pipeline)) + "\n")
