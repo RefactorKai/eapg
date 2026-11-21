@@ -24,8 +24,9 @@ from .path_b_run import MODES
 
 MANIFEST_SHA = "5b432d827f324c073eb7ed14b4df4b5d18f5eb2a90c4d97d358405a800d27346"
 PROTOCOL_SHA = "8a9692457cdba6d9b2860717b8bc254dae47dc48eebe7baacabb17a82007953e"
-HELD_SHA = "4534575cafdf05ead42bb458c5a58811573e5302e93e50c3e0b46bf1b8441d51"
-HELD_LABEL = "not_desk_rateable_missing_spec_material"
+HELD_SHA = "6bc97deac805d67528e1939481c75745f51cf7350c0d3ee757598eb55c5dad01"
+AGREEMENT_DRAW_SHA = "e15d89ed6808527a91a6dd9188162dad4a280baefe44653fe5a9f5c97b521ced"
+HELD_LABEL = "desk_unrateable"
 SOURCES = {"pie-validation": "PIE", "pie-train": "PIE", "codenet": "CodeNet",
            "github-performance-fix": "GitHub"}
 SIDES = ("target", "reference", "restored", "sham")
@@ -122,23 +123,22 @@ def validate_fixture(row, fixture):
 def held_scope(bundle, entries, required, amendment_pin, held_pin):
     if amendment_pin is None:
         require("scope_exception" not in bundle, "missing approved S1 amendment SHA-256")
-        return set()
+        return {}
     scope = bundle["scope_exception"]
     require(scope["amendment"]["sha256"] == amendment_pin, "wrong S1 amendment SHA-256")
     artifact(scope["amendment"])
     require(scope["held"]["sha256"] == held_pin, "wrong S1 held-list SHA-256")
     holds = json.loads(artifact(scope["held"]))
-    keys = set()
+    decisions = {}
     for hold in holds:
-        key = hold["id"]
-        require(key in required and key not in keys, "invalid or duplicate S1 held pair")
+        key = f'{hold["corpus"]}:{hold["pair_id"]}'
+        require(key in required and key not in decisions, "invalid or duplicate S1 held pair")
         row = entries[key]
-        require(hold["corpus"] == row["corpus"] and hold["source"] == SOURCES[row["corpus"]]
-                and hold["cluster"] == row["cluster_id"] and hold["quarantined"] == row["quarantined"]
-                and hold["hold"] in ("unbundled_statement_images", "no_independent_repository_spec"),
+        require(hold["reason"] == ("no_independent_repository_spec" if row["frame"] == "Repository"
+                                   else "unbundled_statement_images"),
                 "S1 held list does not match frozen cohort or allowed hold reasons")
-        keys.add(key)
-    return keys
+        decisions[key] = {"status": HELD_LABEL, "reason": hold["reason"]}
+    return decisions
 
 
 def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=None, held_pin=HELD_SHA):
@@ -158,29 +158,33 @@ def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=
     required = {key for key, row in entries.items() if not row.get("intake_stop")}
     holds = held_scope(bundle, entries, required, amendment_pin, held_pin)
     desk = bundle.get("desk")
-    require(isinstance(desk, dict) and desk.keys() == required - holds, "incomplete adjudicated S1 coverage")
+    require(isinstance(desk, dict) and desk.keys() == required - holds.keys(), "incomplete S1 coverage")
     evidence = bundle.get("desk_evidence", {})
-    require(all(is_pin(evidence.get(key)) for key in (
-        "packet_sha256", "rater_a_sha256", "rater_b_sha256", "adjudication_sha256",
-    )) and evidence["rater_a_sha256"] != evidence["rater_b_sha256"], "missing blind S1 evidence pins")
+    require(all(is_pin(evidence.get(key)) for key in ("packet_sha256", "rater_a_sha256", "rater_b_sha256"))
+            and evidence["rater_a_sha256"] != evidence["rater_b_sha256"], "missing blind S1 evidence pins")
+    if amendment_pin is None:
+        require(is_pin(evidence.get("adjudication_sha256")), "missing blind S1 adjudication pin")
+    else:
+        require(evidence.get("agreement_draw_sha256") == AGREEMENT_DRAW_SHA,
+                "missing fixed S1 agreement-draw pin")
     passes = set()
     for key, judgment in desk.items():
         require(isinstance(judgment.get("evidence"), str) and judgment["evidence"].strip(),
-                f"{key}: missing adjudicated S1 rationale")
+                f"{key}: missing S1 rationale")
         if judgment.get("status") == "pass":
             require(judgment.get("reason") is None and judgment.get("bucket") is None,
-                    "adjudicated pass carries a stop reason or bucket")
+                    "S1 pass carries a stop reason or bucket")
             passes.add(key)
         else:
             require(judgment.get("status") in ("desk_excluded", "desk_blocked") and
                     judgment.get("reason") in DESK_STOPS.get(judgment.get("bucket"), "").split(),
-                    f"{key}: invalid adjudicated S1 stop")
+                    f"{key}: invalid S1 stop")
     fixtures = bundle.get("fixtures")
     require(isinstance(fixtures, dict) and fixtures.keys() == passes,
-            "need exactly one pinned fixture for each adjudicated S1 pass")
+            "need exactly one pinned fixture for each S1 pass")
     for key, fixture in fixtures.items():
         validate_fixture(entries[key], fixture)
-    desk = {**desk, **{key: {"status": HELD_LABEL} for key in holds}}
+    desk = {**desk, **holds}
     header = {
         "schema": "eapg.expansion.checkpoint.v1", "manifest_sha256": manifest_pin,
         "protocol_sha256": PROTOCOL_SHA, "bundle_sha256": bundle_pin, "compiler": "15.2.0",
@@ -188,6 +192,7 @@ def load_inputs(stream, bundle_pin, *, manifest_pin=MANIFEST_SHA, amendment_pin=
         "gate1_sha256": digest(Path(gate.__file__).read_bytes()),
         "fit_sha256": digest(Path(predict.__file__).read_bytes()),
         "amendment_sha256": amendment_pin, "held_list_sha256": held_pin if holds else None,
+        "s1_design": "amendment_1" if amendment_pin else "adjudicated",
         "modes": list(MODES), "node_filter_applied": False,
     }
     return header, entries, desk, fixtures

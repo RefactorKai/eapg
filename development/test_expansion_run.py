@@ -28,7 +28,7 @@ def proof(value):
 def inputs():
     source = b"int main() {}"
     side = {"files": [{"path": "main.cpp", "sha256": run.digest(source)}]}
-    pair = {"id": "synthetic", "corpus": "codenet", "cluster_id": "synthetic-cluster",
+    pair = {"id": "synthetic", "corpus": "codenet", "cluster_id": "synthetic-cluster", "frame": "Contest",
             "quarantined": False, "slow": side, "fast": side}
     manifest = {"protocol_sha256": run.PROTOCOL_SHA, "status": "scrape_frozen",
                 "held_out_used": False, "pairs": [pair]}
@@ -65,7 +65,7 @@ def load(inputs, **kwargs):
 
 @pytest.mark.parametrize("missing, message", [
     ("bundle", "missing adjudicated S1 labels and case fixtures"),
-    ("desk", "incomplete adjudicated S1 coverage"),
+    ("desk", "incomplete S1 coverage"),
     ("desk_evidence", "missing blind S1 evidence pins"),
     ("fixtures", "need exactly one pinned fixture"),
     ("oracle", "missing independent oracle"),
@@ -98,12 +98,11 @@ def test_cli_refuses_before_gate1(inputs, monkeypatch, capsys, missing, message)
 
 
 def test_held_requires_exact_list_and_explicit_amendment(inputs):
-    manifest, bundle, key = inputs
+    _, bundle, key = inputs
     bundle["desk"].clear()
     bundle["fixtures"].clear()
-    held = artifact(line([{"id": key, "corpus": "codenet", "source": "CodeNet",
-                           "cluster": manifest["pairs"][0]["cluster_id"], "quarantined": False,
-                           "hold": "unbundled_statement_images"}]))
+    held = artifact(line([{"pair_id": "synthetic", "corpus": "codenet",
+                           "reason": "unbundled_statement_images"}]))
     amendment = artifact(b"Synthetic amendment")
     bundle["scope_exception"] = {"held": held, "amendment": amendment}
     with pytest.raises(ValueError, match="missing approved S1 amendment"):
@@ -112,9 +111,14 @@ def test_held_requires_exact_list_and_explicit_amendment(inputs):
         load(inputs, amendment_pin="0" * 64)
     with pytest.raises(ValueError, match="wrong S1 held-list"):
         load(inputs, amendment_pin=amendment["sha256"])
+    with pytest.raises(ValueError, match="missing fixed S1 agreement-draw"):
+        load(inputs, amendment_pin=amendment["sha256"], held_pin=held["sha256"])
+    bundle["desk_evidence"]["agreement_draw_sha256"] = run.AGREEMENT_DRAW_SHA
+    del bundle["desk_evidence"]["adjudication_sha256"]
     header, entries, desk, fixtures = load(inputs, amendment_pin=amendment["sha256"], held_pin=held["sha256"])
     row = run.checkpoint(key, entries[key], desk, fixtures, [])
     assert row["terminal"] == run.HELD_LABEL
+    assert row["desk"]["reason"] == "unbundled_statement_images"
     assert header["held_list_sha256"] == held["sha256"]
     assert run.summarize(entries, [row])["by_source"]["CodeNet"]["not_desk_rateable"] == 1
 
