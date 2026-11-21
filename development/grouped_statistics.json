@@ -6060,6 +6060,19 @@
         }
       }
     },
+    "equal_group_top1_percent": {
+      "adjudicated_positives": {
+        "abstract_fold0": 81.8,
+        "abstract_oof": 63.6,
+        "symbolic": 63.6,
+        "symbolic_unbiased": 54.5
+      },
+      "multi_candidate": {
+        "abstract_oof": 71.4,
+        "symbolic": 71.4,
+        "symbolic_unbiased": 57.1
+      }
+    },
     "reference_retention": {
       "clopper_pearson_95pct_percent": [
         57.2,
@@ -6069,6 +6082,7 @@
       "percent": 85.7,
       "total": 14
     },
+    "reference_retention_equal_group_percent": 81.8,
     "verified_negative_alerts": {
       "clopper_pearson_95pct_percent": [
         1.3,
@@ -6080,7 +6094,7 @@
     }
   },
   "schema": "eapg-grouped-statistics-v1",
-  "script_sha256": "dea8b6335212c84c4e576be981f12c62e21b6373789516a5e54c1365e8e1bd21",
+  "script_sha256": "9d74c1f974a34b386d0356b238502a7622f87d03a6e0a3d36dbba8beda1a48fe",
   "secondary_desk_agreement": {
     "existing": {
       "coarse": {
@@ -6167,6 +6181,17 @@
       "interval_method": "not estimated: public counts lack vote-cluster detail",
       "percent": 59.7,
       "total": 72
+    },
+    "reaudit_eligible_votes_on_exclusions": {
+      "clopper_pearson_95pct_percent": [
+        4.9,
+        20.7
+      ],
+      "count": 8,
+      "interval_method": "95% Clopper\u2013Pearson binomial reference interval assuming independent votes",
+      "percent": 11.1,
+      "total": 72,
+      "unit": "agent vote on a sampled originally excluded pair"
     }
   }
 }

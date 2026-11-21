@@ -7,6 +7,7 @@ from functools import lru_cache
 from hashlib import sha256
 import json
 from math import comb, lcm
+import re
 from runpy import run_path
 
 from replay_pilot_contrast import DRAWS, PILOT, ROOT, SEED, contrast, verified_json
@@ -312,16 +313,35 @@ def part_b_statistics(receipt):
     def group(row):
         return row["group_id"]
 
+    def retained(row):
+        return bool(set(row["slice"]).intersection(row["blinded_accepted"]))
+
+    def equal_group_percent(rows, predicate):
+        by_group = defaultdict(list)
+        for row in rows:
+            by_group[group(row)].append(predicate(row))
+        rates = [Fraction(sum(outcomes), len(outcomes)) for outcomes in by_group.values()]
+        return round(100 * float(sum(rates) / len(rates)), 1)
+
+    multi = [r for r in positive if len(r["slice"]) >= 2]
     return {
         "contrasts": {name: {method: paired(rows, group, hit("abstract_oof"), hit(method))
             for method in ("symbolic", "symbolic_unbiased", "abstract_fold0")
         } for name, rows in {
             "adjudicated_positives": positive,
-            "multi_candidate": [r for r in positive if len(r["slice"]) >= 2],
+            "multi_candidate": multi,
             "without_g_stress_08": [r for r in positive if group(r) != "G_STRESS_08"],
             "without_pie_dev": [r for r in positive if r["pair_id"] != "PIE_DEV_p03497"],
         }.items()},
-        "reference_retention": proportion(positive, lambda r: bool(set(r["slice"]).intersection(r["blinded_accepted"]))),
+        "equal_group_top1_percent": {
+            name: {method: equal_group_percent(rows, hit(method)) for method in methods}
+            for name, rows, methods in (
+                ("adjudicated_positives", positive, ("abstract_oof", "abstract_fold0", "symbolic", "symbolic_unbiased")),
+                ("multi_candidate", multi, ("abstract_oof", "symbolic", "symbolic_unbiased")),
+            )
+        },
+        "reference_retention": proportion(positive, retained),
+        "reference_retention_equal_group_percent": equal_group_percent(positive, retained),
         "verified_negative_alerts": proportion(negative, lambda r: r["symptom_id"] is not None),
     }
 
@@ -351,12 +371,18 @@ def desk_agreement_statistics():
     votes = sum(sum(counts.values()) for counts in confusion.values())
     if (exact, votes) != (cross["exact_agreements"], cross["vote_count"]):
         raise ValueError("Desk re-audit agreement does not reconcile")
+    eligible = sum(counts["ELIGIBLE"] for counts in confusion.values())
     return {
         "existing": {key: summary(row, "archived project-cluster bootstrap")
                      for key, row in existing["results"].items()},
         "reaudit": summary(fresh["results"]["five_label"], "archived whole-vector bootstrap within allocation cells"),
         "reaudit_agreement_with_original": {"count": exact, "total": votes, "percent": round(100 * exact / votes, 1),
                                            "interval_method": "not estimated: public counts lack vote-cluster detail"},
+        "reaudit_eligible_votes_on_exclusions": {
+            **rate(eligible, votes),
+            "unit": "agent vote on a sampled originally excluded pair",
+            "interval_method": "95% Clopper–Pearson binomial reference interval assuming independent votes",
+        },
     }
 
 
@@ -465,8 +491,11 @@ def render_macros(receipt):
     multi = strict["multi_candidate"]["adapted_constrained"]
     full = "abstract_graph_minus_full_eapg"
     part_a = receipt["part_a"]["scoped_minus_cfg_top1"]
-    part_b = receipt["part_b"]["contrasts"]["adjudicated_positives"]
+    b = receipt["part_b"]
+    part_b = b["contrasts"]["adjudicated_positives"]
     desk = receipt["secondary_desk_agreement"]
+    eligible = desk["reaudit_eligible_votes_on_exclusions"]
+    fold = part_b["abstract_fold0"]["right"]
     nearest = receipt["oeis_development"]["nearest_preceding_cfg_minus_scoped_top1"]["left"]
     specificity = receipt["part_a_specificity_by_seed"]["42"]
     values = {
@@ -482,12 +511,31 @@ def render_macros(receipt):
         "GroupedPartAOffSiteCI": limits(part_a["off_site"][boot], signed=True),
         "GroupedPartBUnbiasedCI": limits(part_b["symbolic_unbiased"][boot], signed=True),
         "GroupedPartBRefinedCI": limits(part_b["symbolic"][boot], signed=True),
+        "GroupedPartAContrast": f"{part_a['core']['group_weighted_delta_pp']:+.1f}",
+        "GroupedPartBUnbiasedContrast": f"{part_b['symbolic_unbiased']['group_weighted_delta_pp']:+.1f}",
+        "GroupedPartBRefinedContrast": f"{part_b['symbolic']['group_weighted_delta_pp']:.1f}",
+        "GroupedPartBRetentionPairPercent": f"{b['reference_retention']['percent']:.1f}",
+        "GroupedPartBRetentionGroupPercent": f"{b['reference_retention_equal_group_percent']:.1f}",
+        "GroupedPartBFoldHits": f"{fold['count']}/{fold['total']}",
+        "GroupedPartBFoldPairPercent": f"{fold['percent']:.1f}",
+        "GroupedPartBPositiveRetention": f"{b['reference_retention']['count']}/{b['reference_retention']['total']}",
+        "GroupedPartBNegativeAlerts": f"{b['verified_negative_alerts']['count']}/{b['verified_negative_alerts']['total']}",
         "GroupedDeskExistingCI": limits(desk["existing"]["coarse"]["kappa_bootstrap_95pct_points"]),
         "GroupedDeskReauditCI": limits(desk["reaudit"]["kappa_bootstrap_95pct_points"]),
+        "GroupedDeskEligibleVotes": f"{eligible['count']}/{eligible['total']} = {eligible['percent']:.1f}\\%",
+        "GroupedDeskEligibleVoteCI": limits(eligible["clopper_pearson_95pct_percent"]),
         "GroupedNearestCFG": f"{nearest['count']}/{nearest['total']}",
         "GroupedBootstrapDraws": f"{DRAWS:,}",
         "GroupedBootstrapSeed": str(SEED),
     }
+    for name, suffix in (("adjudicated_positives", "Positive"), ("multi_candidate", "Multi")):
+        for method, label in (("abstract_oof", "OOF"), ("abstract_fold0", "Fold"),
+                              ("symbolic", "Refined"), ("symbolic_unbiased", "Unbiased")):
+            percents = b["equal_group_top1_percent"][name]
+            if method in percents:
+                cell = (b["contrasts"][name]["symbolic"]["left"] if method == "abstract_oof"
+                        else b["contrasts"][name][method]["right"])
+                values[f"GroupedPartB{suffix}{label}"] = f"{cell['count']}/{cell['total']} ({percents[method]:.1f})"
     for label, category, outcome in (
         ("QuadraticFalse", "sham_quadratic", "false_alerts"),
         ("LinearFalse", "sham_linear", "false_alerts"),
@@ -500,6 +548,32 @@ def render_macros(receipt):
         values[f"Grouped{label}"] = f"{cell['count']}/{cell['total']} = {cell['percent']:.1f}\\%"
     return "% Generated by development/replay_grouped_statistics.py\n" + "".join(
         f"\\newcommand{{\\{key}}}{{{value}}}\n" for key, value in sorted(values.items()))
+
+
+def verify_macro_references():
+    manuscript = ROOT / "manuscript"
+    paper = (manuscript / "paper.tex").read_text(encoding="utf-8")
+    common = "PartAContrast PartACoreCI PartBUnbiasedContrast PartBUnbiasedCI PartBRefinedCI"
+    for name, source, expected in (
+        ("abstract", paper.partition(r"\begin{abstract}")[2].partition(r"\end{abstract}")[0],
+         f"{common} FullMultiCI"),
+        ("conclusion", paper.partition(r"\section{Conclusion}")[2].partition(r"\section{")[0], common),
+        ("evaluation.tex", (manuscript / "evaluation.tex").read_text(encoding="utf-8"),
+         "BootstrapSeed BootstrapDraws FrozenAllCI FrozenMultiCI HitsOnlyCI FullAllCI FullMultiCI RefinedCI "
+         "NearestCFG PartAContrast PartACoreCI PartACoreRange PartAOffSiteCI QuadraticFalse LinearFalse "
+         "SameGrowthFalse AppropriateFalse SwapFalse AppropriateCorrect PartBUnbiasedContrast PartBUnbiasedCI "
+         "PartBRefinedContrast PartBRefinedCI PartBPositiveRetention PartBRetentionPairPercent "
+         "PartBRetentionGroupPercent PartBFoldHits PartBFoldPairPercent PartBNegativeAlerts PartBPositiveUnbiased "
+         "PartBPositiveOOF PartBPositiveRefined PartBPositiveFold PartBMultiUnbiased PartBMultiOOF PartBMultiRefined"),
+        ("paired_mechanism.tex", (manuscript / "paired_mechanism.tex").read_text(encoding="utf-8"),
+         "DeskExistingCI DeskReauditCI DeskEligibleVotes DeskEligibleVoteCI"),
+    ):
+        actual = Counter(re.findall(r"\\Grouped([A-Za-z]+)\b", re.sub(r"(?<!\\)%[^\n]*", "", source)))
+        if actual != Counter(expected.split()):
+            raise ValueError(f"Grouped statistics macro references differ in {name}")
+    for name in ("paper.tex", "paired_mechanism.tex"):
+        if r"\input{grouped_statistics_macros}" not in (manuscript / name).read_text(encoding="utf-8"):
+            raise ValueError(f"Missing grouped statistics macro input in {name}")
 
 
 def main():
@@ -516,6 +590,7 @@ def main():
     elif macros.encode("utf-8") != MACROS.read_bytes():
         raise ValueError("Grouped statistics manuscript macros differ from the recomputed receipt.")
     else:
+        verify_macro_references()
         print("Verified grouped statistics against public receipts (Holm family: 2 qualification contrasts).")
 
 

@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from hashlib import sha256
 import json
 from math import isclose, log
+import re
 from statistics import linear_regression, mean
 
 from replay_pilot_contrast import PILOT, ROOT, verified_json
@@ -337,6 +338,7 @@ def verify_feasibility_table():
     assert len(rows) == 8
     assert rows[0][0] == "UOJ raw-AST audit" and "0/714" in rows[0][2] and "11 header-clean" in rows[0][2]
     assert rows[1][0] == "OEIS scalar intake" and "5 eligible" in rows[1][2] and "3/5" in rows[1][2] and "0/5" in rows[1][2]
+    assert rows[1][2].endswith(r", nearest-preceding CFG \GroupedNearestCFG{}"), "OEIS nearest-preceding CFG must use its generated macro"
     assert rows[2][0] == r"PIE pair \texttt{p03497}" and "2.00" in rows[2][2] and "0.50" in rows[2][2]
     assert rows[3][0] == "Cursor reset" and r"\texttt{N5}" in rows[3][2] and "1/2" in rows[3][2] and "2/5" in rows[3][2]
     assert rows[4][0] == "Comparator swap" and "0.870" in rows[4][2] and "-0.039" in rows[4][2]
@@ -386,7 +388,7 @@ def verify_prospective_multiagent():
         return f"{obj['count']}/{obj['total']} ({100 * obj['family_macro_rate']:.2f})"
 
     def gcell(obj):
-        return f"{obj['count']}/{obj['total']} ({100 * obj['group_macro_rate']:.2f})"
+        return f"{obj['count']}/{obj['total']} ({100 * obj['group_macro_rate']:.1f})"
 
     def gpucore(entry):
         c = entry["core_20"]
@@ -408,7 +410,15 @@ def verify_prospective_multiagent():
         [r"B ($D_{\mathrm{rank}}$)", r"Refined \texttt{symbolic} (\texttt{def\_use=T})", f"{oof_rank['slice_recall']['count']}/10", gcell(oof_rank["symbolic"]["top1"])],
         [r"B ($D_{\mathrm{rank}}$)", r"Strict OOF \texttt{abstract\_graph}", f"{oof_rank['slice_recall']['count']}/10", gcell(oof_rank["abstract"]["top1"])],
     ]
-    assert published_rows("evaluation.tex", "tab:prospective-multiagent") == expected_rows
+    rows = published_rows("evaluation.tex", "tab:prospective-multiagent")
+    macros = dict(re.findall(r"^\\newcommand\{\\(GroupedPartB\w+)\}\{([^{}]+)\}$",
+                             (ROOT / "manuscript/grouped_statistics_macros.tex").read_text(encoding="utf-8"),
+                             re.MULTILINE))
+    for row, name in zip(rows[7:], ("PositiveUnbiased", "PositiveRefined", "PositiveFold", "PositiveOOF",
+                                    "MultiUnbiased", "MultiRefined", "MultiOOF"), strict=True):
+        assert row[-1] == rf"\GroupedPartB{name}{{}}"
+        row[-1] = macros[f"GroupedPartB{name}"]
+    assert rows == expected_rows
     print("Verified all 14 rows of tab:prospective-multiagent across Parts A and B.")
 
 

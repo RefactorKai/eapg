@@ -71,6 +71,16 @@ def test_agreement_uses_unequal_cluster_sizes_and_positive_denominators(computed
     assert b["adjudicated_positives"]["symbolic_unbiased"]["discordant_pairs"] == {"left_only": 6, "right_only": 2}
     assert b["adjudicated_positives"]["symbolic_unbiased"]["cluster_sign_flip_p"] == 1.0
     assert b["without_g_stress_08"]["symbolic_unbiased"]["group_weighted_delta_pp"] == 0.0
+    assert b["adjudicated_positives"]["abstract_fold0"]["right"]["percent"] == 85.7
+    assert computed["part_b"]["equal_group_top1_percent"]["adjudicated_positives"]["abstract_fold0"] == 81.8
+
+
+def test_eligible_votes_are_a_vote_rate_not_an_exclusion_rate(computed):
+    cell = computed["secondary_desk_agreement"]["reaudit_eligible_votes_on_exclusions"]
+    assert cell["count"] == 8 and cell["total"] == 72 and cell["percent"] == 11.1
+    assert cell["clopper_pearson_95pct_percent"] == [4.9, 20.7]
+    assert cell["unit"] == "agent vote on a sampled originally excluded pair"
+    assert "assuming independent votes" in cell["interval_method"]
 
 
 def test_fair_cfg_baselines_are_recomputed_from_public_candidate_sets(computed):

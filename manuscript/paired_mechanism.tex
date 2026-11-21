@@ -373,9 +373,15 @@ The prospective draw shares four pairs with that panel. The three agents
 agree unanimously on 17 of 24 exclusions (70.8\%) and on 58 of 72 judgment
 pairs (80.6\%). Fleiss's \(\kappa=0.698\), with a descriptive 95\% interval
 of \(\GroupedDeskReauditCI\) points on the \(100\kappa\) scale from whole-vector
-resampling within allocation cells.
-The unweighted estimates describe the sampled exclusions. The intervals
-condition on singleton cells and repeated projects may induce dependence.
+resampling within allocation cells. In the public confusion matrix,
+\GroupedDeskEligibleVotes{} of votes on sampled exclusions were
+\textsc{eligible} (95\% Clopper--Pearson reference interval
+\(\GroupedDeskEligibleVoteCI\)\%, assuming independent votes).
+Votes repeat on the same pairs, so this interval describes a vote rate under
+a working assumption. It does not bound the number of the 95 exclusions
+whose disposition should change; that requires case-level adjudication.
+The agreement intervals condition on singleton cells, and repeated projects
+may induce dependence.
 
 \draftcolumn
 \section{Threats to Validity}

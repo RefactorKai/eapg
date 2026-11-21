@@ -70,7 +70,11 @@ an inadmissible or unavailable reduced ladder is not a negative verdict.
   the reported summaries and aggregate confusion counts; recomputing their
   bootstrap replicates still requires private vote vectors. Subset and
   protocol comparisons without released paired outcomes do not get a
-  synthetic test.
+  synthetic test. On sampled exclusions the public confusion matrix counts
+  eligible votes, not eligible pairs. Its 95% Clopper–Pearson interval assumes
+  independent votes as a binomial reference only. Votes repeat on cases; this
+  does not bound how many of the 95 exclusions should change without
+  case-level adjudication.
 - Part A specificity is replay-only. Nominal per-seed strata come from
   WP-S1's verified receipt. Alerts on same-growth shams or appropriate
   superlinear controls are false alerts; only non-alerts are correct
@@ -82,7 +86,8 @@ From the checkout, `python -B development/replay_grouped_statistics.py --write`
 regenerates [the JSON receipt](grouped_statistics.json) and its
 [WP-A4 manuscript macros](../manuscript/grouped_statistics_macros.tex). The
 receipt pins input and script SHA-256s. The same command without `--write`
-compares both outputs to a fresh recomputation and fails on drift;
+compares both outputs to a fresh recomputation, checks the manuscript's
+macro references, and fails on drift;
 `python -B eapg.py verify --mode linux` runs that comparison.
 Archived releases, source programs, and full-precision historical receipts
 are left unchanged.
