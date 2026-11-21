@@ -18,6 +18,19 @@ from .expanded_repositories import archive_paths, checked_path
 
 
 CODENET_SHA256 = "7e96620307f874269a62cc0225f2a5a13d2de2b3c368cf61319c87ec276620fb"
+REPOSITORY_CLUSTER_ERRATA = {
+    "repository/redot-engine/redot-engine": {
+        "cluster": "repository/godotengine/godot",
+        "date": "2026-11-21",
+        "upstream_evidence": "https://www.redotengine.org/contact",
+        "deviation_note_sha256": "357080fcc52333409d6dbd6a09a24fdfb5efe645aff56f58b71b3aa17b87c024",
+    },
+}
+
+
+def repository_cluster(root):
+    cluster = "repository/" + root
+    return REPOSITORY_CLUSTER_ERRATA.get(cluster, {}).get("cluster", cluster)
 
 
 def pinned_json(path, pin):
@@ -99,14 +112,16 @@ def bind_repository(row, doc):
     details = {k: fetched[k] for k in ("slow_paths", "fast_paths", "license_evidence") if k in fetched}
     details["license"] = fetched.get("license") if fetched.get("license_evidence") else None
     details["incomplete_source"] = bool(fetched.get("missing_files"))
-    if not root or root != row["cluster"].removeprefix("repository/"):
+    root_matches_draw = root == row["cluster"].removeprefix("repository/")
+    if not root_matches_draw:
         details["unavailable"] = "repository_root_mismatch"
     elif all(k in fetched for k in ("slow_paths", "fast_paths")) and not (
             fetched["slow_paths"] and fetched["fast_paths"]):
         details["unavailable"] = "no_changed_cpp_source_on_one_or_both_sides"
     elif not details["license"] or fetched.get("unavailable"):
         details["unavailable"] = "pinned_provenance_unverified"
-    return {**row, **details}
+    cluster = repository_cluster(root) if root_matches_draw else row["cluster"]
+    return {**row, **details, "cluster": cluster}
 
 
 def archive_fingerprints(archived, args, pie_sources, evidence):
@@ -127,7 +142,7 @@ def archive_fingerprints(archived, args, pie_sources, evidence):
         sides = repository_sides(pins, args.github_source)
         root = evidence["identities"][row["repo"]].get("root")
         if root:
-            row["cluster"] = "repository/" + root
+            row["cluster"] = repository_cluster(root)
         previously_pinned = set(row["raw_source_hashes"])
         described = describe_sources(row, sides, set())
         counts["repository_pairs"] += 1
@@ -223,6 +238,7 @@ def freeze(args, payload):
         "intake_rule": rule.decode("utf-8"),
         "intake_rule_sha256": draw["intake_rule_sha256"],
         "repository_snapshot_sha256": draw["repository_snapshot_sha256"],
+        "repository_cluster_errata": REPOSITORY_CLUSTER_ERRATA,
         "candidate_counts": draw["candidate_counts"],
         "pair_count": len(rows),
         "counts_by_source": dict(Counter(row["corpus"] for row in rows)),

@@ -4,7 +4,7 @@ from io import StringIO
 import pytest
 
 from development.paired_study.expanded_draw import read_problem_metadata
-from development.paired_study.expanded_freeze import describe_sources
+from development.paired_study.expanded_freeze import bind_repository, describe_sources
 from development.paired_study.expanded_intake import (
     CODENET, CONTEST, GITHUB, PIE_TRAIN, REPOSITORY, alias_clusters, audit, digest,
     codenet_candidates, contest_candidate, extend, fingerprints, rank,
@@ -112,3 +112,20 @@ def test_cpp_path_inventory_uses_correct_revision_and_checks_traversal():
     ]) == {"slow_paths": ["old.cpp", "remove.h"], "fast_paths": ["add.hpp", "renamed/new.cpp"]}
     with pytest.raises(ValueError, match="source path"):
         changed_cpp_paths([{"filename": "../outside.cpp", "status": "modified"}])
+
+
+def test_repository_fork_correction_preserves_source_identity():
+    repo = "Redot-Engine/redot-engine"
+    row = {"repo": repo, "id": "frozen", "cluster": "repository/redot-engine/redot-engine",
+           "slow_id": "before", "fast_id": "after"}
+    fetched = {**row, "license": "MIT", "license_evidence": {"pin": "license"}}
+    doc = {"rows": {"frozen": fetched}, "identities": {repo: {"root": repo.casefold()}}}
+
+    merged = bind_repository(row, doc)
+
+    assert "unavailable" not in merged
+    assert merged["cluster"] == "repository/godotengine/godot"
+    assert {k: merged[k] for k in ("repo", "id", "slow_id", "fast_id")} == {
+        k: row[k] for k in ("repo", "id", "slow_id", "fast_id")
+    }
+    assert row["cluster"] == "repository/redot-engine/redot-engine"
